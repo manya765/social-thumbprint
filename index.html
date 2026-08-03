@@ -1,0 +1,1495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Social Thumbprint — Social Media & Growth Agency</title>
+<meta name="description" content="A creative-growth studio crafting scroll-stopping content, performance-driven campaigns, and brand identities that leave a lasting mark.">
+
+<!-- Using Fraunces as a free alternative to Recolata, and Inter for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     ============================================================ */
+  :root {
+    --teal: #00B0B9;
+    --teal-light: #4DD9E0;
+    --teal-dark: #008B94;
+    --purple: #3A2350; /* Purple for Navbar */
+    --purple-soft: #4d2f6b;
+    --white: #FFFFFF;
+    --ink-soft: rgba(255, 255, 255, 0.78);
+    --ink-faint: rgba(255, 255, 255, 0.55);
+
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --container: 1180px;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  /* Custom Cursor hiding default */
+  html { scroll-behavior: smooth; cursor: none; overflow-x: hidden; }
+  a, label { cursor: none; }
+  input, textarea { cursor: text !important; }
+  button, .btn { cursor: pointer !important; }
+
+  body {
+    background: var(--teal);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom Fingerprint Cursor */
+  .cursor-fingerprint {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    opacity: 0.8;
+  }
+  .cursor-fingerprint svg {
+    width: 100%; height: 100%;
+    fill: none;
+    color: var(--teal-light);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  
+  /* Stamp effect when hovering clickables */
+  .cursor-fingerprint.stamping {
+    transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
+    opacity: 1;
+  }
+  .cursor-fingerprint.stamping svg {
+    color: var(--white);
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.8));
+    stroke-width: 6;
+  }
+
+  /* Loading Screen */
+  #loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader-fingerprint {
+    width: 80px; height: 80px;
+    fill: none;
+    stroke: var(--teal);
+    stroke-width: 2;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  .loader-text {
+    margin-top: 5px;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: textFadeIn 0.8s ease forwards 1.2s;
+  }
+  @keyframes scanIn {
+    0% { 
+      opacity: 0; 
+      transform: translateY(30px) scale(0.95);
+      clip-path: inset(100% 0 0 0); 
+    }
+    20% {
+      opacity: 1;
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) scale(1);
+      clip-path: inset(0 0 0 0); 
+    }
+  }
+  
+  /* Add a cool scanning line effect over it */
+  .loader-fingerprint-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .loader-fingerprint-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--white);
+    box-shadow: 0 0 10px var(--white);
+    animation: scanLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+  #loader img { max-width: 70vw; max-height: 70vh; }
+  @keyframes scanLine {
+    0% { top: 100%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 0%; opacity: 0; }
+  }
+  @keyframes textFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 3D Lighting Background */
+
+
+  /* Animated Ambient Fingerprint Background */
+  .bg-fingerprint {
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('fingerprint.png'); 
+    opacity: 0.15; /* Increased opacity */
+    background-size: 600px;
+    
+    /* Turn teal into pure white and remove background */
+    filter: grayscale(1) invert(1) brightness(10) contrast(10);
+    mix-blend-mode: screen; 
+    
+    /* transition for smooth mouse following */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));
+  }
+  
+  /* Update blobs to also shift with mouse for gradient shifting effect */
+
+    to { transform: rotate(360deg); }
+  }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  section { padding: 1.5rem 0; position: relative; }
+
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 10px 2px rgba(0, 176, 185, 0.4);
+  }
+
+  .section-heading {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    max-width: 650px;
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-shadow: 
+      0px 1px 0px #008B94,
+      0px 2px 0px #007c84,
+      0px 3px 0px #006e75,
+      0px 4px 10px rgba(0,0,0,0.3);
+  }
+  .section-sub {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+  .section-head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-head-row .section-heading, .section-head-row .section-sub { margin-bottom: 0; }
+
+  .reveal-heading {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-heading.in-view { opacity: 1; transform: translateY(0); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal-light), var(--teal));
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 176, 185, 0.3);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(0, 176, 185, 0.5);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Navbar */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 300;
+    animation: navFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards 1s;
+    opacity: 0;
+  }
+  @keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .nav-pill {
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    padding: 0.5rem 2rem; /* Decreased padding to make it thin */
+    background: rgba(58, 35, 80, 0.95); /* Solid Purple nav bar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .navbar.scrolled .nav-pill {
+    background: rgba(58, 35, 80, 0.98);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  }
+  .nav-logo { font-family: var(--font-heading); font-size: 1.15rem; white-space: nowrap; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .hamburger-btn { display: none; background: none; border: none; color: var(--white); cursor: none; padding: 0.5rem; margin-right: -0.5rem; }
+  .hamburger-btn svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  
+  .mobile-menu-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(30, 15, 45, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    z-index: 9999; display: flex; flex-direction: column; padding: 1.5rem 2rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
+  .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  .mobile-logo { font-family: var(--font-heading); font-size: 1.15rem; color: var(--white); white-space: nowrap; }
+  .close-menu-btn { background: none; border: none; color: var(--white); cursor: none; padding: 0.5rem; margin-right: -0.5rem; }
+  .close-menu-btn svg { width: 32px; height: 32px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  
+  .mobile-nav-links { display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; flex-grow: 1; margin-top: 1rem; width: 100%; }
+  .mobile-nav-links a { font-family: var(--font-body); font-size: 1.25rem; color: var(--white); font-weight: 600; text-transform: capitalize; transition: color 0.2s ease; }
+  .mobile-nav-links a:hover { color: var(--teal); }
+  .mobile-nav-cta {
+    background: var(--teal);
+    color: var(--white); padding: 1rem; border-radius: 8px; font-weight: 700; font-size: 1.05rem;
+    text-align: center; margin-bottom: 2rem; width: 100%; box-shadow: 0 4px 15px rgba(0, 176, 185, 0.3);
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 1.85rem; }
+  .nav-links a { font-size: 0.9rem; color: var(--ink-soft); transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--white);
+    color: var(--teal);
+    padding: 0.62rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.86rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--teal-light); transform: translateY(-2px); color: var(--white); }
+
+  /* Hero */
+  .hero {
+    padding-top: 8rem; padding-bottom: 5rem;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center; position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 1;
+    filter: grayscale(100%);
+    pointer-events: none;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Black filter */
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
+    pointer-events: none;
+    z-index: 3; /* Texture */
+  }
+  .hero-inner {
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; z-index: 10;
+  }
+  
+  /* Stagger load for Hero */
+  .load-stagger {
+    opacity: 0; transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8);
+    animation: loadIn3D 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  .load-stagger:nth-child(1) { animation-delay: 2.1s; }
+  .load-stagger:nth-child(2) { animation-delay: 2.25s; }
+  .load-stagger:nth-child(3) { animation-delay: 2.4s; }
+  .load-stagger:nth-child(4) { animation-delay: 2.55s; }
+  @keyframes loadIn3D {
+    0% { opacity: 0; transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) translateZ(0) rotateX(0deg) scale(1); }
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    max-width: 900px; letter-spacing: -0.02em; line-height: 1.05;
+    color: var(--white);
+    text-shadow: none;
+    transform: perspective(800px) rotateX(5deg);
+  }
+  .hero-title .highlight-wrapper {
+    display: inline-block; position: relative;
+  }
+  .hero-title .highlight {
+    position: relative; color: var(--teal);
+    text-shadow: none;
+    z-index: 2;
+  }
+  /* Giant Fingerprint Hover Effect */
+  .giant-fingerprint {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 500px; height: 500px;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-image: url('fingerprint.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+  }
+  .highlight-wrapper:hover .giant-fingerprint {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .hero-intro { margin-top: 1.5rem; max-width: 560px; color: var(--ink-soft); font-size: 1.08rem; }
+  .hero-actions { margin-top: 2.25rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  /* Stats */
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes floatAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+  }
+  .stats-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 5;
+  }
+
+  .stats-float {
+    display: flex; align-items: stretch; justify-content: center; gap: 2rem;
+    perspective: 1000px; /* For 3D effect during animation */
+  }
+
+  .stat { 
+    flex: 1; text-align: center; padding: 2.5rem 1.5rem; 
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    
+    /* Animation initial state */
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Fan-out starting positions */
+  .stats-float:not(.in-view) .stat:nth-child(1) { transform: translateX(120%) scale(0.6) rotate(-15deg); }
+  .stats-float:not(.in-view) .stat:nth-child(2) { transform: translateY(100px) scale(0.6); }
+  .stats-float:not(.in-view) .stat:nth-child(3) { transform: translateX(-120%) scale(0.6) rotate(15deg); }
+
+  /* Final positions */
+  .stats-float.in-view .stat {
+    opacity: 1;
+    transform: translate(0) scale(1) rotate(0);
+  }
+
+  /* Stagger the entrance */
+  .stats-float.in-view .stat:nth-child(1) { transition-delay: 0.1s; }
+  .stats-float.in-view .stat:nth-child(2) { transition-delay: 0.3s; }
+  .stats-float.in-view .stat:nth-child(3) { transition-delay: 0.5s; }
+
+  /* Continuous floating after entrance */
+  @keyframes individualFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .stats-float.in-view .stat {
+    animation: individualFloat 6s ease-in-out infinite;
+  }
+  .stats-float.in-view .stat:nth-child(1) { animation-delay: 1.3s; }
+  .stats-float.in-view .stat:nth-child(2) { animation-delay: 1.5s; }
+  .stats-float.in-view .stat:nth-child(3) { animation-delay: 1.7s; }
+
+  .stat h3 { 
+    font-size: clamp(2.2rem, 3.5vw, 3rem); 
+    color: var(--teal); 
+    margin-bottom: 0.5rem;
+  }
+  .stat p { 
+    margin-top: 0; font-size: 0.95rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .stat-divider { width: 1px; align-self: stretch; background: rgba(255, 255, 255, 0.12); }
+  @media (max-width: 700px) {
+    .stats-float { flex-direction: column; gap: 1.75rem; }
+    .stat-divider { width: 60%; height: 1px; align-self: center; }
+  }
+
+  /* Services */
+  .services-list { display: flex; flex-direction: column; width: 100%; gap: 1rem; margin-top: 2rem; }
+  .service-list-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2rem 2.5rem; 
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease; text-decoration: none; cursor: none;
+  }
+  .service-list-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .service-list-content { display: flex; flex-direction: column; gap: 0.5rem; }
+  .service-list-title {
+    font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 600;
+    color: var(--white); letter-spacing: 0;
+    transition: color 0.3s ease, transform 0.3s ease; transform-origin: left;
+  }
+  .service-list-desc {
+    font-size: 1rem; color: var(--teal-light); font-weight: 500; opacity: 0;
+    transform: translateY(10px); transition: all 0.4s ease; max-height: 0; overflow: hidden;
+  }
+  .service-list-item:hover .service-list-title {
+    transform: scale(1.02) translateX(4px);
+  }
+  .service-list-item:hover .service-list-desc {
+    opacity: 1; transform: translateY(0); max-height: 50px; margin-top: 0.5rem;
+  }
+  .service-list-arrow {
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50%; color: var(--white);
+    transition: all 0.3s ease; flex-shrink: 0; margin-left: 2rem;
+  }
+  .service-list-arrow svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; }
+  .service-list-item:hover .service-list-arrow {
+    background: var(--white); color: var(--teal); border-color: var(--white);
+  }
+  .service-list-item:hover .service-list-arrow svg {
+    transform: translateX(4px);
+  }
+
+  /* Hexagon Grid */
+  .hex-section {
+    padding: 3rem 0;
+    margin-top: 2rem; margin-bottom: 5rem;
+    position: relative;
+    overflow: visible;
+  }
+  @keyframes driftGrid {
+    from { transform: translateX(300px); }
+    to { transform: translateX(-300px); }
+  }
+  .hex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); /* Full bleed horizontal */
+    animation: driftGrid 20s linear infinite;
+    will-change: transform;
+  }
+  .hex-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -69px; /* Overlap for honeycomb effect */
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .hex {
+    flex-shrink: 0;
+    width: 240px;
+    height: 276px;
+    background: rgba(255, 255, 255, 0.15);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Animation state for zoom-in on scroll */
+    opacity: 0;
+    transform: scale(0.3);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .hex img { 
+    max-width: 75%; 
+    max-height: 75%; 
+    object-fit: contain; 
+    pointer-events: none; 
+  }
+  .hex.in-view {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .hex:hover {
+    transform: scale(1.15) !important;
+    background: var(--teal-light);
+    color: var(--purple);
+    z-index: 10;
+  }
+  /* Stagger animation */
+  .hex:nth-child(1) { transition-delay: 0.05s; }
+  .hex:nth-child(2) { transition-delay: 0.15s; }
+  .hex:nth-child(3) { transition-delay: 0.25s; }
+  .hex:nth-child(4) { transition-delay: 0.35s; }
+  .hex:nth-child(5) { transition-delay: 0.45s; }
+
+  /* Testimonials */
+  .testimonial-card {
+    max-width: 900px; margin: 0 auto; background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg); padding: 3.5rem; text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+  .testimonial-track { position: relative; min-height: 250px; display: flex; align-items: center; justify-content: center; }
+  .testimonial-slide {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.6s ease;
+  }
+  .testimonial-slide.active { position: relative; opacity: 1; visibility: visible; }
+  .testimonial-quote { font-size: 1.12rem; line-height: 1.7; color: var(--teal); font-style: italic; }
+  .testimonial-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.85rem; }
+  .testimonial-author-info { text-align: left; }
+  .author-name { font-weight: 700; font-size: 1rem; color: var(--teal); }
+  .author-role { font-size: 0.85rem; color: var(--teal); font-weight: 500; }
+  .testimonial-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .testimonial-dot {
+    width: 8px; height: 8px; border: none; border-radius: 50%; background: rgba(0, 139, 148, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .testimonial-dot.active { background: var(--teal); transform: scale(1.35); }
+
+  /* Work Grid (Our Thumbprints) */
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .work-card { 
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg); 
+    overflow: hidden; transition: all 0.4s ease; opacity: 0; transform: translateY(30px); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+  .work-card.in-view { opacity: 1; transform: translateY(0); }
+  .work-card:hover { transform: translateY(-8px); box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3); }
+  .work-img { height: 220px; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
+  .work-overlay { background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); padding: 0.5rem 1.5rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  .work-info { padding: 1.5rem; }
+  .work-info h4 { margin-bottom: 0.5rem; font-family: var(--font-body); color: var(--teal); }
+  .work-info p { color: var(--teal); font-size: 0.9rem; font-weight: 600; }
+
+  /* Founder Section */
+  .founder-section {
+    padding: 7rem 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .founder-img-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 10px 20px 40px rgba(0,0,0,0.3);
+  }
+  .founder-img-wrapper img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .founder-content h3 {
+    font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--white);
+  }
+  .founder-role {
+    font-size: 1.15rem; color: var(--teal-light); font-weight: 600; margin-bottom: 2rem;
+  }
+  .founder-bio p {
+    color: var(--white); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.7; opacity: 0.9;
+  }
+  .founder-contact {
+    margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .founder-contact p { font-weight: 600; margin-bottom: 0.25rem; }
+  .founder-contact a { color: var(--teal-light); text-decoration: underline; }
+
+  @media(max-width: 768px) {
+    .founder-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* Contact */
+  .contact-section-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start;
+    padding-top: 1rem;
+  }
+  @media(max-width: 900px) { .contact-section-inner { grid-template-columns: 1fr; gap: 3rem; } }
+  
+  .contact-info-col h2 { font-size: clamp(2.5rem, 4vw, 3.2rem); margin-bottom: 0.5rem; color: var(--white); font-family: var(--font-heading); }
+  .contact-info-col p.subtext { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 2rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-detail-item { display: flex; align-items: center; gap: 1rem; color: var(--white); font-size: 0.9rem; font-weight: 500; }
+  .contact-detail-icon {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--teal-light); color: var(--teal);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-detail-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Form */
+  .contact-form { width: 100%; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1rem; }
+  .field { display: flex; flex-direction: column; gap: 0.2rem; }
+  .field.span-2 { grid-column: span 2; }
+  .field label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.9); text-transform: none; letter-spacing: 0; }
+  
+  .field input[type="text"], .field input[type="email"], .field textarea {
+    background: #ffffff; border: none; border-radius: 8px;
+    padding: 0.6rem 1rem; color: var(--ink); font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; outline: none; transition: box-shadow 0.2s ease;
+  }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .field input:focus, .field textarea:focus { box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
+  .field input::placeholder, .field textarea::placeholder { color: #9aa4a5; font-weight: 400; }
+  
+  /* Services Checkboxes */
+  .checkbox-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.1rem; }
+  .checkbox-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--white); font-weight: 500; cursor: none; }
+  .checkbox-label input { 
+    appearance: none; -webkit-appearance: none; width: 16px; height: 16px; 
+    border: 2px solid rgba(255,255,255,0.5); border-radius: 4px; outline: none; cursor: none; position: relative; transition: all 0.2s ease;
+  }
+  .checkbox-label input:checked { background: var(--white); border-color: var(--white); }
+  .checkbox-label input:checked::after { content: '✓'; position: absolute; top: -2px; left: 2px; color: var(--teal); font-size: 12px; font-weight: bold; }
+  
+  .contact-form .btn-submit { 
+    margin-top: 1rem; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 999px; cursor: none;
+    background: #ffffff; color: var(--teal); border: none; transition: transform 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .contact-form .btn-submit:hover { transform: translateY(-2px); }
+
+
+  footer { padding: 3.5rem 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 4rem; }
+  footer p { font-size: 0.85rem; color: var(--white); font-weight: 500; }
+  /* --- Mobile Optimization --- */
+  @media(max-width: 768px) {
+    section { padding: 1.5rem 0; }
+    .hero { padding-top: 6rem; padding-bottom: 2rem; }
+    
+    .nav-pill { padding: 0.8rem 1.5rem; justify-content: space-between; }
+    .nav-links { display: none; }
+    .hamburger-btn { display: flex; }
+    
+    .section-head-row { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .section-sub { margin-bottom: 1rem; }
+
+    .stats-float { flex-direction: column; gap: 1.5rem; }
+
+    .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+    .founder-content h3 { font-size: 2.2rem; }
+    .founder-img-wrapper { max-width: 400px; margin: 0 auto; }
+    
+    .contact-section-inner { gap: 3rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .field.span-2 { grid-column: span 1; }
+    .checkbox-group { grid-template-columns: 1fr 1fr; }
+  }
+  
+  @media(max-width: 480px) {
+    .checkbox-group { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+<div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading" style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;"></div>
+    <div class="loader-text">Leaving Your Mark..</div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-fingerprint" id="customCursor">
+    <svg viewBox="0 0 100 100">
+      <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 25 C38 25 25 38 25 50 C25 62 38 75 50 75 C62 75 75 62 75 50 C75 38 62 25 50 25 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 40 C45 40 40 45 40 50 C40 55 45 60 50 60 C55 60 60 55 60 50 C60 45 55 40 50 40 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <!-- AMBIENT BACKGROUND -->
+  <div class="bg-blobs"></div>
+  <div class="bg-fingerprint"></div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-pill">
+      <a href="#" class="nav-logo">The Social Thumbprint</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Our Thumbprints</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+        <button class="hamburger-btn" aria-label="Open Menu">
+          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL SCREEN MOBILE MENU -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <a href="#" class="mobile-logo">The Social Thumbprint</a>
+      <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close Menu">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Our Thumbprints</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="mobile-nav-cta">Get in Touch</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-bg-video">
+      <source src="https://res.cloudinary.com/rtozh6o5/video/upload/v1784717068/Untitled_design_4_a9wct3.mp4" type="video/mp4">
+    </video>
+    <div class="container hero-inner">
+      <h1 class="hero-title load-stagger">We Don't Chase Trends.<br>We Leave <div class="highlight-wrapper"><span class="highlight">Thumbprints.</span><div class="giant-fingerprint"></div></div></h1>
+      <p class="hero-intro load-stagger">A creative-growth studio crafting scroll-stopping content, performance-driven ad campaigns, and brand identities that leave a lasting mark.</p>
+      <div class="hero-actions load-stagger">
+        <a href="#contact" class="btn btn-primary">Leave Your Mark</a>
+        <a href="#work" class="btn btn-ghost">Our Thumbprints</a>
+      </div>
+    </div>
+
+  </section>
+  
+  <!-- STANDALONE STATS SECTION -->
+  <section class="stats-section" id="stats">
+    <div class="container">
+      <div class="stats-float" id="statsFloat">
+        <div class="stat"><h3 data-target="120" data-prefix="" data-suffix="+">0+</h3><p>Campaigns Produced</p></div>
+        <div class="stat"><h3 data-target="20" data-prefix="₹" data-suffix="L+">₹0L+</h3><p>Ad Budgets Delivered</p></div>
+        <div class="stat"><h3 data-target="35" data-prefix="" data-suffix="%">0%</h3><p>Avg. CPL Reduction</p></div>
+      </div>
+    </div>
+  </section>
+    
+  <!-- BRAND HONEYCOMB GRID -->
+  <section class="hex-section">
+  <div class="container hex-container">
+    <div class="hex-row">
+      <div class="hex reveal-hex"><img src="logos/logo_001.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_002.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_003.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_005.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_006.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_007.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_008.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_009.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_010.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_011.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_012.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_013.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_014.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_015.png" alt="Logo"></div>
+    </div>
+    <div class="hex-row">
+      <div class="hex reveal-hex"><img src="logos/logo_016.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_017.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_018.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_019.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_020.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_021.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_022.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_023.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_024.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_025.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_026.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_027.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_028.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_029.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_030.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_031.png" alt="Logo"></div>
+    </div>
+    <div class="hex-row">
+      <div class="hex reveal-hex"><img src="logos/logo_032.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_033.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_034.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_035.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_036.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_037.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_038.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_039.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_040.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_041.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_042.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_043.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_044.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_045.png" alt="Logo"></div>
+      <div class="hex reveal-hex"><img src="logos/logo_046.png" alt="Logo"></div>
+    </div>
+  </div>
+</section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head-row reveal-heading">
+        <div>
+          <span class="eyebrow">What We Do</span>
+          <h2 class="section-heading">Services built to grow your brand, not just decorate it.</h2>
+        </div>
+        <p class="section-sub">From first reel to full campaign, we handle strategy, production, and performance under one roof.</p>
+      </div>
+
+      <div class="services-list">
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">Social & Content</div>
+            <div class="service-list-desc">Organic strategies, moodboards, and scroll-stopping reel production.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">Growth & Paid Media</div>
+            <div class="service-list-desc">Targeted ad campaigns engineered for lowest CPL and highest reach.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">Production & Creative</div>
+            <div class="service-list-desc">High-end video production, ad films, and brand photography.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">Web & Digital Assets</div>
+            <div class="service-list-desc">End-to-end digital assets designed to leave an unforgettable impression.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">Branding</div>
+            <div class="service-list-desc">Complete brand identity, wedding collaterals, and messaging strategy.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">SEO & Discovery</div>
+            <div class="service-list-desc">Optimized post captions and profile growth for long-term organic reach.</div>
+          </div>
+          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR THUMBPRINTS (PORTFOLIO) -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head-row reveal-heading">
+        <div>
+          <span class="eyebrow">Our Work</span>
+          <h2 class="section-heading">Our Thumbprints</h2>
+        </div>
+        <p class="section-sub">A showcase of video reels, branding, and performance campaigns that leave a lasting mark.</p>
+      </div>
+      
+      <div class="work-grid">
+        <div class="work-card reveal-heading">
+          <div class="work-img">
+            <div class="work-overlay">Play Reel</div>
+          </div>
+          <div class="work-info">
+            <h4>Video Reel for Kira</h4>
+            <p>Content Production</p>
+          </div>
+        </div>
+        <div class="work-card reveal-heading">
+          <div class="work-img">
+            <div class="work-overlay">View Campaign</div>
+          </div>
+          <div class="work-info">
+            <h4>Performance Campaign for SBA</h4>
+            <p>Growth & Paid Media</p>
+          </div>
+        </div>
+        <div class="work-card reveal-heading">
+          <div class="work-img">
+            <div class="work-overlay">View Project</div>
+          </div>
+          <div class="work-info">
+            <h4>Brand Identity for Baulkline</h4>
+            <p>Branding</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head-row reveal-heading">
+        <div>
+          <span class="eyebrow">Client Love</span>
+          <h2 class="section-heading">Our Testimonials</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal-heading">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Slide 1 -->
+          <div class="testimonial-slide active">
+            <p class="testimonial-quote">"Priyanka was on the move to get us the best ideas to build our social media presence online and guided us on the entire journey to build our brand image, which would be easily recognizable to the general audience. She, being super creative, is also full of energy to keep pushing you to do a few things out of your comfort zone, which will build your brand over a period of time!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Samit Jhaveri</p>
+                <p class="author-role">Founder of Samit Jhaveri Realtors</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Priyanka and The Social Thumbprint are absolute gems! Their creativity, responsiveness, and timely delivery have been invaluable to Kira's projects. Highly recommended!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Rohan Kapashi</p>
+                <p class="author-role">Marketing head at Kira Diam</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Working with Priyanka was an absolute pleasure! Her expertise and creativity truly elevated my Instagram reels. We captured engaging content that perfectly reflected my brand. I highly recommend Priyanka for anyone looking to create engaging social media content!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Ayushi Gupta</p>
+                <p class="author-role">Founder of Kokolo</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Many, Many Congratulations to Social Thumbprint for completing a year! Working with Priyanka & team was a complete pleasure. They were always up for investing time, energy, and effort to understand my thought process and adapt accordingly. Open-mindedness and the ability to evolve with brand requirements are their biggest strengths. I wish the young team loads of success & good luck in the coming time!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Nehaal D Shah</p>
+                <p class="author-role">Founder of Heart & Soil</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 5 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Hi Priyanka, Just wanted to say that I couldn't be more impressed with you and your team for all the work you have put in for Arctic Star. Really appreciate how adaptable and hands-on you have been with each and every request of mine and have managed to implement it even better than my vision. Thank you for your exceptional work for Arctic Star and looking forward to another year of creativity and success together."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Aashna Shah</p>
+                <p class="author-role">Founder of Arctic Star Fine Jewellery</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 6 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"The Social Thumbprint played a crucial role in bringing my crochet brand, Made in Stitch, to life on social media. Their creativity, strategic planning, and flawless execution made the launch process smooth and impactful. They truly understood my vision and transformed it into a strong online presence that resonates with my audience. I'm thrilled to have started this journey with them."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Pratibha Maniyar</p>
+                <p class="author-role">Founder of Made In Stitch</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 7 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"I had the pleasure of meeting Priyanka in March 2025 to discuss managing my company's social media profile, and I am convinced that I made the right choice. She brings brilliant ideas and an amazing perspective to the table... Priyanka is also very open to suggestions and handles feedback constructively, which has resulted in delivering outstanding creatives that align perfectly with our vision."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Manisha Sharma</p>
+                <p class="author-role">Founder of Sharma Billiard Accessories</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 8 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Working with Priyanka and The Social Thumbprint over the past 7 months has been a seamless and enriching experience. Priyanka is hands-on, approachable, and brings an objective yet inclusive approach to every conversation. Her clarity of thought and collaborative spirit have added real value to Baulkline's overall direction."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Rishab Kumar</p>
+                <p class="author-role">Founder of Baulkline</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 9 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"With all our various requests, you've been exceptionally patient and full of understanding and care. Choicest blessings, my love."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Jessica Karani</p>
+                <p class="author-role">Wedding invite design + wedding collaterals</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 10 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Absolutely love working with our social media team! They are incredibly creative, prompt with execution, and consistently deliver great work. They truly understand our brand and translate ideas into impactful content effortlessly. They are very receptive to feedback, patient with innumerable changes, and always ensure the final output aligns perfectly with our vision."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Saloni Nahar</p>
+                <p class="author-role">Founder of Adorne</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 11 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"I had the pleasure of working with Priyanka and The Social Thumbprint as our social media manager, and she truly transformed our brand's online presence... What stood out most was her availability and approachable nature. No matter the time zone or last-minute tweaks, she was always just a quick message away, responding promptly with enthusiasm and patience."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Jashan Munwani</p>
+                <p class="author-role">Founder of Touch Of Luna</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 12 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"We've been working with this team for over two years now, and they've truly become an extension of our brand. Their understanding of our vision, consistency in execution, and ability to adapt to trends while maintaining our identity have made a significant difference to our online presence. Reliable, creative, and always proactive — it's been a great partnership."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Shamir Tandon</p>
+                <p class="author-role">Founder of Music Boutique</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 13 -->
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Working with The Social Thumbprint has been an excellent experience from start to finish. Their work is consistently strong, and what stands out most is the complete transparency they bring to every stage of the process... I'd highly recommend their team to anyone looking for a trustworthy partner in this space."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <p class="author-name">Founder</p>
+                <p class="author-role">Meena Bazar, Hyderabad</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER SECTION -->
+  <section class="founder-section" id="founder">
+    <div class="container founder-grid">
+      <div class="founder-img-wrapper reveal-heading">
+        <img src="founder.jpg" alt="Priyanka Vithani">
+      </div>
+      <div class="founder-content reveal-heading">
+        <span class="eyebrow">The Founder</span>
+        <h3>Priyanka Vithani</h3>
+        <p class="founder-role">Founder & Creative Director</p>
+        <div class="founder-bio">
+          <p>With nearly 7 years of experience, I have finally launched my own social media agency that aims to help businesses and individuals establish and grow their online presence.</p>
+          <p>With a deep understanding of the Social Media landscape, my agency is well-equipped to provide a range of services that cater to the specific needs of each client.</p>
+          <p>From social media strategy development to content creation and management, we offer end-to-end solutions that can help businesses leverage the power of social media to connect with their target audience, build brand awareness, and drive engagement.</p>
+        </div>
+        <div class="founder-contact">
+          <p>Phone: +91 9967921559</p>
+          <p>Email: <a href="mailto:thesocailthumbprint@gmail.com">thesocailthumbprint@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="margin-bottom: 6rem;">
+    <div class="container contact-section-inner">
+      
+      <!-- Left: Form -->
+      <div class="contact-form-col reveal-heading">
+        <form class="contact-form" id="leadForm">
+          <div class="contact-grid">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input id="fname" type="text" required>
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input id="lname" type="text" required>
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input id="email" type="email" required>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" type="text">
+            </div>
+            <div class="field span-2">
+              <label>Services you'd like *</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Social Media"> Social Media</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Digital Marketing"> Digital Marketing</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Design"> Design</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Photography"> Photography</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Branding"> Branding</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Business Growth"> Business Growth</label>
+              </div>
+            </div>
+            <div class="field span-2">
+              <label for="website">Website or Social media Link</label>
+              <input id="website" type="text">
+            </div>
+            <div class="field span-2">
+              <label for="message">Tell us a little more about your needs *</label>
+              <textarea id="message" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            Let's do this 
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="contact-info-col reveal-heading">
+        <h2>Contact Us ✨</h2>
+        <p class="subtext">For questions, technical assistance, or collaboration opportunities, feel free to reach out via the details provided.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <span>+91 9967921559</span>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <span>thesocailthumbprint@gmail.com</span>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span>Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 The Social Thumbprint. Created by Priyanka Vithani.</p>
+  </footer>
+
+<script>
+  // Loader sequence
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2400); // Wait for fingerprint draw + text fade + a little extra
+  });
+
+  // Custom Cursor
+  const cursor = document.getElementById('customCursor');
+  window.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Stamp effect on hover
+  document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
+  });
+
+  // Animated stat count-up
+  (function () {
+    var statsFloat = document.getElementById('statsFloat');
+    if (!statsFloat) return;
+    var numbers = statsFloat.querySelectorAll('h3[data-target]');
+    var hasAnimated = false;
+    var duration = 2000;
+    function animate(el) {
+      var target = parseFloat(el.getAttribute('data-target'));
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      var start = null;
+      function step(ts) {
+        if (start === null) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.floor(eased * target);
+        el.textContent = prefix + current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+          
+          // Expand and fade in the container
+          entry.target.classList.add('in-view');
+          
+          // 800ms delay to let the expansion animation finish, then start counting
+          setTimeout(function() {
+            numbers.forEach(animate);
+          }, 800);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(statsFloat);
+  })();
+
+  // Reveal cards
+  (function () {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.service-card, .reveal-heading, .work-card, .reveal-hex').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  })();
+
+  // Navbar background on scroll
+  (function () {
+    var navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
+  // Testimonials carousel
+  (function () {
+    var track = document.getElementById('testimonialTrack');
+    if (!track) return;
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.testimonial-slide'));
+    var dotsContainer = document.getElementById('testimonialDots');
+    var current = 0;
+    var intervalId = null;
+    var AUTO_ADVANCE_MS = 6000;
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+      dot.addEventListener('click', function () {
+        goTo(i);
+        restartAutoAdvance();
+      });
+      dotsContainer.appendChild(dot);
+    });
+    var dots = Array.prototype.slice.call(dotsContainer.querySelectorAll('.testimonial-dot'));
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function restartAutoAdvance() {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(function () { goTo(current + 1); }, AUTO_ADVANCE_MS);
+    }
+    restartAutoAdvance();
+  })();
+
+  // Contact form dummy submit
+  (function () {
+    var form = document.getElementById('leadForm');
+    var btn = document.getElementById('submitBtn');
+    if (!form || !btn) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.textContent = 'Sending...';
+      setTimeout(function () {
+        btn.textContent = 'Message Sent';
+      }, 900);
+    });
+  })();
+
+  // Interactive Background Animations
+  (function() {
+    const bgFingerprint = document.querySelector('.bg-fingerprint');
+    const bgBlobs = document.querySelector('.bg-blobs');
+    if (!bgFingerprint) return;
+
+    window.addEventListener('mousemove', function(e) {
+      const mouseX = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
+      const mouseY = e.clientY / window.innerHeight - 0.5;
+
+      // Fingerprint subtle translation and rotation
+      const moveX = mouseX * 50; // max 50px movement
+      const moveY = mouseY * 50;
+      const rotate = mouseX * 10; // max 5deg rotation based on X axis
+      
+      bgFingerprint.style.setProperty('--move-x', moveX + 'px');
+      bgFingerprint.style.setProperty('--move-y', moveY + 'px');
+      bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
+
+      // Gradient shift for blobs
+      if(bgBlobs) {
+        bgBlobs.style.setProperty('--blob-x', (mouseX * 20) + '%');
+        bgBlobs.style.setProperty('--blob-y', (mouseY * 20) + '%');
+      }
+    });
+  })();
+
+  // Mobile Menu Toggle
+  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-nav-cta');
+  
+  if(hamburgerBtn && closeMenuBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  }
+</script>
+</body>
+</html>
