@@ -167,11 +167,10 @@
     z-index: -1;
     pointer-events: none;
     background-image: url('fingerprint.png'); 
-    opacity: 0.15; /* Increased opacity */
     background-size: 600px;
     
-    /* Turn teal into pure white and remove background */
-    filter: grayscale(1) invert(1) brightness(10) contrast(10);
+    /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
+    filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
     mix-blend-mode: screen; 
     
     /* transition for smooth mouse following */
@@ -373,7 +372,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 1;
+    opacity: 0.6;
     filter: grayscale(100%);
     pointer-events: none;
   }
@@ -767,6 +766,23 @@
 
   footer { padding: 3.5rem 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 4rem; }
   footer p { font-size: 0.85rem; color: var(--white); font-weight: 500; }
+  /* --- Laptop Optimization --- */
+  @media(max-width: 1440px) {
+    html { font-size: 15px; }
+    .hex { width: 220px; height: 250px; }
+    .work-card { max-width: 280px; }
+  }
+  @media(max-width: 1024px) {
+    html { font-size: 14px; }
+    .hero { padding-top: 6rem; min-height: 80vh; }
+    .hero-title { font-size: clamp(2.8rem, 5vw, 4rem); }
+    .hex { width: 180px; height: 210px; }
+    .work-card { max-width: 250px; }
+    .nav-links { gap: 1rem; }
+    .nav-pill { padding: 0.6rem 1rem; }
+    .testimonial-card { padding: 2.5rem; }
+  }
+
   /* --- Mobile Optimization --- */
   @media(max-width: 768px) {
     section { padding: 1.5rem 0; }
@@ -1057,7 +1073,7 @@
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-pill">
-      <a href="#" class="nav-logo-link"><img src="logo.png" alt="The Social Thumbprint" class="nav-logo-img"></a>
+      <a href="#" class="nav-logo-link"><img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="The Social Thumbprint" class="nav-logo-img"></a>
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#work">Our Thumbprints</a>
@@ -1076,7 +1092,7 @@
   <!-- FULL SCREEN MOBILE MENU -->
   <div class="mobile-menu-overlay" id="mobileMenu">
     <div class="mobile-menu-header">
-      <img src="logo.png" alt="Logo" class="mobile-logo">
+      <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="Logo" class="mobile-logo">
       <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close Menu">
         <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
@@ -1093,7 +1109,7 @@
   <!-- HERO -->
   <section class="hero">
     <video autoplay muted loop playsinline class="hero-bg-video">
-      <source src="https://res.cloudinary.com/rtozh6o5/video/upload/v1784717068/Untitled_design_4_a9wct3.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116597/Untitled_design_5_ycrnpe_s2pf4h.mp4" type="video/mp4">
     </video>
     <div class="container hero-inner">
       <h1 class="hero-title load-stagger">We Don't Chase Trends.<br>We Leave <div class="highlight-wrapper"><span class="highlight">Thumbprints.</span><div class="giant-fingerprint"></div></div></h1>

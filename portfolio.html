@@ -167,11 +167,10 @@
     z-index: -1;
     pointer-events: none;
     background-image: url('fingerprint.png'); 
-    opacity: 0.15; /* Increased opacity */
     background-size: 600px;
     
-    /* Turn teal into pure white and remove background */
-    filter: grayscale(1) invert(1) brightness(10) contrast(10);
+    /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
+    filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
     mix-blend-mode: screen; 
     
     /* transition for smooth mouse following */
@@ -763,6 +762,23 @@
 
   footer { padding: 3.5rem 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 4rem; }
   footer p { font-size: 0.85rem; color: var(--white); font-weight: 500; }
+  /* --- Laptop Optimization --- */
+  @media(max-width: 1440px) {
+    html { font-size: 15px; }
+    .hex { width: 220px; height: 250px; }
+    .work-card { max-width: 280px; }
+  }
+  @media(max-width: 1024px) {
+    html { font-size: 14px; }
+    .hero { padding-top: 6rem; min-height: 80vh; }
+    .hero-title { font-size: clamp(2.8rem, 5vw, 4rem); }
+    .hex { width: 180px; height: 210px; }
+    .work-card { max-width: 250px; }
+    .nav-links { gap: 1rem; }
+    .nav-pill { padding: 0.6rem 1rem; }
+    .testimonial-card { padding: 2.5rem; }
+  }
+
   /* --- Mobile Optimization --- */
   @media(max-width: 768px) {
     section { padding: 1.5rem 0; }
