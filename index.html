@@ -1,857 +1,1765 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Social Thumbprint — Social Media & Growth Agency</title>
-<meta name="description" content="A creative-growth studio crafting scroll-stopping content, performance-driven campaigns, and brand identities that leave a lasting mark.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Social Thumbprint — Social Media & Growth Agency</title>
+  <meta name="description"
+    content="A creative-growth studio crafting scroll-stopping content, performance-driven campaigns, and brand identities that leave a lasting mark.">
 
-<!-- Using Fraunces as a free alternative to Recolata, and Inter for body -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Using Fraunces as a free alternative to Recolata, and Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
-<style>
-  /* ============================================================
+  <style>
+    /* ============================================================
      DESIGN TOKENS
      ============================================================ */
-  :root {
-    --teal: #00B0B9;
-    --teal-light: #4DD9E0;
-    --teal-dark: #008B94;
-    --purple: #3A2350; /* Purple for Navbar */
-    --purple-soft: #4d2f6b;
-    --white: #FFFFFF;
-    --ink-soft: rgba(255, 255, 255, 0.78);
-    --ink-faint: rgba(255, 255, 255, 0.55);
+    :root {
+      --teal: #00B0B9;
+      --teal-light: #4DD9E0;
+      --teal-dark: #008B94;
+      --purple: #3A2350;
+      /* Purple for Navbar */
+      --purple-soft: #4d2f6b;
+      --white: #FFFFFF;
+      --ink-soft: rgba(255, 255, 255, 0.78);
+      --ink-faint: rgba(255, 255, 255, 0.55);
 
-    --font-heading: 'Fraunces', serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Fraunces', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    --container: 1180px;
-    --radius-lg: 28px;
-    --radius-md: 20px;
-    --radius-sm: 12px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  /* Custom Cursor hiding default */
-  html { scroll-behavior: smooth; cursor: none; overflow-x: hidden; }
-  a, label { cursor: none; }
-  input, textarea { cursor: text !important; }
-  button, .btn { cursor: pointer !important; }
-
-  body {
-    background: var(--teal);
-    color: var(--white);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Custom Fingerprint Cursor */
-  .cursor-fingerprint {
-    position: fixed;
-    top: 0; left: 0;
-    width: 32px; height: 32px;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, opacity 0.15s ease;
-    opacity: 0.8;
-  }
-  .cursor-fingerprint svg {
-    width: 100%; height: 100%;
-    fill: none;
-    color: var(--teal-light);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-  }
-  
-  /* Stamp effect when hovering clickables */
-  .cursor-fingerprint.stamping {
-    transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
-    opacity: 1;
-  }
-  .cursor-fingerprint.stamping svg {
-    color: var(--white);
-    filter: drop-shadow(0 0 12px rgba(255,255,255,0.8));
-    stroke-width: 6;
-  }
-
-  /* Loading Screen */
-  #loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-  }
-  #loader.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-  .loader-fingerprint {
-    width: 80px; height: 80px;
-    fill: none;
-    stroke: var(--teal);
-    stroke-width: 2;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-  .loader-text {
-    margin-top: 5px;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--white);
-    opacity: 0;
-    transform: translateY(10px);
-    animation: textFadeIn 0.8s ease forwards 1.2s;
-  }
-  @keyframes scanIn {
-    0% { 
-      opacity: 0; 
-      transform: translateY(30px) scale(0.95);
-      clip-path: inset(100% 0 0 0); 
+      --container: 1180px;
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 12px;
     }
-    20% {
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Custom Cursor hiding default */
+    html {
+      scroll-behavior: smooth;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    a,
+    label {
+      cursor: none;
+    }
+
+    input,
+    textarea {
+      cursor: text !important;
+    }
+
+    button,
+    .btn {
+      cursor: pointer !important;
+    }
+
+    body {
+      background: var(--teal);
+      color: var(--white);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom Fingerprint Cursor */
+    .cursor-fingerprint {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      opacity: 0.8;
+    }
+
+    .cursor-fingerprint svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      color: var(--teal-light);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Stamp effect when hovering clickables */
+    .cursor-fingerprint.stamping {
+      transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
       opacity: 1;
     }
-    100% { 
-      opacity: 1; 
-      transform: translateY(0) scale(1);
-      clip-path: inset(0 0 0 0); 
+
+    .cursor-fingerprint.stamping svg {
+      color: var(--white);
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+      stroke-width: 6;
     }
-  }
-  
-  /* Add a cool scanning line effect over it */
-  .loader-fingerprint-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  .loader-fingerprint-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--white);
-    box-shadow: 0 0 10px var(--white);
-    animation: scanLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    opacity: 0;
-  }
-  #loader img { max-width: 70vw; max-height: 70vh; }
-  @keyframes scanLine {
-    0% { top: 100%; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { top: 0%; opacity: 0; }
-  }
-  @keyframes textFadeIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
 
-  /* 3D Lighting Background */
+    /* Loading Screen */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-fingerprint {
+      width: 80px;
+      height: 80px;
+      fill: none;
+      stroke: var(--teal);
+      stroke-width: 2;
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .loader-text {
+      margin-top: 5px;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: textFadeIn 0.8s ease forwards 1.2s;
+    }
+
+    @keyframes scanIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        clip-path: inset(100% 0 0 0);
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    /* Add a cool scanning line effect over it */
+    .loader-fingerprint-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .loader-fingerprint-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--white);
+      box-shadow: 0 0 10px var(--white);
+      animation: scanLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    #loader img {
+      max-width: 70vw;
+      max-height: 70vh;
+    }
+
+    @keyframes scanLine {
+      0% {
+        top: 100%;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 0%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes textFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 3D Lighting Background */
 
 
-  /* Animated Ambient Fingerprint Background */
-  .bg-fingerprint {
-    position: fixed;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    z-index: -1;
-    pointer-events: none;
-    background-image: url('fingerprint.png'); 
-    background-size: 600px;
+    /* Animated Ambient Fingerprint Background */
+    .bg-fingerprint {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url('fingerprint.png');
+      background-size: 600px;
+
+      /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
+      filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
+      mix-blend-mode: screen;
+
+      /* transition for smooth mouse following */
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));
+    }
+
+    .cursor-fingerprint.purple-mode svg {
+      color: #3A2350;
+    }
+
+    /* Update blobs to also shift with mouse for gradient shifting effect */
+
+    to {
+      transform: rotate(360deg);
+    }
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 1.5rem 0;
+      position: relative;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      padding-right: calc(6px + 0.6rem); /* Balances the before pseudo-element width and gap */
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+    }
+
+    .section-heading {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      max-width: 650px;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-shadow:
+        0px 1px 0px #008B94,
+        0px 2px 0px #007c84,
+        0px 3px 0px #006e75,
+        0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-sub {
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    .section-head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head-row .section-heading,
+    .section-head-row .section-sub {
+      margin-bottom: 0;
+    }
+    .reveal-heading {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-heading.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Cuberto-style Word Reveal Animation */
+    .word-wrap {
+      display: inline-flex;
+      overflow: hidden;
+      vertical-align: top;
+      padding-bottom: 0.1em;
+      margin-bottom: -0.1em;
+    }
+
+    .word-inner {
+      display: inline-block;
+      transform: translateY(110%) rotate(5deg);
+      opacity: 0;
+      transform-origin: top left;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+      transition-delay: calc(var(--word-index) * 0.04s);
+    }
+
+    .in-view .word-inner,
+    .in-view.word-inner,
+    .hero-title.in-view .word-inner {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2.2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 176, 185, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 25px rgba(0, 176, 185, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 300;
+      animation: navFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards 1s;
+      opacity: 0;
+    }
+
+    @keyframes navFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0.6rem 2rem;
+      background: transparent;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled .nav-pill {
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-logo-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo-img {
+      height: 50px;
+      max-width: 220px;
+      object-fit: contain;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: none;
+      padding: 0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .hamburger-btn svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 12, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-logo {
+      height: 50px;
+      max-width: 200px;
+      object-fit: contain;
+    }
+
+    .close-menu-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: none;
+      padding: 0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .close-menu-btn svg {
+      width: 32px;
+      height: 32px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-grow: 1;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .mobile-nav-links a {
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      color: var(--white);
+      font-weight: 600;
+      text-transform: capitalize;
+      transition: color 0.2s ease;
+    }
+
+    .mobile-nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .mobile-nav-cta {
+      background: #3A2350;
+      color: var(--white);
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(58, 35, 80, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.85rem;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      background: var(--white);
+      color: #3A2350;
+      padding: 0.62rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: #3A2350;
+      transform: translateY(-2px);
+      color: var(--white);
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 8rem;
+      padding-bottom: 5rem;
+      min-height: calc(100vh + 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.6;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      /* Black filter */
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
+      pointer-events: none;
+      z-index: 3;
+      /* Texture */
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Stagger load for Hero */
+    .load-stagger {
+      opacity: 0;
+      transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8);
+      animation: loadIn3D 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
     
-    /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
-    filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
-    mix-blend-mode: screen; 
+    /* Important: Disable default load animation for hero title since words will animate */
+    h1.hero-title.load-stagger {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .load-stagger:nth-child(1) {
+      animation-delay: 2.1s;
+    }
+
+    .load-stagger:nth-child(2) {
+      animation-delay: 2.25s;
+    }
+
+    .load-stagger:nth-child(3) {
+      animation-delay: 2.4s;
+    }
+
+    .load-stagger:nth-child(4) {
+      animation-delay: 2.55s;
+    }
+
+    @keyframes loadIn3D {
+      0% {
+        opacity: 0;
+        transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) rotateX(0deg) scale(1);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 7vw, 5.5rem);
+      max-width: 900px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--white);
+      text-shadow: none;
+      transform: perspective(800px) rotateX(5deg);
+    }
+
+    .hero-title .highlight-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-title .highlight {
+      position: relative;
+      color: var(--teal);
+      text-shadow: none;
+      z-index: 2;
+    }
+
+    /* Giant Fingerprint Hover Effect */
+    .giant-fingerprint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background-image: url('fingerprint.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+    }
+
+    .highlight-wrapper:hover .giant-fingerprint {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .hero-intro {
+      margin-top: 1.5rem;
+      max-width: 560px;
+      color: var(--ink-soft);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      margin-top: 2.25rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Stats */
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes floatAnimation {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .stats-section {
+      padding: 8rem 0 6rem 0;
+      position: relative;
+      z-index: 5;
+      background-color: var(--teal);
+      border-radius: 60px 60px 0 0;
+      margin-top: -4rem;
+    }
+
+    .stats-float {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 2rem;
+      perspective: 1000px;
+      /* For 3D effect during animation */
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: #f7f7f9;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+
+      /* Animation initial state */
+      opacity: 0;
+      transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
     
-    /* transition for smooth mouse following */
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));
-  }
-  
-  .cursor-fingerprint.purple-mode svg {
-    color: #3A2350;
-  }
-  
-  /* Update blobs to also shift with mouse for gradient shifting effect */
+    .stat h3, .stat p {
+      color: #3A2350;
+    }
 
-    to { transform: rotate(360deg); }
-  }
+    /* Fan-out starting positions */
+    .stats-float:not(.in-view) .stat:nth-child(1) {
+      transform: translateX(120%) scale(0.6) rotate(-15deg);
+    }
 
-  img, svg { display: block; max-width: 100%; }
+    .stats-float:not(.in-view) .stat:nth-child(2) {
+      transform: translateY(100px) scale(0.6);
+    }
 
-  .container {
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 0 1.75rem;
-  }
+    .stats-float:not(.in-view) .stat:nth-child(3) {
+      transform: translateX(-120%) scale(0.6) rotate(15deg);
+    }
 
-  a { color: inherit; text-decoration: none; }
-  section { padding: 1.5rem 0; position: relative; }
+    /* Final positions */
+    .stats-float.in-view .stat {
+      opacity: 1;
+      transform: translate(0) scale(1) rotate(0);
+    }
 
-  h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
+    /* Stagger the entrance */
+    .stats-float.in-view .stat:nth-child(1) {
+      transition-delay: 0.1s;
+    }
 
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1.2rem;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-  }
-  .eyebrow::before {
-    content: "";
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--teal);
-    box-shadow: 0 0 10px 2px rgba(0, 176, 185, 0.4);
-  }
+    .stats-float.in-view .stat:nth-child(2) {
+      transition-delay: 0.3s;
+    }
 
-  .section-heading {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    max-width: 650px;
-    margin-bottom: 1rem;
-    color: var(--white);
-    text-shadow: 
-      0px 1px 0px #008B94,
-      0px 2px 0px #007c84,
-      0px 3px 0px #006e75,
-      0px 4px 10px rgba(0,0,0,0.3);
-  }
-  .section-sub {
-    color: var(--ink-soft);
-    font-size: 1.02rem;
-    max-width: 520px;
-    margin-bottom: 3rem;
-  }
-  .section-head-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .section-head-row .section-heading, .section-head-row .section-sub { margin-bottom: 0; }
+    .stats-float.in-view .stat:nth-child(3) {
+      transition-delay: 0.5s;
+    }
 
-  .reveal-heading {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal-heading.in-view { opacity: 1; transform: translateY(0); }
+    /* Continuous floating after entrance */
+    @keyframes individualFloat {
 
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 2.2rem;
-    border-radius: 999px;
-    font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--teal-light), var(--teal));
-    color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 176, 185, 0.3);
-  }
-  .btn-primary:hover {
-    box-shadow: 0 8px 25px rgba(0, 176, 185, 0.5);
-    transform: translateY(-2px);
-  }
-  .btn-ghost {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-  /* Navbar */
-  .navbar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    z-index: 300;
-    animation: navFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards 1s;
-    opacity: 0;
-  }
-  @keyframes navFadeIn {
-    from { opacity: 0; transform: translateY(-16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .nav-pill {
-    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-    padding: 0.6rem 2rem;
-    background: transparent; 
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-  .navbar.scrolled .nav-pill {
-    background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  .nav-logo-link { display: flex; align-items: center; }
-  .nav-logo-img { height: 50px; max-width: 220px; object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-  .hamburger-btn { display: none; background: none; border: none; color: var(--white); cursor: none; padding: 0.5rem; margin-right: -0.5rem; }
-  .hamburger-btn svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-  
-  .mobile-menu-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(10, 10, 12, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    z-index: 9999; display: flex; flex-direction: column; padding: 1.5rem 2rem;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-  }
-  .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
-  .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-  .mobile-logo { height: 50px; max-width: 200px; object-fit: contain; }
-  .close-menu-btn { background: none; border: none; color: var(--white); cursor: none; padding: 0.5rem; margin-right: -0.5rem; }
-  .close-menu-btn svg { width: 32px; height: 32px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-  
-  .mobile-nav-links { display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; flex-grow: 1; margin-top: 1rem; width: 100%; }
-  .mobile-nav-links a { font-family: var(--font-body); font-size: 1.25rem; color: var(--white); font-weight: 600; text-transform: capitalize; transition: color 0.2s ease; }
-  .mobile-nav-links a:hover { color: var(--teal); }
-  .mobile-nav-cta {
-    background: var(--teal);
-    color: var(--white); padding: 1rem; border-radius: 8px; font-weight: 700; font-size: 1.05rem;
-    text-align: center; margin-bottom: 2rem; width: 100%; box-shadow: 0 4px 15px rgba(0, 176, 185, 0.3);
-  }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
-  .nav-links { display: flex; align-items: center; gap: 1.85rem; }
-  .nav-links a { font-size: 0.9rem; color: var(--ink-soft); transition: color 0.2s ease; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta {
-    background: var(--white);
-    color: var(--teal);
-    padding: 0.62rem 1.4rem;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.86rem;
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-  .nav-cta:hover { background: var(--teal-light); transform: translateY(-2px); color: var(--white); }
+    .stats-float.in-view .stat {
+      animation: individualFloat 6s ease-in-out infinite;
+    }
 
-  /* Hero */
-  .hero {
-    padding-top: 8rem; padding-bottom: 5rem;
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    text-align: center; position: relative;
-    overflow: hidden;
-    background: #000;
-  }
-  .hero-bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    opacity: 0.6;
-    filter: grayscale(100%);
-    pointer-events: none;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Black filter */
-    z-index: 2;
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
-    pointer-events: none;
-    z-index: 3; /* Texture */
-  }
-  .hero-inner {
-    display: flex; flex-direction: column; align-items: center;
-    position: relative; z-index: 10;
-  }
-  
-  /* Stagger load for Hero */
-  .load-stagger {
-    opacity: 0; transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8);
-    animation: loadIn3D 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  }
-  .load-stagger:nth-child(1) { animation-delay: 2.1s; }
-  .load-stagger:nth-child(2) { animation-delay: 2.25s; }
-  .load-stagger:nth-child(3) { animation-delay: 2.4s; }
-  .load-stagger:nth-child(4) { animation-delay: 2.55s; }
-  @keyframes loadIn3D {
-    0% { opacity: 0; transform: translateY(80px) translateZ(-150px) rotateX(20deg) scale(0.8); }
-    100% { opacity: 1; transform: translateY(0) translateZ(0) rotateX(0deg) scale(1); }
-  }
+    .stats-float.in-view .stat:nth-child(1) {
+      animation-delay: 1.3s;
+    }
 
-  .hero-title {
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
-    max-width: 900px; letter-spacing: -0.02em; line-height: 1.05;
-    color: var(--white);
-    text-shadow: none;
-    transform: perspective(800px) rotateX(5deg);
-  }
-  .hero-title .highlight-wrapper {
-    display: inline-block; position: relative;
-  }
-  .hero-title .highlight {
-    position: relative; color: var(--teal);
-    text-shadow: none;
-    z-index: 2;
-  }
-  /* Giant Fingerprint Hover Effect */
-  .giant-fingerprint {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 500px; height: 500px;
-    transform: translate(-50%, -50%) scale(0.5);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background-image: url('fingerprint.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
-  }
-  .highlight-wrapper:hover .giant-fingerprint {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1);
-  }
+    .stats-float.in-view .stat:nth-child(2) {
+      animation-delay: 1.5s;
+    }
 
-  .hero-intro { margin-top: 1.5rem; max-width: 560px; color: var(--ink-soft); font-size: 1.08rem; }
-  .hero-actions { margin-top: 2.25rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .stats-float.in-view .stat:nth-child(3) {
+      animation-delay: 1.7s;
+    }
 
-  /* Stats */
-  @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(30px) scale(0.96); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @keyframes floatAnimation {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
-  }
-  .stats-section {
-    padding: 6rem 0;
-    position: relative;
-    z-index: 5;
-  }
+    .stat h3 {
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      color: #3A2350;
+      margin-bottom: 0.5rem;
+    }
 
-  .stats-float {
-    display: flex; align-items: stretch; justify-content: center; gap: 2rem;
-    perspective: 1000px; /* For 3D effect during animation */
-  }
+    .stat p {
+      margin-top: 0;
+      font-size: 0.95rem;
+      color: #3A2350;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
-  .stat { 
-    flex: 1; text-align: center; padding: 2.5rem 1.5rem; 
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    .stat-divider {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 700px) {
+      .stats-float {
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .stat-divider {
+        width: 60%;
+        height: 1px;
+        align-self: center;
+      }
+    }
+
+    /* Services */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .service-list-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border: none;
+      background: transparent;
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      cursor: none;
+      opacity: 0;
+      transform: translateY(30px);
+    }
     
-    /* Animation initial state */
-    opacity: 0;
-    transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+    /* Scroll Line (Faint) */
+    .service-list-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-  /* Fan-out starting positions */
-  .stats-float:not(.in-view) .stat:nth-child(1) { transform: translateX(120%) scale(0.6) rotate(-15deg); }
-  .stats-float:not(.in-view) .stat:nth-child(2) { transform: translateY(100px) scale(0.6); }
-  .stats-float:not(.in-view) .stat:nth-child(3) { transform: translateX(-120%) scale(0.6) rotate(15deg); }
+    /* Hover Line (Solid) */
+    .service-list-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #ffffff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+    }
 
-  /* Final positions */
-  .stats-float.in-view .stat {
-    opacity: 1;
-    transform: translate(0) scale(1) rotate(0);
-  }
+    .service-list-item.in-view::before {
+      transform: scaleX(1);
+    }
 
-  /* Stagger the entrance */
-  .stats-float.in-view .stat:nth-child(1) { transition-delay: 0.1s; }
-  .stats-float.in-view .stat:nth-child(2) { transition-delay: 0.3s; }
-  .stats-float.in-view .stat:nth-child(3) { transition-delay: 0.5s; }
-
-  /* Continuous floating after entrance */
-  @keyframes individualFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  .stats-float.in-view .stat {
-    animation: individualFloat 6s ease-in-out infinite;
-  }
-  .stats-float.in-view .stat:nth-child(1) { animation-delay: 1.3s; }
-  .stats-float.in-view .stat:nth-child(2) { animation-delay: 1.5s; }
-  .stats-float.in-view .stat:nth-child(3) { animation-delay: 1.7s; }
-
-  .stat h3 { 
-    font-size: clamp(2.2rem, 3.5vw, 3rem); 
-    color: var(--teal); 
-    margin-bottom: 0.5rem;
-  }
-  .stat p { 
-    margin-top: 0; font-size: 0.95rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .stat-divider { width: 1px; align-self: stretch; background: rgba(255, 255, 255, 0.12); }
-  @media (max-width: 700px) {
-    .stats-float { flex-direction: column; gap: 1.75rem; }
-    .stat-divider { width: 60%; height: 1px; align-self: center; }
-  }
-
-  /* Services */
-  .services-list { display: flex; flex-direction: column; width: 100%; gap: 1rem; margin-top: 2rem; }
-  .service-list-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 2rem 2.5rem; 
-    border: 1px solid rgba(255, 255, 255, 0.25); 
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.03);
-    transition: all 0.3s ease; text-decoration: none; cursor: none;
-  }
-  .service-list-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-  .service-list-content { display: flex; flex-direction: column; gap: 0.5rem; }
-  .service-list-title {
-    font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 600;
-    color: var(--white); letter-spacing: 0;
-    transition: color 0.3s ease, transform 0.3s ease; transform-origin: left;
-  }
-  .service-list-desc {
-    font-size: 1rem; color: var(--teal-light); font-weight: 500; opacity: 0;
-    transform: translateY(10px); transition: all 0.4s ease; max-height: 0; overflow: hidden;
-  }
-  .service-list-item:hover .service-list-title {
-    transform: scale(1.02) translateX(4px);
-  }
-  .service-list-item:hover .service-list-desc {
-    opacity: 1; transform: translateY(0); max-height: 50px; margin-top: 0.5rem;
-  }
-  .service-list-arrow {
-    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50%; color: var(--white);
-    transition: all 0.3s ease; flex-shrink: 0; margin-left: 2rem;
-  }
-  .service-list-arrow svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; }
-  .service-list-item:hover .service-list-arrow {
-    background: var(--white); color: var(--teal); border-color: var(--white);
-  }
-  .service-list-item:hover .service-list-arrow svg {
-    transform: translateX(4px);
-  }
-
-  /* Hexagon Grid */
-  .hex-section {
-    padding: 3rem 0;
-    margin-top: 2rem; margin-bottom: 5rem;
-    position: relative;
-    overflow: visible;
-  }
-  @keyframes driftGrid {
-    from { transform: translateX(300px); }
-    to { transform: translateX(-300px); }
-  }
-  .hex-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%); /* Full bleed horizontal */
-    animation: driftGrid 20s linear infinite;
-    will-change: transform;
-  }
-  .hex-row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: -69px; /* Overlap for honeycomb effect */
-    width: 100%;
-    flex-wrap: nowrap;
-  }
-  .hex {
-    flex-shrink: 0;
-    width: 240px;
-    height: 276px;
-    background: rgba(255, 255, 255, 0.15);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    margin: 0 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--white);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    .service-list-item:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
     
-    /* Animation state for zoom-in on scroll */
-    opacity: 0;
-    transform: scale(0.3);
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  .hex img { 
-    max-width: 75%; 
-    max-height: 75%; 
-    object-fit: contain; 
-    pointer-events: none; 
-  }
-  .hex.in-view {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .hex:hover {
-    transform: scale(1.15) !important;
-    background: var(--teal-light);
-    color: var(--purple);
-    z-index: 10;
-  }
-  /* Stagger animation */
-  .hex:nth-child(1) { transition-delay: 0.05s; }
-  .hex:nth-child(2) { transition-delay: 0.15s; }
-  .hex:nth-child(3) { transition-delay: 0.25s; }
-  .hex:nth-child(4) { transition-delay: 0.35s; }
-  .hex:nth-child(5) { transition-delay: 0.45s; }
-
-  /* Testimonials */
-  .testimonial-card {
-    max-width: 900px; margin: 0 auto; background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--radius-lg); padding: 3.5rem; text-align: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  }
-  .testimonial-track { position: relative; min-height: 250px; display: flex; align-items: center; justify-content: center; }
-  .testimonial-slide {
-    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: opacity 0.6s ease;
-  }
-  .testimonial-slide.active { position: relative; opacity: 1; visibility: visible; }
-  .testimonial-quote { font-size: 1.12rem; line-height: 1.7; color: var(--teal); font-style: italic; }
-  .testimonial-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.85rem; }
-  .testimonial-author-info { text-align: left; }
-  .author-name { font-weight: 700; font-size: 1rem; color: var(--teal); }
-  .author-role { font-size: 0.85rem; color: var(--teal); font-weight: 500; }
-  .testimonial-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap; }
-  .testimonial-dot {
-    width: 8px; height: 8px; border: none; border-radius: 50%; background: rgba(0, 139, 148, 0.3);
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  .testimonial-dot.active { background: var(--teal); transform: scale(1.35); }
-
-  /* Founder Section */
-  .founder-section {
-    padding: 7rem 0;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .founder-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .founder-img-wrapper {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 4/5;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 10px 20px 40px rgba(0,0,0,0.3);
-  }
-  .founder-img-wrapper img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .founder-content h3 {
-    font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--white);
-  }
-  .founder-role {
-    font-size: 1.15rem; color: var(--teal-light); font-weight: 600; margin-bottom: 2rem;
-  }
-  .founder-bio p {
-    color: var(--white); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.7; opacity: 0.9;
-  }
-  .founder-contact {
-    margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
-  }
-  .founder-contact p { font-weight: 600; margin-bottom: 0.25rem; }
-  .founder-contact a { color: var(--teal-light); text-decoration: underline; }
-
-  @media(max-width: 768px) {
-    .founder-grid { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  /* Contact */
-  .contact-section-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start;
-    padding-top: 1rem;
-  }
-  @media(max-width: 900px) { .contact-section-inner { grid-template-columns: 1fr; gap: 3rem; } }
-  
-  .contact-info-col h2 { font-size: clamp(2.5rem, 4vw, 3.2rem); margin-bottom: 0.5rem; color: var(--white); font-family: var(--font-heading); }
-  .contact-info-col p.subtext { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 2rem; }
-  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
-  .contact-detail-item { display: flex; align-items: center; gap: 1rem; color: var(--white); font-size: 0.9rem; font-weight: 500; }
-  .contact-detail-icon {
-    width: 36px; height: 36px; border-radius: 50%; background: var(--teal-light); color: var(--teal);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .contact-detail-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* Form */
-  .contact-form { width: 100%; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1rem; }
-  .field { display: flex; flex-direction: column; gap: 0.2rem; }
-  .field.span-2 { grid-column: span 2; }
-  .field label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.9); text-transform: none; letter-spacing: 0; }
-  
-  .field input[type="text"], .field input[type="email"], .field textarea {
-    background: #ffffff; border: none; border-radius: 8px;
-    padding: 0.6rem 1rem; color: var(--ink); font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; outline: none; transition: box-shadow 0.2s ease;
-  }
-  .field textarea { resize: vertical; min-height: 60px; }
-  .field input:focus, .field textarea:focus { box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
-  .field input::placeholder, .field textarea::placeholder { color: #9aa4a5; font-weight: 400; }
-  
-  /* Services Checkboxes */
-  .checkbox-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.1rem; }
-  .checkbox-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--white); font-weight: 500; cursor: none; }
-  .checkbox-label input { 
-    appearance: none; -webkit-appearance: none; width: 16px; height: 16px; 
-    border: 2px solid rgba(255,255,255,0.5); border-radius: 4px; outline: none; cursor: none; position: relative; transition: all 0.2s ease;
-  }
-  .checkbox-label input:checked { background: var(--white); border-color: var(--white); }
-  .checkbox-label input:checked::after { content: '✓'; position: absolute; top: -2px; left: 2px; color: var(--teal); font-size: 12px; font-weight: bold; }
-  
-  .contact-form .btn-submit { 
-    margin-top: 1rem; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 999px; cursor: none;
-    background: #ffffff; color: var(--teal); border: none; transition: transform 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .contact-form .btn-submit:hover { transform: translateY(-2px); }
-
-
-  footer { padding: 3.5rem 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 4rem; }
-  footer p { font-size: 0.85rem; color: var(--white); font-weight: 500; }
-  /* --- Laptop Optimization --- */
-  @media(max-width: 1440px) {
-    html { font-size: 15px; }
-    .hex { width: 220px; height: 250px; }
-    .work-card { max-width: 280px; }
-  }
-  @media(max-width: 1024px) {
-    html { font-size: 14px; }
-    .hero { padding-top: 6rem; min-height: 80vh; }
-    .hero-title { font-size: clamp(2.8rem, 5vw, 4rem); }
-    .hex { width: 180px; height: 210px; }
-    .work-card { max-width: 250px; }
-    .nav-links { gap: 1rem; }
-    .nav-pill { padding: 0.6rem 1rem; }
-    .testimonial-card { padding: 2.5rem; }
-  }
-
-  /* --- Mobile Optimization --- */
-  @media(max-width: 768px) {
-    section { padding: 1.5rem 0; }
-    .hero { padding-top: 6rem; padding-bottom: 2rem; }
+    .service-list-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
     
-    .nav-pill { padding: 0.8rem 1.5rem; justify-content: space-between; }
-    .nav-links { display: none; }
-    .hamburger-btn { display: flex; }
-    
-    .section-head-row { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-    .section-sub { margin-bottom: 1rem; }
+    .service-list-item:nth-child(1) { transition-delay: 0.1s; }
+    .service-list-item:nth-child(1)::after { transition-delay: 0.1s; }
+    .service-list-item:nth-child(2) { transition-delay: 0.2s; }
+    .service-list-item:nth-child(2)::after { transition-delay: 0.2s; }
+    .service-list-item:nth-child(3) { transition-delay: 0.3s; }
+    .service-list-item:nth-child(3)::after { transition-delay: 0.3s; }
+    .service-list-item:nth-child(4) { transition-delay: 0.4s; }
+    .service-list-item:nth-child(4)::after { transition-delay: 0.4s; }
+    .service-list-item:nth-child(5) { transition-delay: 0.5s; }
+    .service-list-item:nth-child(5)::after { transition-delay: 0.5s; }
+    .service-list-item:nth-child(6) { transition-delay: 0.6s; }
+    .service-list-item:nth-child(6)::after { transition-delay: 0.6s; }
 
-    .stats-float { flex-direction: column; gap: 1.5rem; }
+    .service-list-item:hover {
+      background: transparent;
+    }
 
-    .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
-    .founder-content h3 { font-size: 2.2rem; }
-    .founder-img-wrapper { max-width: 400px; margin: 0 auto; }
+    .service-list-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .service-list-title {
+      position: relative;
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.4s ease;
+      transform-origin: left;
+    }
+
+    .service-list-item:hover .service-list-title {
+      transform: translateX(10px);
+      letter-spacing: 0.01em;
+    }
+
+    .service-list-desc {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: var(--teal-light);
+      font-weight: 400;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .service-list-item:hover .service-list-desc {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 100px;
+      margin-top: 0.5rem;
+    }
+
+    /* Hexagon Grid */
+    .hex-section {
+      padding: 3rem 0;
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    @keyframes driftGrid {
+      from {
+        transform: translateX(300px);
+      }
+
+      to {
+        transform: translateX(-300px);
+      }
+    }
+
+    .hex-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: visible;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      /* Full bleed horizontal */
+      animation: driftGrid 20s linear infinite;
+      will-change: transform;
+    }
+
+    .hex-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: -69px;
+      /* Overlap for honeycomb effect */
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+
+    .hex {
+      flex-shrink: 0;
+      width: 240px;
+      height: 276px;
+      background: rgba(255, 255, 255, 0.15);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      margin: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      /* Animation state for zoom-in on scroll */
+      opacity: 0;
+      transform: scale(0.3);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .hex img {
+      max-width: 75%;
+      max-height: 75%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .hex.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hex:hover {
+      transform: scale(1.15) !important;
+      background: var(--teal-light);
+      color: var(--purple);
+      z-index: 10;
+    }
+
+    /* Stagger animation */
+    .hex:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .hex:nth-child(2) {
+      transition-delay: 0.15s;
+    }
+
+    .hex:nth-child(3) {
+      transition-delay: 0.25s;
+    }
+
+    .hex:nth-child(4) {
+      transition-delay: 0.35s;
+    }
+
+    .hex:nth-child(5) {
+      transition-delay: 0.45s;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial-track {
+      position: relative;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease;
+    }
+
+    .testimonial-slide.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .testimonial-quote {
+      font-size: 1.12rem;
+      line-height: 1.7;
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .testimonial-author-info {
+      text-align: left;
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--teal);
+    }
+
+    .author-role {
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .testimonial-dot {
+      width: 8px;
+      height: 8px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 139, 148, 0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .testimonial-dot.active {
+      background: var(--teal);
+      transform: scale(1.35);
+    }
+
+    /* Founder Section */
+    .founder-section {
+      padding: 3rem 0 7rem 0;
+      background: transparent;
+      position: relative;
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .founder-img-wrapper {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      animation: floatAnimation 6s ease-in-out infinite;
+    }
+
+    .founder-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .founder-eyebrow {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .founder-content h3 {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      font-family: var(--font-heading);
+      line-height: 1.1;
+    }
+
+    .founder-role {
+      font-size: 1.2rem;
+      color: var(--teal-light);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .founder-quote {
+      border-left: 2px solid rgba(255, 255, 255, 0.4);
+      padding-left: 1rem;
+      font-style: italic;
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+
+    .founder-bio p {
+      color: var(--white);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    .founder-contact-pills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .founder-contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .founder-contact-pill:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
     
-    .contact-section-inner { gap: 3rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .field.span-2 { grid-column: span 1; }
-    .checkbox-group { grid-template-columns: 1fr 1fr; }
-  }
-  
-  @media(max-width: 480px) {
-    .checkbox-group { grid-template-columns: 1fr; }
-  }
+    .founder-contact-pill svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media(max-width: 900px) {
+      .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* Contact */
+    .contact-section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: start;
+      padding-top: 1rem;
+    }
+
+    @media(max-width: 900px) {
+      .contact-section-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .contact-info-col h2 {
+      font-size: clamp(2.5rem, 4vw, 3.2rem);
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      font-family: var(--font-heading);
+    }
+
+    .contact-info-col p.subtext {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .contact-detail-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Form */
+    .contact-form {
+      width: 100%;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .field.span-2 {
+      grid-column: span 2;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .field input[type="text"],
+    .field input[type="email"],
+    .field textarea {
+      background: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      outline: none;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #9aa4a5;
+      font-weight: 400;
+    }
+
+    /* Services Checkboxes */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.1rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--white);
+      font-weight: 500;
+      cursor: none;
+    }
+
+    .checkbox-label input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      outline: none;
+      cursor: none;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-label input:checked {
+      background: var(--white);
+      border-color: var(--white);
+    }
+
+    .checkbox-label input:checked::after {
+      content: '✓';
+      position: absolute;
+      top: -2px;
+      left: 2px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .contact-form .btn-submit {
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: none;
+      background: #ffffff;
+      color: var(--teal);
+      border: none;
+      transition: transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-form .btn-submit:hover {
+      transform: translateY(-2px);
+    }
+
+
+    footer {
+      padding: 3.5rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(58, 35, 80, 0.2);
+      background-color: #f7f7f9;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: #3A2350;
+      font-weight: 500;
+    }
+
+    /* --- Laptop Optimization --- */
+    @media(max-width: 1440px) {
+      html {
+        font-size: 15px;
+      }
+
+      .hex {
+        width: 220px;
+        height: 250px;
+      }
+
+      .work-card {
+        max-width: 280px;
+      }
+    }
+
+    @media(max-width: 1024px) {
+      html {
+        font-size: 14px;
+      }
+
+      .hero {
+        padding-top: 6rem;
+        min-height: 80vh;
+      }
+
+      .hero-title {
+        font-size: clamp(2.8rem, 5vw, 4rem);
+      }
+
+      .hex {
+        width: 180px;
+        height: 210px;
+      }
+
+      .work-card {
+        max-width: 250px;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-pill {
+        padding: 0.6rem 1rem;
+      }
+
+      .testimonial-card {
+        padding: 2.5rem;
+      }
+    }
+
+    /* --- Mobile Optimization --- */
+    @media(max-width: 768px) {
+      section {
+        padding: 1.5rem 0;
+      }
+
+      .hero {
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+      }
+
+      .nav-pill {
+        padding: 0.8rem 1.5rem;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+
+      .section-head-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-sub {
+        margin-bottom: 1rem;
+      }
+
+      .stats-float {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .founder-content h3 {
+        font-size: 2.2rem;
+      }
+
+      .founder-img-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .contact-section-inner {
+        gap: 3rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.span-2 {
+        grid-column: span 1;
+      }
+
+      .checkbox-group {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .testi-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        color: var(--teal);
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    .testi-arrow:hover {
-        background: var(--teal);
-        color: #fff;
-        transform: translateY(-50%) scale(1.1);
-    }
-    .testi-prev {
-        left: max(2rem, calc(50vw - 650px));
-    }
-    .testi-next {
-        right: max(2rem, calc(50vw - 650px));
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: var(--teal);
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
 
+    .testi-arrow:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .testi-prev {
+      left: max(2rem, calc(50vw - 650px));
+    }
+
+    .testi-next {
+      right: max(2rem, calc(50vw - 650px));
+    }
   </style>
 
-  
-  
+
+
 
 
 
   <style id="cuberto-styles">
-
-  /* POLAROID OVERLAPPING STYLES */
-  .work-grid {
+    /* POLAROID OVERLAPPING STYLES */
+    .work-grid {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -861,88 +1769,115 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow: visible;
-  }
-  
-  .work-card {
+    }
+
+    .work-card {
       background: #fff;
       padding: 12px 12px 40px 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       border-radius: 2px;
       position: relative;
       width: 25vw;
       max-width: 300px;
       margin: 0 -3%;
       cursor: none;
-      opacity: 0; 
+      opacity: 0;
       transform: translateY(40px) scale(0.9);
       transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1;
       text-decoration: none;
       display: block;
-  }
-  
-  .work-card.in-view {
+    }
+
+    .work-card.in-view {
       opacity: 1;
       transform: translateY(0) scale(1) rotate(var(--rot));
-  }
-  
-  .work-card:hover {
+    }
+
+    .work-card:hover {
       z-index: 10 !important;
       transform: scale(1.1) rotate(0deg) !important;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  }
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
 
-  .work-card:nth-child(1) { --rot: -6deg; z-index: 2; }
-  .work-card:nth-child(2) { --rot: 4deg; z-index: 3; margin-top: 40px; }
-  .work-card:nth-child(3) { --rot: -3deg; z-index: 4; }
-  .work-card:nth-child(4) { --rot: 7deg; z-index: 1; margin-top: 20px; }
-  .work-card:nth-child(5) { --rot: -5deg; z-index: 2; }
+    .work-card:nth-child(1) {
+      --rot: -6deg;
+      z-index: 2;
+    }
 
-  @media (max-width: 900px) {
+    .work-card:nth-child(2) {
+      --rot: 4deg;
+      z-index: 3;
+      margin-top: 40px;
+    }
+
+    .work-card:nth-child(3) {
+      --rot: -3deg;
+      z-index: 4;
+    }
+
+    .work-card:nth-child(4) {
+      --rot: 7deg;
+      z-index: 1;
+      margin-top: 20px;
+    }
+
+    .work-card:nth-child(5) {
+      --rot: -5deg;
+      z-index: 2;
+    }
+
+    @media (max-width: 900px) {
       .work-grid {
-          flex-direction: column;
-          gap: 2rem;
-          margin-top: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
       }
-      .work-card {
-          margin: 0;
-          width: 85vw;
-          max-width: 400px;
-      }
-      .work-card:nth-child(n) {
-          --rot: 0deg;
-          margin-top: 0;
-      }
-  }
 
-  .work-img {
+      .work-card {
+        margin: 0;
+        width: 85vw;
+        max-width: 400px;
+      }
+
+      .work-card:nth-child(n) {
+        --rot: 0deg;
+        margin-top: 0;
+      }
+    }
+
+    .work-img {
       position: relative;
       width: 100%;
       aspect-ratio: 4/5;
       background: #111;
       overflow: hidden;
-  }
+    }
 
-  .work-img video {
+    .work-img video,
+    .work-img img {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .work-card:hover .work-img video {
-      transform: scale(1.08);
-  }
+    }
 
-  .play-overlay {
+    .work-card:hover .work-img video,
+    .work-card:hover .work-img img {
+      transform: scale(1.08);
+    }
+
+    .play-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 60px;
       height: 60px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       border: 3px solid #fff;
       border-radius: 50%;
       display: flex;
@@ -953,30 +1888,32 @@
       transition: all 0.3s ease;
       pointer-events: none;
       z-index: 5;
-  }
-  
-  .play-overlay svg {
+    }
+
+    .play-overlay svg {
       width: 24px;
       height: 24px;
       fill: #fff;
       margin-left: 4px;
-  }
+    }
 
-  .work-card:hover .play-overlay {
+    .work-card:hover .play-overlay {
       background: var(--teal);
       border-color: var(--teal);
       transform: translate(-50%, -50%) scale(1.1);
-  }
+    }
 
-  .work-info {
+    .work-info {
       display: none;
-  }
+    }
 
-  .cursor-fingerprint {
+    .cursor-fingerprint {
       transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
-  }
-  .cursor-fingerprint.view-mode {
-      width: 120px; height: 120px;
+    }
+
+    .cursor-fingerprint.view-mode {
+      width: 120px;
+      height: 120px;
       transform: translate(-50%, -50%);
       background: rgba(0, 176, 185, 0.9);
       border: none;
@@ -987,82 +1924,94 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       opacity: 1;
-  }
-  .cursor-fingerprint.view-mode svg { display: none; }
-  .cursor-fingerprint.view-mode::after {
+    }
+
+    .cursor-fingerprint.view-mode svg {
+      display: none;
+    }
+
+    .cursor-fingerprint.view-mode::after {
       content: 'PLAY';
       color: var(--white);
       font-size: 16px;
       font-weight: 700;
       letter-spacing: 2px;
-  }
+    }
 
-  
+
     .testi-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        color: var(--teal);
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    .testi-arrow:hover {
-        background: var(--teal);
-        color: #fff;
-        transform: translateY(-50%) scale(1.1);
-    }
-    .testi-prev {
-        left: max(2rem, calc(50vw - 650px));
-    }
-    .testi-next {
-        right: max(2rem, calc(50vw - 650px));
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: var(--teal);
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
 
+    .testi-arrow:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .testi-prev {
+      left: max(2rem, calc(50vw - 650px));
+    }
+
+    .testi-next {
+      right: max(2rem, calc(50vw - 650px));
+    }
   </style>
   <script id="cuberto-scripts">
     window.addEventListener('DOMContentLoaded', () => {
-        const cursor = document.getElementById('customCursor');
-        if(!cursor) return;
-        
-        setTimeout(() => {
-            document.querySelectorAll('.brand-card').forEach(card => {
-                card.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
-                card.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
-            });
-        }, 1000);
-        
-        const workSection = document.getElementById('work');
-        if (workSection) {
-            workSection.addEventListener('mouseenter', () => cursor.classList.add('purple-mode'));
-            workSection.addEventListener('mouseleave', () => cursor.classList.remove('purple-mode'));
-        }
+      const cursor = document.getElementById('customCursor');
+      if (!cursor) return;
+
+      setTimeout(() => {
+        document.querySelectorAll('.brand-card').forEach(card => {
+          card.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
+          card.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
+        });
+      }, 1000);
+
+      const workSection = document.getElementById('work');
+      if (workSection) {
+        workSection.addEventListener('mouseenter', () => cursor.classList.add('purple-mode'));
+        workSection.addEventListener('mouseleave', () => cursor.classList.remove('purple-mode'));
+      }
     });
   </script>
 </head>
+
 <body>
 
   <!-- LOADING SCREEN -->
   <div id="loader">
-<div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading" style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;"></div>
+    <div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading"
+        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
+    </div>
     <div class="loader-text">Leaving Your Mark..</div>
   </div>
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor-fingerprint" id="customCursor">
     <svg viewBox="0 0 100 100">
-      <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z" fill="none" stroke="currentColor" stroke-width="4"/>
-      <path d="M50 25 C38 25 25 38 25 50 C25 62 38 75 50 75 C62 75 75 62 75 50 C75 38 62 25 50 25 Z" fill="none" stroke="currentColor" stroke-width="4"/>
-      <path d="M50 40 C45 40 40 45 40 50 C40 55 45 60 50 60 C55 60 60 55 60 50 C60 45 55 40 50 40 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+      <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z" fill="none"
+        stroke="currentColor" stroke-width="4" />
+      <path d="M50 25 C38 25 25 38 25 50 C25 62 38 75 50 75 C62 75 75 62 75 50 C75 38 62 25 50 25 Z" fill="none"
+        stroke="currentColor" stroke-width="4" />
+      <path d="M50 40 C45 40 40 45 40 50 C40 55 45 60 50 60 C55 60 60 55 60 50 C60 45 55 40 50 40 Z" fill="none"
+        stroke="currentColor" stroke-width="4" />
     </svg>
   </div>
 
@@ -1073,7 +2022,9 @@
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-pill">
-      <a href="#" class="nav-logo-link"><img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="The Social Thumbprint" class="nav-logo-img"></a>
+      <a href="#" class="nav-logo-link"><img
+          src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png"
+          alt="The Social Thumbprint" class="nav-logo-img"></a>
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#work">Our Thumbprints</a>
@@ -1083,7 +2034,11 @@
       <div class="nav-right">
         <a href="#contact" class="nav-cta">Get in Touch</a>
         <button class="hamburger-btn" aria-label="Open Menu">
-          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
     </div>
@@ -1092,9 +2047,13 @@
   <!-- FULL SCREEN MOBILE MENU -->
   <div class="mobile-menu-overlay" id="mobileMenu">
     <div class="mobile-menu-header">
-      <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="Logo" class="mobile-logo">
+      <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="Logo"
+        class="mobile-logo">
       <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close Menu">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
       </button>
     </div>
     <div class="mobile-nav-links">
@@ -1109,11 +2068,17 @@
   <!-- HERO -->
   <section class="hero">
     <video autoplay muted loop playsinline class="hero-bg-video">
-      <source src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116597/Untitled_design_5_ycrnpe_s2pf4h.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116597/Untitled_design_5_ycrnpe_s2pf4h.mp4"
+        type="video/mp4">
     </video>
     <div class="container hero-inner">
-      <h1 class="hero-title load-stagger">We Don't Chase Trends.<br>We Leave <div class="highlight-wrapper"><span class="highlight">Thumbprints.</span><div class="giant-fingerprint"></div></div></h1>
-      <p class="hero-intro load-stagger">A creative-growth studio crafting scroll-stopping content, performance-driven ad campaigns, and brand identities that leave a lasting mark.</p>
+      <h1 class="hero-title load-stagger">We Don't Chase Trends.<br>We Leave <div class="highlight-wrapper"><span
+            class="highlight">Thumbprints.</span>
+          <div class="giant-fingerprint"></div>
+        </div>
+      </h1>
+      <p class="hero-intro load-stagger">A creative-growth studio crafting scroll-stopping content, performance-driven
+        ad campaigns, and brand identities that leave a lasting mark.</p>
       <div class="hero-actions load-stagger">
         <a href="#contact" class="btn btn-primary">Leave Your Mark</a>
         <a href="#work" class="btn btn-ghost">Our Thumbprints</a>
@@ -1121,75 +2086,92 @@
     </div>
 
   </section>
-  
+
   <!-- STANDALONE STATS SECTION -->
   <section class="stats-section" id="stats">
     <div class="container">
       <div class="stats-float" id="statsFloat">
-        <div class="stat"><h3 data-target="120" data-prefix="" data-suffix="+">0+</h3><p>Campaigns Produced</p></div>
-        <div class="stat"><h3 data-target="20" data-prefix="₹" data-suffix="L+">₹0L+</h3><p>Ad Budgets Delivered</p></div>
-        <div class="stat"><h3 data-target="35" data-prefix="" data-suffix="%">0%</h3><p>Avg. CPL Reduction</p></div>
+        <div class="stat">
+          <h3 data-target="120" data-prefix="" data-suffix="+">0+</h3>
+          <p>Campaigns Produced</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="20" data-prefix="₹" data-suffix="L+">₹0L+</h3>
+          <p>Ad Budgets Delivered</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="35" data-prefix="" data-suffix="%">0%</h3>
+          <p>Avg. CPL Reduction</p>
+        </div>
       </div>
     </div>
   </section>
-    
+
   <!-- BRAND HONEYCOMB GRID -->
   <section class="hex-section">
-  <div class="container hex-container">
-    <div class="hex-row">
-      <div class="hex reveal-hex"><img src="logos/logo_001.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_002.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_003.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_005.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_006.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_007.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_008.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_009.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_010.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_011.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_012.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_013.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_014.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_015.png" alt="Logo"></div>
+    <div class="container" style="margin-bottom: 2rem;">
+      <div class="section-head-row reveal-heading">
+        <div>
+          <span class="eyebrow">Our Clients</span>
+          <h2 class="section-heading">Brands we've worked with</h2>
+        </div>
+      </div>
     </div>
-    <div class="hex-row">
-      <div class="hex reveal-hex"><img src="logos/logo_016.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_017.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_018.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_019.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_020.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_021.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_022.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_023.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_024.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_025.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_026.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_027.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_028.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_029.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_030.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_031.png" alt="Logo"></div>
+    <div class="container hex-container">
+      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_001.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_002.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_003.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_005.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_006.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_007.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_008.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_009.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_010.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_011.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_012.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_013.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_014.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_015.png" alt="Logo"></div>
+      </div>
+      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_016.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_017.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_018.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_019.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_020.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_021.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_022.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_023.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_024.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_025.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_026.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_027.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_028.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_029.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_030.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_031.png" alt="Logo"></div>
+      </div>
+      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_032.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_033.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_034.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_035.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_036.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_037.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_038.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_039.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_040.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_041.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_042.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_043.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_044.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_045.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_046.png" alt="Logo"></div>
+      </div>
     </div>
-    <div class="hex-row">
-      <div class="hex reveal-hex"><img src="logos/logo_032.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_033.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_034.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_035.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_036.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_037.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_038.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_039.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_040.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_041.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_042.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_043.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_044.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_045.png" alt="Logo"></div>
-      <div class="hex reveal-hex"><img src="logos/logo_046.png" alt="Logo"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- SERVICES -->
   <section id="services">
@@ -1199,7 +2181,8 @@
           <span class="eyebrow">What We Do</span>
           <h2 class="section-heading">Services built to grow your brand, not just decorate it.</h2>
         </div>
-        <p class="section-sub">From first reel to full campaign, we handle strategy, production, and performance under one roof.</p>
+        <p class="section-sub">From first reel to full campaign, we handle strategy, production, and performance under
+          one roof.</p>
       </div>
 
       <div class="services-list">
@@ -1208,45 +2191,39 @@
             <div class="service-list-title">Social & Content</div>
             <div class="service-list-desc">Organic strategies, moodboards, and scroll-stopping reel production.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">Growth & Paid Media</div>
             <div class="service-list-desc">Targeted ad campaigns engineered for lowest CPL and highest reach.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">Production & Creative</div>
             <div class="service-list-desc">High-end video production, ad films, and brand photography.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">Web & Digital Assets</div>
             <div class="service-list-desc">End-to-end digital assets designed to leave an unforgettable impression.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">Branding</div>
             <div class="service-list-desc">Complete brand identity, wedding collaterals, and messaging strategy.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">SEO & Discovery</div>
             <div class="service-list-desc">Optimized post captions and profile growth for long-term organic reach.</div>
           </div>
-          <div class="service-list-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </a>
       </div>
-      </div>
+    </div>
     </div>
   </section>
 
@@ -1258,6 +2235,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .s-print {
       position: absolute;
       background-color: #3A2350;
@@ -1267,289 +2245,573 @@
       z-index: 0;
       pointer-events: none;
     }
-    #work > .container {
+
+    #work>.container {
       position: relative;
       z-index: 1;
     }
+
     #work .section-heading {
       color: #3A2350;
       text-shadow: none;
     }
+
     #work .section-sub {
       color: rgba(58, 35, 80, 0.7);
     }
+
     #work .work-info h4 {
       color: #3A2350;
     }
+
     #work .work-info p {
       color: rgba(58, 35, 80, 0.7);
     }
+
     #work .btn-dark {
       background: #3A2350;
       color: #fff;
       border: none;
       box-shadow: 0 4px 15px rgba(58, 35, 80, 0.2);
     }
+
     #work .btn-dark:hover {
       background: var(--teal);
       transform: translateY(-2px);
     }
   </style>
-  <section id="work" style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem;">
+  <section id="work"
+    style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem;">
     <div class="s-print" style="top: -5%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
     <div class="s-print" style="top: 20%; right: -10%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
     <div class="s-print" style="bottom: 10%; left: 5%; width: 450px; height: 450px; transform: rotate(45deg);"></div>
     <div class="s-print" style="bottom: -5%; right: 5%; width: 550px; height: 550px; transform: rotate(-15deg);"></div>
-    <div class="s-print" style="top: 45%; left: 35%; width: 700px; height: 700px; transform: rotate(85deg); opacity: 0.03;"></div>
+    <div class="s-print"
+      style="top: 45%; left: 35%; width: 700px; height: 700px; transform: rotate(85deg); opacity: 0.03;"></div>
     <div class="container">
       <div class="section-head-row reveal-heading" style="align-items: flex-start; flex-direction: column;">
-        <div style="display: flex; justify-content: space-between; width: 100%; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div
+          style="display: flex; justify-content: space-between; width: 100%; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <span class="eyebrow">Our Work</span>
+            <span class="eyebrow" style="color: #3A2350;">Our Work</span>
             <h2 class="section-heading" style="margin-bottom: 0; font-size: 3.5rem;">Our Thumbprints</h2>
           </div>
         </div>
-        <p class="section-sub" style="margin-top: 1rem;">A showcase of video reels, branding, and performance campaigns that leave a lasting mark.</p>
+        <p class="section-sub" style="margin-top: 1rem;">A showcase of video reels, branding, and performance campaigns
+          that leave a lasting mark.</p>
       </div>
-      
+
+      <div class="bento-grid" style="margin-bottom: 4rem;">
+        <div class="bento-card reveal-heading image-brand-card" data-brand="Creative Asset 17" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png" alt="Creative Asset 17">
+          <div class="view-overlay">View</div>
+        </div>
+        <div class="bento-card reveal-heading image-brand-card" data-brand="Instagram Grid Mockup" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png" alt="Instagram Grid Mockup">
+          <div class="view-overlay">View</div>
+        </div>
+        <div class="bento-card reveal-heading image-brand-card" data-brand="Creative Asset 23" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png" alt="Creative Asset 23">
+          <div class="view-overlay">View</div>
+        </div>
+        <div class="bento-card reveal-heading image-brand-card" data-brand="App Screen 1" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png" alt="App Screen 1">
+          <div class="view-overlay">View</div>
+        </div>
+        <div class="bento-card reveal-heading image-brand-card" data-brand="App Screen 2" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png" alt="App Screen 2">
+          <div class="view-overlay">View</div>
+        </div>
+      </div>
+
       <div class="work-grid">
 
-        <div class="work-card reveal-heading brand-card" data-brand="Meena Bazaar Ad Video" data-videos="['Meena Bazaar ad video.mp4']" style="cursor: pointer;">
+        <!-- Card 1: Meena Bazaar ad video (Cloudinary Video) -->
+        <div class="work-card reveal-heading brand-card" data-brand="Meena Bazaar Ad Video"
+          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786116676/Meena_Bazaar_ad_video_dzufcr.mp4']"
+          style="cursor: pointer;">
           <div class="work-img">
-             <video src="videos/Meena Bazaar ad video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-             <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116676/Meena_Bazaar_ad_video_dzufcr.mp4"
+              muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+            <div class="play-overlay"><svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg></div>
           </div>
           <div class="work-info">
             <p>A cinematic advertisement campaign highlighting Meena Bazaar's heritage.</p>
           </div>
         </div>
 
-        <div class="work-card reveal-heading brand-card" data-brand="Kira New Tv Video Final2" data-videos="['kira new TV video final2.mp4']" style="cursor: pointer;">
+        <!-- Card 2: Luzo hair color video (Cloudinary Video) -->
+        <div class="work-card reveal-heading brand-card" data-brand="Luzo Hair Color Video"
+          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786116635/Luzo_hair_color_video_xtwluc.mp4']"
+          style="cursor: pointer;">
           <div class="work-img">
-             <video src="videos/kira new TV video final2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-             <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="work-info">
-            <p>High-energy, fast-paced commercial production for Kira's television campaign.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading brand-card" data-brand="Luzo Hair Color Video" data-videos="['Luzo hair color video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Luzo hair color video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-             <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116635/Luzo_hair_color_video_xtwluc.mp4"
+              muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+            <div class="play-overlay"><svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg></div>
           </div>
           <div class="work-info">
             <p>Vibrant and stylish hair color transformations for Luzo.</p>
           </div>
         </div>
 
-        <div class="work-card reveal-heading brand-card" data-brand="Baulkline Video" data-videos="['Baulkline video.mp4']" style="cursor: pointer;">
+        <!-- Card 3: Baulkline video (Cloudinary Video) -->
+        <div class="work-card reveal-heading brand-card" data-brand="Baulkline Video"
+          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4']"
+          style="cursor: pointer;">
           <div class="work-img">
-             <video src="videos/Baulkline video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-             <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted
+              loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+            <div class="play-overlay"><svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg></div>
           </div>
           <div class="work-info">
             <p>A bold and premium brand identity presentation for Baulkline.</p>
           </div>
         </div>
 
+        <!-- Card 4: Velvet Reverie (Cloudinary Video) -->
+        <div class="work-card reveal-heading brand-card" data-brand="Velvet Reverie"
+          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4']"
+          style="cursor: pointer;">
+          <div class="work-img">
+            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4" muted
+              loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+            <div class="play-overlay"><svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg></div>
+          </div>
+          <div class="work-info">
+            <p>A luxurious and dreamy aesthetic experience crafted for Velvet Reverie.</p>
+          </div>
+        </div>
+
       </div>
-      
+
       <div style="text-align: center; margin-top: 3rem;">
         <a href="portfolio.html" class="btn btn-dark" style="padding: 0.85rem 2rem; font-size: 1rem;">
           View All Work
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- CREATIVE ASSETS -->
+  <style>
+    .bento-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 4rem auto 0;
+      padding: 0 5vw;
+      align-items: center;
+    }
+    .bento-card {
+      width: calc(33.333% - 1.5rem);
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .bento-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.8s ease, filter 0.8s ease;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
+      transform: scale(1.25);
+    }
+    .bento-card:hover {
+      transform: translateY(-10px);
+    }
+    .bento-card:hover img {
+      transform: scale(1.32);
+      filter: drop-shadow(0 25px 50px rgba(0, 176, 185, 0.25));
+    }
+    /* Asymmetric sizing */
+    .bento-card:nth-child(1) { aspect-ratio: 4/5; transform: translateY(20px); }
+    .bento-card:nth-child(2) { aspect-ratio: 3/4; transform: translateY(-20px); z-index: 2; }
+    .bento-card:nth-child(3) { aspect-ratio: 4/5; transform: translateY(20px); }
+    .bento-card:nth-child(4) { aspect-ratio: 3/4; transform: translateY(10px); }
+    .bento-card:nth-child(5) { aspect-ratio: 4/5; transform: translateY(-10px); z-index: 2; }
+    
+    .bento-card:nth-child(1):hover { transform: translateY(10px); }
+    .bento-card:nth-child(2):hover { transform: translateY(-30px); }
+    .bento-card:nth-child(3):hover { transform: translateY(10px); }
+    .bento-card:nth-child(4):hover { transform: translateY(0px); }
+    .bento-card:nth-child(5):hover { transform: translateY(-20px); }
+
+    .view-overlay {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 75px; height: 75px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .bento-card:hover .view-overlay {
+      opacity: 1;
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    @media (max-width: 900px) {
+      .bento-grid { flex-direction: column; gap: 3rem; }
+      .bento-card { width: 100%; }
+      .bento-card:nth-child(n) {
+        transform: none !important;
+        aspect-ratio: auto;
+      }
+      .bento-card:hover { transform: translateY(-5px) !important; }
+    }
+  </style>
+
+
   <!-- TESTIMONIALS -->
-  <section id="testimonials" style="padding: 6rem 0; overflow: hidden; background: var(--teal); border-radius: 60px 60px 0 0; margin-top: -2rem; position: relative; z-index: 2;">
+  <section id="testimonials"
+    style="padding: 6rem 0 3rem 0; overflow: hidden; background: var(--teal); border-radius: 60px 60px 0 0; margin-top: -2rem; position: relative; z-index: 2;">
     <div class="container" style="max-width: 1400px;">
-      <div class="section-head-row reveal-heading" style="margin-bottom: 3rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-        <span class="eyebrow" style="margin-bottom: 0.5rem; letter-spacing: 2px; color: var(--teal-light);">What out customers say about us</span>
-        <h2 class="section-heading" style="margin:0; font-size: 3rem;">Testimonials</h2>
+      <div class="section-head-row reveal-heading"
+        style="margin-bottom: 3rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <span class="eyebrow" style="margin-bottom: 0.5rem; letter-spacing: 2px; font-size: 0.75rem;">What our
+          customers say about us</span>
+        <h2 class="section-heading" style="margin:0; font-size: 4.5rem;">Testimonials</h2>
       </div>
-      
-      <div class="testimonials-track-container" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+
+      <div class="testimonials-track-container"
+        style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
         <button class="testi-arrow testi-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
         </button>
         <button class="testi-arrow testi-next" aria-label="Next">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </button>
 
-        <div class="testimonials-track" style="display: flex; gap: 2rem; overflow-x: auto; padding: 4rem 5vw 6rem; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; align-items: center;">
+        <div class="testimonials-track"
+          style="display: flex; gap: 2rem; overflow-x: auto; padding: 4rem 5vw 6rem; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; align-items: center;">
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 S
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Samit Jhaveri</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Samit Jhaveri Realtors</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Samit Jhaveri</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Samit Jhaveri
+                  Realtors</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka was on the move to get us the best ideas to build our social media presence online and guided us on the entire journey to build our brand image, which would be easily recognizable to the general audience. She, being super creative, is also full of energy to keep pushing you to do a few things out of your comfort zone, which will build your brand over a period of time!"</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka was
+              on the move to get us the best ideas to build our social media presence online and guided us on the entire
+              journey to build our brand image, which would be easily recognizable to the general audience. She, being
+              super creative, is also full of energy to keep pushing you to do a few things out of your comfort zone,
+              which will build your brand over a period of time!"</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 R
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Rohan Kapashi</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Marketing head at Kira Diam</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Rohan Kapashi</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Marketing head at Kira
+                  Diam</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka and The Social Thumbprint are absolute gems! Their creativity, responsiveness, and timely delivery have been invaluable to Kira's projects. Highly recommended!"</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka and
+              The Social Thumbprint are absolute gems! Their creativity, responsiveness, and timely delivery have been
+              invaluable to Kira's projects. Highly recommended!"</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 A
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Ayushi Gupta</h4>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Ayushi Gupta</h4>
                 <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Kokolo</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with Priyanka was an absolute pleasure! Her expertise and creativity truly elevated my Instagram reels. We captured engaging content that perfectly reflected my brand. I highly recommend Priyanka for anyone looking to create engaging social media content!"</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
+              Priyanka was an absolute pleasure! Her expertise and creativity truly elevated my Instagram reels. We
+              captured engaging content that perfectly reflected my brand. I highly recommend Priyanka for anyone
+              looking to create engaging social media content!"</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 N
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Nehaal D Shah</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Heart & Soil</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Nehaal D Shah</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Heart & Soil
+                </p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Many, Many Congratulations to Social Thumbprint for completing a year! Working with Priyanka & team was a complete pleasure. They were always up for investing time, energy, and effort to understand my thought process and adapt accordingly. Open-mindedness and the ability to evolve with brand requirements are their biggest strengths. I wish the young team loads of success & good luck in the coming time!"</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Many, Many
+              Congratulations to Social Thumbprint for completing a year! Working with Priyanka & team was a complete
+              pleasure. They were always up for investing time, energy, and effort to understand my thought process and
+              adapt accordingly. Open-mindedness and the ability to evolve with brand requirements are their biggest
+              strengths. I wish the young team loads of success & good luck in the coming time!"</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 A
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Aashna Shah</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Arctic Star Fine Jewellery</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Aashna Shah</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Arctic Star
+                  Fine Jewellery</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Hi Priyanka, Just wanted to say that I couldn't be more impressed with you and your team for all the work you have put in for Arctic Star. Really appreciate how adaptable and hands-on you have been with each and every request of mine and have managed to implement it even better than my vision. Thank you for your exceptional work for Arctic Star and looking forward to another year of creativity and success together."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Hi Priyanka,
+              Just wanted to say that I couldn't be more impressed with you and your team for all the work you have put
+              in for Arctic Star. Really appreciate how adaptable and hands-on you have been with each and every request
+              of mine and have managed to implement it even better than my vision. Thank you for your exceptional work
+              for Arctic Star and looking forward to another year of creativity and success together."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 P
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Pratibha Maniyar</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Made In Stitch</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Pratibha Maniyar</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Made In Stitch
+                </p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"The Social Thumbprint played a crucial role in bringing my crochet brand, Made in Stitch, to life on social media. Their creativity, strategic planning, and flawless execution made the launch process smooth and impactful. They truly understood my vision and transformed it into a strong online presence that resonates with my audience. I'm thrilled to have started this journey with them."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"The Social
+              Thumbprint played a crucial role in bringing my crochet brand, Made in Stitch, to life on social media.
+              Their creativity, strategic planning, and flawless execution made the launch process smooth and impactful.
+              They truly understood my vision and transformed it into a strong online presence that resonates with my
+              audience. I'm thrilled to have started this journey with them."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 M
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Manisha Sharma</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Sharma Billiard Accessories</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Manisha Sharma</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Sharma
+                  Billiard Accessories</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the pleasure of meeting Priyanka in March 2025 to discuss managing my company's social media profile, and I am convinced that I made the right choice. She brings brilliant ideas and an amazing perspective to the table... Priyanka is also very open to suggestions and handles feedback constructively, which has resulted in delivering outstanding creatives that align perfectly with our vision."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the
+              pleasure of meeting Priyanka in March 2025 to discuss managing my company's social media profile, and I am
+              convinced that I made the right choice. She brings brilliant ideas and an amazing perspective to the
+              table... Priyanka is also very open to suggestions and handles feedback constructively, which has resulted
+              in delivering outstanding creatives that align perfectly with our vision."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 R
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Rishab Kumar</h4>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Rishab Kumar</h4>
                 <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Baulkline</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with Priyanka and The Social Thumbprint over the past 7 months has been a seamless and enriching experience. Priyanka is hands-on, approachable, and brings an objective yet inclusive approach to every conversation. Her clarity of thought and collaborative spirit have added real value to Baulkline's overall direction."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
+              Priyanka and The Social Thumbprint over the past 7 months has been a seamless and enriching experience.
+              Priyanka is hands-on, approachable, and brings an objective yet inclusive approach to every conversation.
+              Her clarity of thought and collaborative spirit have added real value to Baulkline's overall direction."
+            </p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 J
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Jessica Karani</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Wedding invite design + wedding collaterals</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Jessica Karani</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Wedding invite design +
+                  wedding collaterals</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"With all our various requests, you've been exceptionally patient and full of understanding and care. Choicest blessings, my love."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"With all our
+              various requests, you've been exceptionally patient and full of understanding and care. Choicest
+              blessings, my love."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 S
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Saloni Nahar</h4>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Saloni Nahar</h4>
                 <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Adorne</p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Absolutely love working with our social media team! They are incredibly creative, prompt with execution, and consistently deliver great work. They truly understand our brand and translate ideas into impactful content effortlessly. They are very receptive to feedback, patient with innumerable changes, and always ensure the final output aligns perfectly with our vision."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Absolutely
+              love working with our social media team! They are incredibly creative, prompt with execution, and
+              consistently deliver great work. They truly understand our brand and translate ideas into impactful
+              content effortlessly. They are very receptive to feedback, patient with innumerable changes, and always
+              ensure the final output aligns perfectly with our vision."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 J
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Jashan Munwani</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Touch Of Luna</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Jashan Munwani</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Touch Of Luna
+                </p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the pleasure of working with Priyanka and The Social Thumbprint as our social media manager, and she truly transformed our brand's online presence... What stood out most was her availability and approachable nature. No matter the time zone or last-minute tweaks, she was always just a quick message away, responding promptly with enthusiasm and patience."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the
+              pleasure of working with Priyanka and The Social Thumbprint as our social media manager, and she truly
+              transformed our brand's online presence... What stood out most was her availability and approachable
+              nature. No matter the time zone or last-minute tweaks, she was always just a quick message away,
+              responding promptly with enthusiasm and patience."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 S
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Shamir Tandon</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Music Boutique</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Shamir Tandon</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Music Boutique
+                </p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"We've been working with this team for over two years now, and they've truly become an extension of our brand. Their understanding of our vision, consistency in execution, and ability to adapt to trends while maintaining our identity have made a significant difference to our online presence. Reliable, creative, and always proactive — it's been a great partnership."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"We've been
+              working with this team for over two years now, and they've truly become an extension of our brand. Their
+              understanding of our vision, consistency in execution, and ability to adapt to trends while maintaining
+              our identity have made a significant difference to our online presence. Reliable, creative, and always
+              proactive — it's been a great partnership."</p>
           </div>
 
-          <div class="testimonial-card-new" style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
+          <div class="testimonial-card-new"
+            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem; scroll-snap-align: center; display: flex; flex-direction: column;">
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
+              <div class="testi-avatar"
+                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
                 F
               </div>
               <div>
-                <h4 class="testi-name" style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">Founder</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Meena Bazar, Hyderabad</p>
+                <h4 class="testi-name"
+                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
+                  Founder</h4>
+                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Meena Bazar, Hyderabad
+                </p>
               </div>
             </div>
-            <p class="testi-text" style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with The Social Thumbprint has been an excellent experience from start to finish. Their work is consistently strong, and what stands out most is the complete transparency they bring to every stage of the process... I'd highly recommend their team to anyone looking for a trustworthy partner in this space."</p>
+            <p class="testi-text"
+              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
+              The Social Thumbprint has been an excellent experience from start to finish. Their work is consistently
+              strong, and what stands out most is the complete transparency they bring to every stage of the process...
+              I'd highly recommend their team to anyone looking for a trustworthy partner in this space."</p>
           </div>
 
         </div>
@@ -1557,8 +2819,10 @@
     </div>
   </section>
   <style>
-    .testimonials-track::-webkit-scrollbar { display: none; }
-    
+    .testimonials-track::-webkit-scrollbar {
+      display: none;
+    }
+
     .testimonial-card-new {
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
       opacity: 0.7;
@@ -1567,159 +2831,168 @@
       box-shadow: none !important;
       color: rgba(255, 255, 255, 0.6);
     }
+
     .testimonial-card-new .testi-name {
       color: rgba(255, 255, 255, 0.8);
     }
+
     .testimonial-card-new .testi-role {
       color: rgba(255, 255, 255, 0.5);
     }
-    
+
     /* The Center/Active Card */
     .testimonial-card-new.is-active {
       opacity: 1;
       transform: scale(1.05);
       background: #fff !important;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
-      color: #555; /* Dark text for light bg */
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+      color: #555;
+      /* Dark text for light bg */
     }
+
     .testimonial-card-new.is-active .testi-name {
-      color: #111; /* Dark name */
+      color: #111;
+      /* Dark name */
     }
+
     .testimonial-card-new.is-active .testi-role {
       color: #888;
     }
-  
+
     .testi-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        color: var(--teal);
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    .testi-arrow:hover {
-        background: var(--teal);
-        color: #fff;
-        transform: translateY(-50%) scale(1.1);
-    }
-    .testi-prev {
-        left: max(2rem, calc(50vw - 650px));
-    }
-    .testi-next {
-        right: max(2rem, calc(50vw - 650px));
-    }
-    
-    .testimonial-card-new {
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .testimonial-card-new.in-view {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: var(--teal);
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
 
+    .testi-arrow:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .testi-prev {
+      left: max(2rem, calc(50vw - 650px));
+    }
+
+    .testi-next {
+      right: max(2rem, calc(50vw - 650px));
+    }
+
+    .testimonial-card-new {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .testimonial-card-new.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const track = document.querySelector('.testimonials-track');
-        const cards = document.querySelectorAll('.testimonial-card-new');
-        if(!track || cards.length === 0) return;
-        
-        const updateActive = () => {
-            const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
-            let closest = cards[0];
-            let minDiff = Infinity;
-            
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const cardCenter = rect.left + rect.width / 2;
-                const diff = Math.abs(trackCenter - cardCenter);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closest = card;
-                }
-            });
-            
-            cards.forEach(card => {
-                if (card === closest) {
-                    card.classList.add('is-active');
-                } else {
-                    card.classList.remove('is-active');
-                }
-            });
-        };
-        
-        
-        // Auto-scroll functionality
-        let autoScrollInterval = setInterval(() => {
-            const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
-            let activeIdx = -1;
-            
-            cards.forEach((card, idx) => {
-                if (card.classList.contains('is-active')) {
-                    activeIdx = idx;
-                }
-            });
-            
-            if (activeIdx !== -1) {
-                let nextIdx = (activeIdx + 1) % cards.length;
-                let nextCard = cards[nextIdx];
-                
-                // Calculate scroll position
-                let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-            }
-        }, 4000); // 4 seconds
-        
-        track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-        track.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+      const track = document.querySelector('.testimonials-track');
+      const cards = document.querySelectorAll('.testimonial-card-new');
+      if (!track || cards.length === 0) return;
 
-        track.addEventListener('scroll', updateActive);
-        updateActive();
-        
-        // Wait for images/fonts to load and layout to stabilize
-        setTimeout(updateActive, 100);
-        setTimeout(updateActive, 500);
+      const updateActive = () => {
+        const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
+        let closest = cards[0];
+        let minDiff = Infinity;
 
-        const testiPrevBtn = document.querySelector('.testi-prev');
-        const testiNextBtn = document.querySelector('.testi-next');
-        
-        const slideCards = (direction) => {
-            let activeIdx = -1;
-            cards.forEach((card, idx) => {
-                if (card.classList.contains('is-active')) activeIdx = idx;
-            });
-            if (activeIdx !== -1) {
-                let nextIdx = (activeIdx + direction + cards.length) % cards.length;
-                let nextCard = cards[nextIdx];
-                let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-            }
-        };
-        
-        if (testiPrevBtn) {
-            testiPrevBtn.addEventListener('click', () => { 
-                slideCards(-1); 
-                if(typeof autoScrollInterval !== 'undefined') clearInterval(autoScrollInterval); 
-            });
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const diff = Math.abs(trackCenter - cardCenter);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closest = card;
+          }
+        });
+
+        cards.forEach(card => {
+          if (card === closest) {
+            card.classList.add('is-active');
+          } else {
+            card.classList.remove('is-active');
+          }
+        });
+      };
+
+
+      // Auto-scroll functionality
+      let autoScrollInterval = setInterval(() => {
+        const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
+        let activeIdx = -1;
+
+        cards.forEach((card, idx) => {
+          if (card.classList.contains('is-active')) {
+            activeIdx = idx;
+          }
+        });
+
+        if (activeIdx !== -1) {
+          let nextIdx = (activeIdx + 1) % cards.length;
+          let nextCard = cards[nextIdx];
+
+          // Calculate scroll position
+          let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+          track.scrollTo({ left: scrollPos, behavior: 'smooth' });
         }
-        if (testiNextBtn) {
-            testiNextBtn.addEventListener('click', () => { 
-                slideCards(1); 
-                if(typeof autoScrollInterval !== 'undefined') clearInterval(autoScrollInterval); 
-            });
+      }, 4000); // 4 seconds
+
+      track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+      track.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+
+      track.addEventListener('scroll', updateActive);
+      updateActive();
+
+      // Wait for images/fonts to load and layout to stabilize
+      setTimeout(updateActive, 100);
+      setTimeout(updateActive, 500);
+
+      const testiPrevBtn = document.querySelector('.testi-prev');
+      const testiNextBtn = document.querySelector('.testi-next');
+
+      const slideCards = (direction) => {
+        let activeIdx = -1;
+        cards.forEach((card, idx) => {
+          if (card.classList.contains('is-active')) activeIdx = idx;
+        });
+        if (activeIdx !== -1) {
+          let nextIdx = (activeIdx + direction + cards.length) % cards.length;
+          let nextCard = cards[nextIdx];
+          let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+          track.scrollTo({ left: scrollPos, behavior: 'smooth' });
         }
+      };
+
+      if (testiPrevBtn) {
+        testiPrevBtn.addEventListener('click', () => {
+          slideCards(-1);
+          if (typeof autoScrollInterval !== 'undefined') clearInterval(autoScrollInterval);
+        });
+      }
+      if (testiNextBtn) {
+        testiNextBtn.addEventListener('click', () => {
+          slideCards(1);
+          if (typeof autoScrollInterval !== 'undefined') clearInterval(autoScrollInterval);
+        });
+      }
 
     });
   </script>
@@ -1727,30 +3000,101 @@
   <!-- FOUNDER SECTION -->
   <section class="founder-section" id="founder">
     <div class="container founder-grid">
-      <div class="founder-img-wrapper reveal-heading">
-        <img src="founder.jpg" alt="Priyanka Vithani">
+      <div class="reveal-heading">
+        <div class="founder-img-wrapper">
+          <img src="founder.jpg" alt="Priyanka Vithani">
+        </div>
       </div>
       <div class="founder-content reveal-heading">
-        <span class="eyebrow">The Founder</span>
+        <div class="founder-eyebrow">The Founder</div>
         <h3>Priyanka Vithani</h3>
         <p class="founder-role">Founder & Creative Director</p>
-        <div class="founder-bio">
-          <p>With nearly 7 years of experience, I have finally launched my own social media agency that aims to help businesses and individuals establish and grow their online presence.</p>
-          <p>With a deep understanding of the Social Media landscape, my agency is well-equipped to provide a range of services that cater to the specific needs of each client.</p>
-          <p>From social media strategy development to content creation and management, we offer end-to-end solutions that can help businesses leverage the power of social media to connect with their target audience, build brand awareness, and drive engagement.</p>
+        
+        <div class="founder-quote">
+          "We don't just chase trends; we build brand identities and performance campaigns that leave a lasting mark."
         </div>
-        <div class="founder-contact">
-          <p>Phone: +91 9967921559</p>
-          <p>Email: <a href="mailto:thesocailthumbprint@gmail.com">thesocailthumbprint@gmail.com</a></p>
+        
+        <div class="founder-bio">
+          <p>With nearly 7 years of experience in the social media landscape, I lead an agency dedicated to providing end-to-end solutions. We empower businesses to connect with their audiences, amplify their online presence, and drive meaningful engagement.</p>
+        </div>
+        
+        <div class="founder-contact-pills">
+          <a href="tel:+919967921559" class="founder-contact-pill">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>
+            +91 9967921559
+          </a>
+          <a href="mailto:thesocailthumbprint@gmail.com" class="founder-contact-pill">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Email Me
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="margin-bottom: 6rem;">
+  <style>
+    #contact {
+      background-color: #f7f7f9 !important;
+      color: #3A2350;
+      position: relative;
+      overflow: hidden;
+      border-radius: 60px 60px 0 0;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 0 !important;
+    }
+    #contact .contact-info-col h2,
+    #contact .contact-info-col p.subtext,
+    #contact .contact-detail-item span,
+    #contact .field label,
+    #contact .checkbox-label {
+      color: #3A2350 !important;
+    }
+    #contact .contact-detail-icon {
+      background: rgba(58, 35, 80, 0.1) !important;
+      color: #3A2350 !important;
+    }
+    #contact .field input[type="text"],
+    #contact .field input[type="email"],
+    #contact .field textarea {
+      background: transparent !important;
+      border: 1px solid rgba(58, 35, 80, 0.3) !important;
+      color: #3A2350 !important;
+    }
+    #contact .field input:focus,
+    #contact .field textarea:focus {
+      border-color: #3A2350 !important;
+      box-shadow: 0 4px 15px rgba(58, 35, 80, 0.1) !important;
+    }
+    #contact .btn-submit {
+      background: #3A2350 !important;
+      color: #fff !important;
+    }
+    #contact .btn-submit:hover {
+      background: var(--teal) !important;
+    }
+    #contact .s-print {
+      position: absolute;
+      background-color: #3A2350;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.05;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #contact .container {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+  <section id="contact">
+    <div class="s-print" style="top: -5%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
+    <div class="s-print" style="top: 20%; right: -10%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
+    <div class="s-print" style="bottom: 10%; left: 5%; width: 450px; height: 450px; transform: rotate(45deg);"></div>
+    <div class="s-print" style="bottom: -5%; right: 5%; width: 550px; height: 550px; transform: rotate(-15deg);"></div>
     <div class="container contact-section-inner">
-      
       <!-- Left: Form -->
       <div class="contact-form-col reveal-heading">
         <form class="contact-form" id="leadForm">
@@ -1774,12 +3118,16 @@
             <div class="field span-2">
               <label>Services you'd like *</label>
               <div class="checkbox-group">
-                <label class="checkbox-label"><input type="checkbox" name="service" value="Social Media"> Social Media</label>
-                <label class="checkbox-label"><input type="checkbox" name="service" value="Digital Marketing"> Digital Marketing</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Social Media"> Social
+                  Media</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Digital Marketing"> Digital
+                  Marketing</label>
                 <label class="checkbox-label"><input type="checkbox" name="service" value="Design"> Design</label>
-                <label class="checkbox-label"><input type="checkbox" name="service" value="Photography"> Photography</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Photography">
+                  Photography</label>
                 <label class="checkbox-label"><input type="checkbox" name="service" value="Branding"> Branding</label>
-                <label class="checkbox-label"><input type="checkbox" name="service" value="Business Growth"> Business Growth</label>
+                <label class="checkbox-label"><input type="checkbox" name="service" value="Business Growth"> Business
+                  Growth</label>
               </div>
             </div>
             <div class="field span-2">
@@ -1792,8 +3140,12 @@
             </div>
           </div>
           <button type="submit" class="btn-submit" id="submitBtn">
-            Let's do this 
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            Let's do this
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </button>
         </form>
       </div>
@@ -1801,23 +3153,33 @@
       <!-- Right: Info -->
       <div class="contact-info-col reveal-heading">
         <h2>Contact Us ✨</h2>
-        <p class="subtext">For questions, technical assistance, or collaboration opportunities, feel free to reach out via the details provided.</p>
+        <p class="subtext">For questions, technical assistance, or collaboration opportunities, feel free to reach out
+          via the details provided.</p>
         <div class="contact-details">
           <div class="contact-detail-item">
             <div class="contact-detail-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
             </div>
             <span>+91 9967921559</span>
           </div>
           <div class="contact-detail-item">
             <div class="contact-detail-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
             </div>
             <span>thesocailthumbprint@gmail.com</span>
           </div>
           <div class="contact-detail-item">
             <div class="contact-detail-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
             </div>
             <span>Mumbai, India</span>
           </div>
@@ -1831,196 +3193,245 @@
     <p>© 2026 The Social Thumbprint. Created by Priyanka Vithani.</p>
   </footer>
 
-<script>
-  // Loader sequence
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-    }, 2400); // Wait for fingerprint draw + text fade + a little extra
-  });
+  <script>
+    // Loader sequence
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 2400); // Wait for fingerprint draw + text fade + a little extra
+    });
 
-  // Custom Cursor
-  const cursor = document.getElementById('customCursor');
-  window.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
+    // Custom Cursor
+    const cursor = document.getElementById('customCursor');
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
 
-  // Stamp effect on hover
-  document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
-  });
+    // Stamp effect on hover
+    document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
+      // Don't add stamping if it's a service list item (we use view-mode for that)
+      if (el.classList.contains('service-list-item')) return;
+      el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
+    });
 
-  // Animated stat count-up
-  (function () {
-    var statsFloat = document.getElementById('statsFloat');
-    if (!statsFloat) return;
-    var numbers = statsFloat.querySelectorAll('h3[data-target]');
-    var hasAnimated = false;
-    var duration = 2000;
-    function animate(el) {
-      var target = parseFloat(el.getAttribute('data-target'));
-      var prefix = el.getAttribute('data-prefix') || '';
-      var suffix = el.getAttribute('data-suffix') || '';
-      var start = null;
-      function step(ts) {
-        if (start === null) start = ts;
-        var progress = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var current = Math.floor(eased * target);
-        el.textContent = prefix + current + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = prefix + target + suffix;
+    // Dynamic Cursor Reveal for Services
+    document.querySelectorAll('.service-list-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('view-mode');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('view-mode');
+      });
+    });
+
+    // Animated stat count-up
+    (function () {
+      var statsFloat = document.getElementById('statsFloat');
+      if (!statsFloat) return;
+      var numbers = statsFloat.querySelectorAll('h3[data-target]');
+      var hasAnimated = false;
+      var duration = 2000;
+      function animate(el) {
+        var target = parseFloat(el.getAttribute('data-target'));
+        var prefix = el.getAttribute('data-prefix') || '';
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = null;
+        function step(ts) {
+          if (start === null) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.floor(eased * target);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = prefix + target + suffix;
+        }
+        requestAnimationFrame(step);
       }
-      requestAnimationFrame(step);
-    }
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !hasAnimated) {
-          hasAnimated = true;
-          
-          // Expand and fade in the container
-          entry.target.classList.add('in-view');
-          
-          // 800ms delay to let the expansion animation finish, then start counting
-          setTimeout(function() {
-            numbers.forEach(animate);
-          }, 800);
-          
-          observer.unobserve(entry.target);
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+
+            // Expand and fade in the container
+            entry.target.classList.add('in-view');
+
+            // 800ms delay to let the expansion animation finish, then start counting
+            setTimeout(function () {
+              numbers.forEach(animate);
+            }, 800);
+
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(statsFloat);
+    })();
+
+    // Reveal cards and words
+    (function () {
+      // Split text logic for Cuberto effect
+      function splitTextNodes(el) {
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        var textNodes = [];
+        while(walker.nextNode()) {
+          if(walker.currentNode.nodeValue.trim() !== '') {
+            textNodes.push(walker.currentNode);
+          }
+        }
+        
+        var wordIndex = 0;
+        textNodes.forEach(function(node) {
+          var words = node.nodeValue.split(/(\s+)/);
+          var fragment = document.createDocumentFragment();
+          words.forEach(function(word) {
+            if (word.trim() === '') {
+              fragment.appendChild(document.createTextNode(word));
+            } else {
+              var wrap = document.createElement('span');
+              wrap.className = 'word-wrap';
+              wrap.style.setProperty('--word-index', wordIndex++);
+              var inner = document.createElement('span');
+              inner.className = 'word-inner';
+              inner.textContent = word;
+              wrap.appendChild(inner);
+              fragment.appendChild(wrap);
+            }
+          });
+          node.parentNode.replaceChild(fragment, node);
+        });
+      }
+
+      document.querySelectorAll('.section-heading, .hero-title, .founder-content h3, .contact-info-col h2').forEach(splitTextNodes);
+
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          } else {
+            entry.target.classList.remove('in-view');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.service-card, .reveal-heading, .work-card, .reveal-hex, .testimonial-card-new, .hero-title').forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    })();
+
+    // Navbar background on scroll
+    (function () {
+      var navbar = document.querySelector('.navbar');
+      if (!navbar) return;
+      window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+    })();
+
+    // Testimonials carousel
+    (function () {
+      var track = document.getElementById('testimonialTrack');
+      if (!track) return;
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.testimonial-slide'));
+      var dotsContainer = document.getElementById('testimonialDots');
+      var current = 0;
+      var intervalId = null;
+      var AUTO_ADVANCE_MS = 6000;
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+        dot.addEventListener('click', function () {
+          goTo(i);
+          restartAutoAdvance();
+        });
+        dotsContainer.appendChild(dot);
+      });
+      var dots = Array.prototype.slice.call(dotsContainer.querySelectorAll('.testimonial-dot'));
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+      function restartAutoAdvance() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(function () { goTo(current + 1); }, AUTO_ADVANCE_MS);
+      }
+      restartAutoAdvance();
+    })();
+
+    // Contact form dummy submit
+    (function () {
+      var form = document.getElementById('leadForm');
+      var btn = document.getElementById('submitBtn');
+      if (!form || !btn) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.textContent = 'Sending...';
+        setTimeout(function () {
+          btn.textContent = 'Message Sent';
+        }, 900);
+      });
+    })();
+
+    // Interactive Background Animations
+    (function () {
+      const bgFingerprint = document.querySelector('.bg-fingerprint');
+      const bgBlobs = document.querySelector('.bg-blobs');
+      if (!bgFingerprint) return;
+
+      window.addEventListener('mousemove', function (e) {
+        const mouseX = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
+        const mouseY = e.clientY / window.innerHeight - 0.5;
+
+        // Fingerprint subtle translation and rotation
+        const moveX = mouseX * 50; // max 50px movement
+        const moveY = mouseY * 50;
+        const rotate = mouseX * 10; // max 5deg rotation based on X axis
+
+        bgFingerprint.style.setProperty('--move-x', moveX + 'px');
+        bgFingerprint.style.setProperty('--move-y', moveY + 'px');
+        bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
+
+        // Gradient shift for blobs
+        if (bgBlobs) {
+          bgBlobs.style.setProperty('--blob-x', (mouseX * 20) + '%');
+          bgBlobs.style.setProperty('--blob-y', (mouseY * 20) + '%');
         }
       });
-    }, { threshold: 0.3 });
-    observer.observe(statsFloat);
-  })();
+    })();
 
-  // Reveal cards
-  (function () {
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        } else {
-          entry.target.classList.remove('in-view');
-        }
+    // Mobile Menu Toggle
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-nav-cta');
+
+    if (hamburgerBtn && closeMenuBtn && mobileMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.service-card, .reveal-heading, .work-card, .reveal-hex, .testimonial-card-new').forEach(function (el) {
-      revealObserver.observe(el);
-    });
-  })();
-
-  // Navbar background on scroll
-  (function () {
-    var navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    window.addEventListener('scroll', function () {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-  })();
-
-  // Testimonials carousel
-  (function () {
-    var track = document.getElementById('testimonialTrack');
-    if (!track) return;
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.testimonial-slide'));
-    var dotsContainer = document.getElementById('testimonialDots');
-    var current = 0;
-    var intervalId = null;
-    var AUTO_ADVANCE_MS = 6000;
-    slides.forEach(function (_, i) {
-      var dot = document.createElement('button');
-      dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
-      dot.addEventListener('click', function () {
-        goTo(i);
-        restartAutoAdvance();
-      });
-      dotsContainer.appendChild(dot);
-    });
-    var dots = Array.prototype.slice.call(dotsContainer.querySelectorAll('.testimonial-dot'));
-    function goTo(index) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = (index + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-    function restartAutoAdvance() {
-      if (intervalId) clearInterval(intervalId);
-      intervalId = setInterval(function () { goTo(current + 1); }, AUTO_ADVANCE_MS);
-    }
-    restartAutoAdvance();
-  })();
-
-  // Contact form dummy submit
-  (function () {
-    var form = document.getElementById('leadForm');
-    var btn = document.getElementById('submitBtn');
-    if (!form || !btn) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      btn.textContent = 'Sending...';
-      setTimeout(function () {
-        btn.textContent = 'Message Sent';
-      }, 900);
-    });
-  })();
-
-  // Interactive Background Animations
-  (function() {
-    const bgFingerprint = document.querySelector('.bg-fingerprint');
-    const bgBlobs = document.querySelector('.bg-blobs');
-    if (!bgFingerprint) return;
-
-    window.addEventListener('mousemove', function(e) {
-      const mouseX = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
-      const mouseY = e.clientY / window.innerHeight - 0.5;
-
-      // Fingerprint subtle translation and rotation
-      const moveX = mouseX * 50; // max 50px movement
-      const moveY = mouseY * 50;
-      const rotate = mouseX * 10; // max 5deg rotation based on X axis
-      
-      bgFingerprint.style.setProperty('--move-x', moveX + 'px');
-      bgFingerprint.style.setProperty('--move-y', moveY + 'px');
-      bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
-
-      // Gradient shift for blobs
-      if(bgBlobs) {
-        bgBlobs.style.setProperty('--blob-x', (mouseX * 20) + '%');
-        bgBlobs.style.setProperty('--blob-y', (mouseY * 20) + '%');
-      }
-    });
-  })();
-
-  // Mobile Menu Toggle
-  const hamburgerBtn = document.querySelector('.hamburger-btn');
-  const closeMenuBtn = document.getElementById('closeMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-nav-cta');
-  
-  if(hamburgerBtn && closeMenuBtn && mobileMenu) {
-    hamburgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.add('active');
-    });
-    closeMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-    });
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      closeMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
       });
-    });
-  }
-</script>
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+    }
+  </script>
 
   <!-- VIDEO MODAL -->
   <style>
     .video-modal {
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(10px);
       z-index: 99999;
@@ -2032,53 +3443,69 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
+
     .video-modal.active {
       opacity: 1;
       pointer-events: all;
     }
+
     .video-modal-close {
       position: absolute;
-      top: 30px; right: 40px;
-      background: none; border: none; color: white;
-      font-size: 3rem; cursor: pointer;
+      top: 30px;
+      right: 40px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
       line-height: 1;
       z-index: 100000;
     }
+
     .video-modal-content {
       width: 90%;
       max-width: 1000px;
       position: relative;
     }
+
     .video-player-container {
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%;
+      /* 16:9 */
       position: relative;
       background: #000;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,176,185,0.2);
+      box-shadow: 0 10px 40px rgba(0, 176, 185, 0.2);
     }
+
     .video-player-container video {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
+
     .video-modal-header {
       margin-bottom: 1rem;
       text-align: center;
     }
+
     .video-modal-header h2 {
       color: var(--teal-light);
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
+
     .video-controls-custom {
       display: flex;
       justify-content: center;
       gap: 1rem;
       margin-top: 1.5rem;
     }
+
     .vid-btn {
       background: var(--teal);
       color: white;
@@ -2089,49 +3516,54 @@
       cursor: pointer;
       display: none;
     }
+
     .vid-btn.active {
       display: inline-block;
     }
+
     .vid-counter {
       color: var(--ink-soft);
       align-self: center;
       font-size: 1.1rem;
       display: none;
     }
+
     .vid-counter.active {
       display: inline-block;
     }
-  
+
     .testi-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        color: var(--teal);
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    .testi-arrow:hover {
-        background: var(--teal);
-        color: #fff;
-        transform: translateY(-50%) scale(1.1);
-    }
-    .testi-prev {
-        left: max(2rem, calc(50vw - 650px));
-    }
-    .testi-next {
-        right: max(2rem, calc(50vw - 650px));
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: var(--teal);
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
 
+    .testi-arrow:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .testi-prev {
+      left: max(2rem, calc(50vw - 650px));
+    }
+
+    .testi-next {
+      right: max(2rem, calc(50vw - 650px));
+    }
   </style>
 
   <div class="video-modal" id="videoModal">
@@ -2161,7 +3593,7 @@
     const prevBtn = document.getElementById('prevVideo');
     const nextBtn = document.getElementById('nextVideo');
     const counter = document.getElementById('videoCounter');
-    
+
     let currentVideos = [];
     let currentIndex = 0;
 
@@ -2177,13 +3609,13 @@
       if (currentVideos.length === 0) return;
       videoPlayer.src = 'videos/' + currentVideos[currentIndex];
       videoPlayer.play();
-      
+
       if (currentVideos.length > 1) {
         prevBtn.classList.add('active');
         nextBtn.classList.add('active');
         counter.classList.add('active');
         counter.textContent = (currentIndex + 1) + ' / ' + currentVideos.length;
-        
+
         prevBtn.disabled = currentIndex === 0;
         prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
         nextBtn.disabled = currentIndex === currentVideos.length - 1;
@@ -2221,5 +3653,42 @@
     });
   </script>
 
+  <!-- IMAGE MODAL -->
+  <div class="video-modal" id="imageModal">
+    <button class="video-modal-close" id="closeImageModal">&times;</button>
+    <div class="video-modal-content" style="max-width: 800px;">
+      <div class="video-modal-header">
+        <h2 id="modalImageTitle">Brand</h2>
+      </div>
+      <div class="video-player-container" style="background: transparent; box-shadow: none; padding-bottom: 0; text-align: center;">
+        <img id="modalImage" src="" style="max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 12px;" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imgModal = document.getElementById('imageModal');
+    const closeImgBtn = document.getElementById('closeImageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalImageTitle = document.getElementById('modalImageTitle');
+
+    closeImgBtn.addEventListener('click', () => {
+      imgModal.classList.remove('active');
+      modalImage.src = '';
+    });
+
+    document.querySelectorAll('.image-brand-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const brand = card.getAttribute('data-brand');
+        const imgSrc = card.getAttribute('data-image');
+        modalImageTitle.textContent = brand;
+        modalImage.src = imgSrc;
+        imgModal.classList.add('active');
+      });
+    });
+  </script>
+
 </body>
+
 </html>

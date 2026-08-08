@@ -815,30 +815,35 @@
 
   <style id="cuberto-styles">
 
-  /* CUBERTO STAGGERED STYLES */
+  /* DYNAMIC ASYMMETRIC GRID & GLASSMORPHISM */
   .work-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8rem 5rem;
-      align-items: start;
-      max-width: 950px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 4rem 2rem 12rem;
   }
   
   .work-card {
-      background: transparent;
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-radius: 0;
-      padding: 0;
-      overflow: visible;
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 24px;
+      overflow: hidden;
       display: block;
       text-decoration: none;
       opacity: 0; 
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      aspect-ratio: 4/5;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  }
+  
+  /* Feature some cards to span 2 columns */
+  .work-card:nth-child(5n+1) {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
   }
   
   .work-card.in-view {
@@ -846,72 +851,104 @@
       transform: translateY(0);
   }
   
-  @media (min-width: 992px) {
-      .work-card.in-view:nth-child(even) {
-          transform: translateY(160px);
-      }
+  .work-card:hover {
+      box-shadow: 0 20px 60px rgba(0, 176, 185, 0.4);
+      transform: translateY(-5px);
   }
+  
   @media (max-width: 991px) {
       .work-grid {
-          grid-template-columns: 1fr;
-          gap: 6rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
       }
-      .work-card.in-view:nth-child(even) {
-          transform: translateY(0);
+      .work-card:nth-child(5n+1) {
+          grid-column: span 2;
+          aspect-ratio: 16/9;
+      }
+  }
+  
+  @media (max-width: 600px) {
+      .work-grid {
+          grid-template-columns: 1fr;
+      }
+      .work-card:nth-child(5n+1) {
+          grid-column: span 1;
+          grid-row: span 1;
+          aspect-ratio: 4/5;
       }
   }
 
   .work-img {
-      border-radius: 32px;
-      overflow: hidden;
-      transform: translateZ(0); 
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4/5; /* Modern aspect ratio, no height hack needed */
-      background: #111;
-      margin-bottom: 2rem;
-  }
-
-  .work-img video {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
+      z-index: 1;
+  }
+
+  .work-img video {
+      width: 100%; height: 100%;
       object-fit: cover;
-      transform: scale(1);
+      transform: scale(1.02);
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .work-card:hover .work-img video {
-      transform: scale(1.08); /* Smooth scale */
+      transform: scale(1.1); 
   }
 
-  .work-overlay { display: none; }
-
   .work-info {
-      padding: 0 0.5rem;
+      position: absolute;
+      bottom: 0; left: 0; width: 100%;
+      padding: 3rem 2rem 2rem;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: flex-start;
-      justify-content: flex-start;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      border-top: 1px solid transparent;
+  }
+  
+  .work-card:hover .work-info {
+      background: rgba(20, 20, 30, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
   }
   
   .work-info h4 {
       font-size: 1.8rem;
       color: var(--white);
-      font-family: var(--font-body);
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      margin: 0 0 0.8rem 0;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
       line-height: 1.2;
+      transform: translateY(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .work-card:hover .work-info h4 {
+      transform: translateY(0);
+      color: var(--teal-light);
   }
   
   .work-info p {
-      font-size: 1.15rem;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 300;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
       margin: 0;
       line-height: 1.6;
       max-width: 95%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .work-card:hover .work-info p {
+      opacity: 1;
+      transform: translateY(0);
   }
 
   .cursor-fingerprint {
@@ -952,15 +989,13 @@
             });
         }, 1000);
     });
+    */
   </script>
 </head>
 <body>
 
   <!-- LOADING SCREEN -->
-  <div id="loader">
-<div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading" style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;"></div>
-    <div class="loader-text">Leaving Your Mark..</div>
-  </div>
+  <!-- Loader removed as per request -->
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor-fingerprint" id="customCursor">
@@ -1013,10 +1048,40 @@
 
   <!-- HERO -->
   
-  <section class="hero" style="min-height: 50vh; padding-top: 10rem; padding-bottom: 3rem;">
+  <style>
+    /* Animated Gradient Title */
+    .gradient-title {
+        background: linear-gradient(to right, var(--white), var(--teal-light), var(--teal), var(--white));
+        background-size: 300% auto;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: shine 6s linear infinite;
+    }
+    @keyframes shine {
+        to {
+            background-position: 300% center;
+        }
+    }
+    /* Subtle background element */
+    .hero-bg-accent {
+        position: absolute;
+        top: 20%; right: 10%;
+        width: 400px; height: 400px;
+        background-image: url('fingerprint.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.03;
+        transform: rotate(15deg);
+        pointer-events: none;
+        z-index: -1;
+    }
+  </style>
+  <section class="hero" style="min-height: 50vh; padding-top: 10rem; padding-bottom: 3rem; background: transparent; position: relative;">
+    <div class="hero-bg-accent"></div>
     <div class="container hero-inner">
-      <h1 class="hero-title load-stagger" style="font-size: clamp(3rem, 6vw, 4.5rem);">Our <span class="highlight-wrapper"><span class="highlight">Portfolio</span></span></h1>
-      <p class="hero-intro load-stagger" style="max-width: 700px; margin-top: 1rem;">Explore our complete collection of digital experiences, campaigns, and creative content.</p>
+      <h1 class="hero-title load-stagger" style="font-size: clamp(3rem, 6vw, 4.5rem);">Our <span class="highlight-wrapper"><span class="highlight gradient-title">Thumbprints</span></span></h1>
+      <p class="hero-intro load-stagger" style="max-width: 700px; margin-top: 1rem; color: rgba(255,255,255,0.8); font-size: 1.2rem;">Explore our complete collection of digital experiences, campaigns, and creative content.</p>
     </div>
   </section>
 
@@ -1204,7 +1269,7 @@
           </div>
         </div>
 
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Kira Tv Video 2 Final" data-videos="['kira tv video 2 final.mp4']" style="cursor: pointer;">
+        <div class="work-card reveal-heading in-view brand-card" data-brand="Kira Tv Video 2 Final" data-videos="['kira tv video 2 final.mp4']" style="cursor: pointer; transform: translateY(0) rotate(-3deg) !important;">
           <div class="work-img">
              <video src="videos/kira tv video 2 final.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
           </div>
@@ -1240,12 +1305,13 @@
   </footer>
 
 <script>
-  // Loader sequence
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-    }, 2400); // Wait for fingerprint draw + text fade + a little extra
-  });
+  // Loader sequence removed
+  // window.addEventListener('load', () => {
+  //   setTimeout(() => {
+  //     const loader = document.getElementById('loader');
+  //     if(loader) loader.classList.add('hidden');
+  //   }, 2400); 
+  // });
 
   // Custom Cursor
   const cursor = document.getElementById('customCursor');
@@ -1258,6 +1324,17 @@
   document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
+  });
+
+  // Dynamically inject brand titles into cards
+  document.querySelectorAll('.brand-card').forEach(card => {
+    const brand = card.getAttribute('data-brand');
+    const info = card.querySelector('.work-info');
+    if (brand && info && !info.querySelector('h4')) {
+      const h4 = document.createElement('h4');
+      h4.textContent = brand;
+      info.insertBefore(h4, info.firstChild);
+    }
   });
 
   // Animated stat count-up
@@ -1428,8 +1505,9 @@
     .video-modal {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 10, 15, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -1437,7 +1515,7 @@
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
     .video-modal.active {
       opacity: 1;
@@ -1446,10 +1524,21 @@
     .video-modal-close {
       position: absolute;
       top: 30px; right: 40px;
-      background: none; border: none; color: white;
-      font-size: 3rem; cursor: pointer;
-      line-height: 1;
+      background: rgba(255, 255, 255, 0.05); 
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      color: white;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      font-size: 2rem; 
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
       z-index: 100000;
+      transition: all 0.3s ease;
+    }
+    .video-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.1);
+      border-color: rgba(255, 255, 255, 0.3);
     }
     .video-modal-content {
       width: 90%;
@@ -1461,9 +1550,10 @@
       padding-bottom: 56.25%; /* 16:9 */
       position: relative;
       background: #000;
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,176,185,0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .video-player-container video {
       position: absolute;
@@ -1472,38 +1562,49 @@
       object-fit: contain;
     }
     .video-modal-header {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
     .video-modal-header h2 {
-      color: var(--teal-light);
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+      color: var(--white);
+      font-size: 2.2rem;
+      margin-bottom: 0;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
     }
     .video-controls-custom {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
     .vid-btn {
-      background: var(--teal);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 2rem;
       border-radius: 999px;
-      font-weight: bold;
+      font-weight: 500;
       cursor: pointer;
       display: none;
+      transition: all 0.3s ease;
+    }
+    .vid-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--teal-light);
+      transform: translateY(-2px);
     }
     .vid-btn.active {
       display: inline-block;
     }
     .vid-counter {
-      color: var(--ink-soft);
+      color: rgba(255, 255, 255, 0.6);
       align-self: center;
       font-size: 1.1rem;
       display: none;
+      font-weight: 500;
     }
     .vid-counter.active {
       display: inline-block;
