@@ -221,7 +221,7 @@
     /* 3D Lighting Background */
 
 
-    /* Animated Ambient Fingerprint Background */
+    /* Animated Ambient Fingerprint Background (iOS Safari Safe) */
     .bg-fingerprint {
       position: fixed;
       top: -50%;
@@ -230,12 +230,10 @@
       height: 200%;
       z-index: -1;
       pointer-events: none;
-      background-image: url('fingerprint.png');
-      background-size: 600px;
-
-      /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
-      filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
-      mix-blend-mode: screen;
+      background-color: var(--white);
+      -webkit-mask: url('fingerprint.png') repeat center / 600px;
+      mask: url('fingerprint.png') repeat center / 600px;
+      opacity: 0.08;
 
       /* transition for smooth mouse following */
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2310,6 +2308,7 @@
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png" alt="Instagram Grid Mockup">
           <div class="view-overlay">View</div>
         </div>
+        
         <div class="bento-card reveal-heading image-brand-card" data-brand="Creative Asset 23" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png" alt="Creative Asset 23">
           <div class="view-overlay">View</div>
@@ -2409,16 +2408,16 @@
   <style>
     .bento-grid {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
-      gap: 2rem;
-      max-width: 1400px;
-      margin: 4rem auto 0;
-      padding: 0 5vw;
+      gap: 4rem;
+      max-width: 1800px;
+      margin: 8rem auto 16rem;
+      padding: 0 2vw;
       align-items: center;
     }
     .bento-card {
-      width: calc(33.333% - 1.5rem);
+      width: calc(20% - 3.2rem);
       position: relative;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
@@ -2433,27 +2432,27 @@
       display: block;
       transition: transform 0.8s ease, filter 0.8s ease;
       filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
-      transform: scale(1.25);
+      transform: scale(1.05);
     }
     .bento-card:hover {
       transform: translateY(-10px);
     }
     .bento-card:hover img {
-      transform: scale(1.32);
+      transform: scale(1.1);
       filter: drop-shadow(0 25px 50px rgba(0, 176, 185, 0.25));
     }
     /* Asymmetric sizing */
-    .bento-card:nth-child(1) { aspect-ratio: 4/5; transform: translateY(20px); }
-    .bento-card:nth-child(2) { aspect-ratio: 3/4; transform: translateY(-20px); z-index: 2; }
-    .bento-card:nth-child(3) { aspect-ratio: 4/5; transform: translateY(20px); }
-    .bento-card:nth-child(4) { aspect-ratio: 3/4; transform: translateY(10px); }
-    .bento-card:nth-child(5) { aspect-ratio: 4/5; transform: translateY(-10px); z-index: 2; }
+    .bento-card:nth-child(1) { aspect-ratio: auto; transform: translateY(-100px); }
+    .bento-card:nth-child(2) { aspect-ratio: auto; transform: translateY(100px); }
+    .bento-card:nth-child(3) { aspect-ratio: auto; transform: translateY(-100px); }
+    .bento-card:nth-child(4) { aspect-ratio: auto; transform: translateY(100px); }
+    .bento-card:nth-child(5) { aspect-ratio: auto; transform: translateY(-100px); }
     
-    .bento-card:nth-child(1):hover { transform: translateY(10px); }
-    .bento-card:nth-child(2):hover { transform: translateY(-30px); }
-    .bento-card:nth-child(3):hover { transform: translateY(10px); }
-    .bento-card:nth-child(4):hover { transform: translateY(0px); }
-    .bento-card:nth-child(5):hover { transform: translateY(-20px); }
+    .bento-card:nth-child(1):hover { transform: translateY(-110px); }
+    .bento-card:nth-child(2):hover { transform: translateY(90px); }
+    .bento-card:nth-child(3):hover { transform: translateY(-110px); }
+    .bento-card:nth-child(4):hover { transform: translateY(90px); }
+    .bento-card:nth-child(5):hover { transform: translateY(-110px); }
 
     .view-overlay {
       position: absolute;
