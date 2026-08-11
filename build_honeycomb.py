@@ -9,10 +9,14 @@ ordered_logos = [
     "logo_004.png", "logo_008.png", "logo_022.png", "logo_023.png", "logo_024.png",
     "logo_005.png", "logo_014.png", "logo_025.png",
     # Row 3 (9 logos)
-    "logo_003.png", "logo_033.png", "logo_013.png", "logo_026.png", "logo_042.png",
-    "logo_004.png", "logo_007.png", "logo_011.png", "logo_012.png",
+    # logo_013 (dup of logo_015, Aarambh Interiors) -> logo_028 (unused, unique)
+    # logo_004 (already placed in Row 2) -> logo_035 (unused, JVD Properties variant)
+    # logo_012 (byte-identical dup of logo_033, Boutiqo) -> logo_037 (unused, unique)
+    "logo_003.png", "logo_033.png", "logo_028.png", "logo_026.png", "logo_042.png",
+    "logo_035.png", "logo_007.png", "logo_011.png", "logo_037.png",
     # Row 4 (8 logos)
-    "logo_027.png", "logo_006.png", "logo_020.png", "logo_019.png", "logo_029.png",
+    # logo_029 (dup of logo_031, Serenity) -> logo_009 (unused, unique)
+    "logo_027.png", "logo_006.png", "logo_020.png", "logo_019.png", "logo_009.png",
     "logo_030.png", "logo_031.png", "logo_032.png"
 ]
 
