@@ -81,8 +81,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 60px;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
@@ -136,7 +136,7 @@
       stroke-width: 2;
       stroke-dasharray: 500;
       stroke-dashoffset: 500;
-      animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
     .loader-text {
@@ -146,7 +146,7 @@
       color: var(--white);
       opacity: 0;
       transform: translateY(10px);
-      animation: textFadeIn 0.8s ease forwards 1.2s;
+      animation: textFadeIn 0.5s ease forwards 0.8s;
     }
 
     @keyframes scanIn {
@@ -182,7 +182,7 @@
       height: 3px;
       background: var(--white);
       box-shadow: 0 0 10px var(--white);
-      animation: scanLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanLine 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       opacity: 0;
     }
 
@@ -1028,7 +1028,7 @@
       position: relative;
       display: inline-block;
       font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 600;
       color: var(--white);
       letter-spacing: -0.01em;
@@ -1095,16 +1095,15 @@
     .hex-row {
       display: flex;
       justify-content: center;
-      margin-bottom: -69px;
-      /* Overlap for honeycomb effect */
+      margin-bottom: -46px;
       width: 100%;
       flex-wrap: nowrap;
     }
 
     .hex {
       flex-shrink: 0;
-      width: 240px;
-      height: 276px;
+      width: 160px;
+      height: 184px;
       background: rgba(255, 255, 255, 0.15);
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
       margin: 0 4px;
@@ -1119,17 +1118,17 @@
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
 
-      /* Animation state for zoom-in on scroll */
       opacity: 0;
       transform: scale(0.3);
       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .hex img {
-      max-width: 75%;
-      max-height: 75%;
+      max-width: 85%;
+      max-height: 85%;
       object-fit: contain;
       pointer-events: none;
+      
     }
 
     .hex.in-view {
@@ -1996,14 +1995,14 @@
   <!-- LOADING SCREEN -->
   <div id="loader">
     <div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading"
-        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
+        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
     </div>
     <div class="loader-text">Leaving Your Mark..</div>
   </div>
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor-fingerprint" id="customCursor">
-    <svg viewBox="0 0 100 100">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
       <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z" fill="none"
         stroke="currentColor" stroke-width="4" />
       <path d="M50 25 C38 25 25 38 25 50 C25 62 38 75 50 75 C62 75 75 62 75 50 C75 38 62 25 50 25 Z" fill="none"
@@ -2107,12 +2106,20 @@
 
   <section id="work"
     style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem;">
-    <div class="s-print" style="top: -5%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
-    <div class="s-print" style="top: 20%; right: -10%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
-    <div class="s-print" style="bottom: 10%; left: 5%; width: 450px; height: 450px; transform: rotate(45deg);"></div>
-    <div class="s-print" style="bottom: -5%; right: 5%; width: 550px; height: 550px; transform: rotate(-15deg);"></div>
-    <div class="s-print"
-      style="top: 45%; left: 35%; width: 700px; height: 700px; transform: rotate(85deg); opacity: 0.03;"></div>
+    <!-- Top area -->
+    <div class="s-print" style="top: -2%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
+    <div class="s-print" style="top: 15%; right: -5%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
+    <div class="s-print" style="top: 10%; left: 40%; width: 800px; height: 800px; transform: rotate(60deg); opacity: 0.02;"></div>
+    
+    <!-- Mid area -->
+    <div class="s-print" style="top: 35%; left: -10%; width: 700px; height: 700px; transform: rotate(45deg); opacity: 0.03;"></div>
+    <div class="s-print" style="top: 45%; right: 10%; width: 900px; height: 900px; transform: rotate(-65deg); opacity: 0.02;"></div>
+    <div class="s-print" style="top: 55%; left: 20%; width: 600px; height: 600px; transform: rotate(115deg); opacity: 0.04;"></div>
+    
+    <!-- Bottom area -->
+    <div class="s-print" style="top: 75%; right: -10%; width: 750px; height: 750px; transform: rotate(-15deg); opacity: 0.03;"></div>
+    <div class="s-print" style="bottom: 10%; left: -5%; width: 550px; height: 550px; transform: rotate(35deg); opacity: 0.04;"></div>
+    <div class="s-print" style="bottom: -5%; right: 25%; width: 650px; height: 650px; transform: rotate(-85deg); opacity: 0.03;"></div>
     <div class="container">
       <div class="section-head-row reveal-heading" style="align-items: flex-start; flex-direction: column;">
         <div
@@ -2235,51 +2242,46 @@
   <style>
     .bento-grid {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 4rem;
-      max-width: 1800px;
-      margin: 14rem auto 24rem;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 10rem auto 14rem;
       padding: 0 2vw;
       align-items: center;
     }
     .bento-card {
-      width: calc(20% - 3.2rem);
+      width: calc(20% - 1.6rem);
       position: relative;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      border-radius: 24px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
     .bento-card img {
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: contain;
       display: block;
-      transition: transform 0.8s ease, filter 0.8s ease;
-      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
-      transform: scale(1.32);
+      border-radius: 24px;
     }
-    .bento-card:hover {
-      transform: translateY(-10px);
-    }
-    .bento-card:hover img {
-      transform: scale(1.4);
-      filter: drop-shadow(0 25px 50px rgba(0, 176, 185, 0.25));
-    }
-    /* Asymmetric sizing */
-    .bento-card:nth-child(1) { aspect-ratio: auto; transform: translateY(-100px); }
-    .bento-card:nth-child(2) { aspect-ratio: auto; transform: translateY(100px); }
-    .bento-card:nth-child(3) { aspect-ratio: auto; transform: translateY(-100px); }
-    .bento-card:nth-child(4) { aspect-ratio: auto; transform: translateY(100px); }
-    .bento-card:nth-child(5) { aspect-ratio: auto; transform: translateY(-100px); }
     
-    .bento-card:nth-child(1):hover { transform: translateY(-110px); }
-    .bento-card:nth-child(2):hover { transform: translateY(90px); }
-    .bento-card:nth-child(3):hover { transform: translateY(-110px); }
-    .bento-card:nth-child(4):hover { transform: translateY(90px); }
-    .bento-card:nth-child(5):hover { transform: translateY(-110px); }
+    /* Staggered 2D arrangement */
+    .bento-card:nth-child(1), .bento-card:nth-child(5) {
+      transform: translateY(40px);
+    }
+    .bento-card:nth-child(2), .bento-card:nth-child(4) {
+      transform: translateY(0px);
+    }
+    .bento-card:nth-child(3) {
+      transform: translateY(-40px);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-20px) scale(1.05) !important;
+      box-shadow: 0 25px 50px rgba(0, 176, 185, 0.25);
+      z-index: 10;
+    }
 
     .view-overlay {
       position: absolute;
@@ -2331,58 +2333,55 @@
         </div>
       </div>
     </div>
-    <div class="container hex-container">
+    <style id="dynamic-hex-styles">
+  .hex-logo_042 { background-color: rgb(255, 255, 255); }
+  .hex-logo_020 { background-color: rgb(255, 255, 255); }
+  .hex-logo_023 { background-color: rgb(13, 103, 181); }
+  .hex-logo_025 { background-color: rgb(214, 149, 72); }
+  .hex-logo_042 img, .hex-logo_020 img, .hex-logo_023 img, .hex-logo_025 img { mix-blend-mode: normal !important; }
+</style>
+<div class="container hex-container">
       <div class="hex-row">
-        <div class="hex reveal-hex"><img src="logos/logo_001.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_002.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_003.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_005.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_006.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_007.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_008.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_009.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_010.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_011.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_012.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_013.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_014.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_015.png" alt="Logo"></div>
-      </div>
-      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_034.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_016.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_017.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_002.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_018.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_019.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_020.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_021.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_010.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_001.png" alt="Logo"></div>
+      </div>
+      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_008.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_022.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_023.png" alt="Logo"></div>
+        <div class="hex reveal-hex hex-logo_023"><img src="logos/logo_023.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_024.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_025.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_005.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_014.png" alt="Logo"></div>
+        <div class="hex reveal-hex hex-logo_025"><img src="logos/logo_025.png" alt="Logo"></div>
+      </div>
+      <div class="hex-row">
+        <div class="hex reveal-hex"><img src="logos/logo_003.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_033.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_013.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_026.png" alt="Logo"></div>
+        <div class="hex reveal-hex hex-logo_042"><img src="logos/logo_042.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_004.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_007.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_011.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_012.png" alt="Logo"></div>
+      </div>
+      <div class="hex-row">
         <div class="hex reveal-hex"><img src="logos/logo_027.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_028.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_006.png" alt="Logo"></div>
+        <div class="hex reveal-hex hex-logo_020"><img src="logos/logo_020.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_019.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_029.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_030.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_031.png" alt="Logo"></div>
-      </div>
-      <div class="hex-row">
         <div class="hex reveal-hex"><img src="logos/logo_032.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_033.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_034.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_035.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_036.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_037.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_038.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_039.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_040.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_041.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_042.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_043.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_044.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_045.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_046.png" alt="Logo"></div>
       </div>
     </div>
   </section>
@@ -2402,38 +2401,52 @@
       <div class="services-list">
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">Social & Content</div>
-            <div class="service-list-desc">Organic strategies, moodboards, and scroll-stopping reel production.</div>
+            <div class="service-list-title">BRANDING</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">Growth & Paid Media</div>
-            <div class="service-list-desc">Targeted ad campaigns engineered for lowest CPL and highest reach.</div>
+            <div class="service-list-title">CONTENT WRITING</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">Production & Creative</div>
-            <div class="service-list-desc">High-end video production, ad films, and brand photography.</div>
+            <div class="service-list-title">SOCIAL MEDIA ADS</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">Web & Digital Assets</div>
-            <div class="service-list-desc">End-to-end digital assets designed to leave an unforgettable impression.</div>
+            <div class="service-list-title">GRAPHIC DESIGNING</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">Branding</div>
-            <div class="service-list-desc">Complete brand identity, wedding collaterals, and messaging strategy.</div>
+            <div class="service-list-title">CONTENT CREATION & CURATION</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
-            <div class="service-list-title">SEO & Discovery</div>
-            <div class="service-list-desc">Optimized post captions and profile growth for long-term organic reach.</div>
+            <div class="service-list-title">CAMPAIGN CONCEPTS & STRATEGIES</div>
+          </div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">START TO END SOCIAL MEDIA MANAGEMENT</div>
+          </div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">LIVE EVENT CONTENT COVERAGE</div>
+          </div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">WEDDING SOCIAL MEDIA COVERAGE</div>
+          </div>
+        </a>
+        <a href="#contact" class="service-list-item reveal-heading">
+          <div class="service-list-content">
+            <div class="service-list-title">BESPOKE INVITATION DESIGN</div>
           </div>
         </a>
       </div>
@@ -2796,12 +2809,12 @@
             <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
               <div class="testi-avatar"
                 style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                F
+                P
               </div>
               <div>
                 <h4 class="testi-name"
                   style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Founder</h4>
+                  Pranav</h4>
                 <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Meena Bazar, Hyderabad
                 </p>
               </div>
@@ -2891,22 +2904,20 @@
       right: max(2rem, calc(50vw - 650px));
     }
 
-    .testimonial-card-new {
-      opacity: 0;
-      transform: translateY(40px) scale(0.95);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
 
-    .testimonial-card-new.in-view {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.testimonials-track');
-      const cards = document.querySelectorAll('.testimonial-card-new');
+      let cards = document.querySelectorAll('.testimonial-card-new');
       if (!track || cards.length === 0) return;
+
+      // Duplicate testimonials to make them longer and loop better
+      cards.forEach(card => {
+        let clone = card.cloneNode(true);
+        track.appendChild(clone);
+      });
+      cards = document.querySelectorAll('.testimonial-card-new');
 
       const updateActive = () => {
         const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
@@ -2934,28 +2945,36 @@
 
 
       // Auto-scroll functionality
-      let autoScrollInterval = setInterval(() => {
-        const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
-        let activeIdx = -1;
+      let autoScrollInterval;
+      
+      const startAutoScroll = () => {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(() => {
+          let activeIdx = -1;
 
-        cards.forEach((card, idx) => {
-          if (card.classList.contains('is-active')) {
-            activeIdx = idx;
+          cards.forEach((card, idx) => {
+            if (card.classList.contains('is-active')) {
+              activeIdx = idx;
+            }
+          });
+
+          if (activeIdx !== -1) {
+            let nextIdx = (activeIdx + 1) % cards.length;
+            let nextCard = cards[nextIdx];
+
+            // Calculate scroll position
+            let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+            track.scrollTo({ left: scrollPos, behavior: 'smooth' });
           }
-        });
-
-        if (activeIdx !== -1) {
-          let nextIdx = (activeIdx + 1) % cards.length;
-          let nextCard = cards[nextIdx];
-
-          // Calculate scroll position
-          let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-          track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-        }
-      }, 4000); // 4 seconds
+        }, 3000); // 3 seconds
+      };
+      
+      startAutoScroll();
 
       track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+      track.addEventListener('mouseleave', startAutoScroll);
       track.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+      track.addEventListener('touchend', startAutoScroll);
 
       track.addEventListener('scroll', updateActive);
       updateActive();
@@ -3007,7 +3026,7 @@
       <div class="founder-content reveal-heading">
         <div class="founder-eyebrow">The Founder</div>
         <h3>Priyanka Vithani</h3>
-        <p class="founder-role">Founder & Creative Director</p>
+        <p class="founder-role" style="color: #FFFFFF;">Founder & Creative Director</p>
         
         <div class="founder-quote">
           "We don't just chase trends; we build brand identities and performance campaigns that leave a lasting mark."
@@ -3018,9 +3037,9 @@
         </div>
         
         <div class="founder-contact-pills">
-          <a href="tel:+919967921559" class="founder-contact-pill">
+          <a href="tel:+919167921559" class="founder-contact-pill">
             <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>
-            +91 9967921559
+            +91 9167921559
           </a>
           <a href="mailto:thesocailthumbprint@gmail.com" class="founder-contact-pill">
             <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -3162,7 +3181,7 @@
                   d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
               </svg>
             </div>
-            <span>+91 9967921559</span>
+            <span>+91 9167921559</span>
           </div>
           <div class="contact-detail-item">
             <div class="contact-detail-icon">
@@ -3197,7 +3216,7 @@
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
-      }, 2400); // Wait for fingerprint draw + text fade + a little extra
+      }, 1500); // Wait for fingerprint draw + text fade + a little extra
     });
 
     // Custom Cursor
