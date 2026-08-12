@@ -81,8 +81,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 120px;
-      height: 170px;
+      width: 200px;
+      height: 280px;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
@@ -1934,7 +1934,7 @@
     }
 
     .cursor-fingerprint.view-mode {
-      width: 120px;
+      width: 200px;
       height: 120px;
       transform: translate(-50%, -50%);
       background: rgba(0, 176, 185, 0.9);
@@ -3522,6 +3522,25 @@
     window.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
+      
+      let elem = document.elementFromPoint(e.clientX, e.clientY);
+      let bgColor = 'rgba(0, 0, 0, 0)';
+      while (elem && elem.nodeType === 1) {
+        bgColor = window.getComputedStyle(elem).backgroundColor;
+        if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+          break;
+        }
+        elem = elem.parentElement;
+      }
+      
+      const cursorImg = cursor.querySelector('img');
+      if (cursorImg) {
+        if (bgColor === 'rgb(0, 176, 185)') {
+          cursorImg.src = 'cursor-thumb-white.png';
+        } else {
+          cursorImg.src = 'cursor-thumb-teal.png';
+        }
+      }
     });
 
     // Stamp effect on hover

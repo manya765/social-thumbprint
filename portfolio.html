@@ -986,7 +986,7 @@
       transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
   }
   .cursor-fingerprint.view-mode {
-      width: 120px; height: 120px;
+      width: 200px; height: 120px;
       transform: translate(-50%, -50%);
       background: rgba(0, 176, 185, 0.9);
       border: none;
@@ -1386,9 +1386,28 @@
   // Custom Cursor
   const cursor = document.getElementById('customCursor');
   window.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      let elem = document.elementFromPoint(e.clientX, e.clientY);
+      let bgColor = 'rgba(0, 0, 0, 0)';
+      while (elem && elem.nodeType === 1) {
+        bgColor = window.getComputedStyle(elem).backgroundColor;
+        if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+          break;
+        }
+        elem = elem.parentElement;
+      }
+      
+      const cursorImg = cursor.querySelector('img');
+      if (cursorImg) {
+        if (bgColor === 'rgb(0, 176, 185)') {
+          cursorImg.src = 'cursor-thumb-white.png';
+        } else {
+          cursorImg.src = 'cursor-thumb-teal.png';
+        }
+      }
+    });
 
   // Stamp effect on hover
   document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
