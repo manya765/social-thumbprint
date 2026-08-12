@@ -1778,9 +1778,8 @@
     .categories-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px; /* To mimic the thin borders */
-      background-color: rgba(255, 255, 255, 0.5); /* If the container is dark, this acts as the border color. Wait, let's just use borders on cards */
-      background: transparent;
+      gap: 24px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     
@@ -1790,7 +1789,8 @@
       overflow: hidden;
       cursor: pointer;
       background: #000;
-      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     
     .category-grid-card img {
