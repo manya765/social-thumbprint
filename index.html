@@ -1771,7 +1771,67 @@
       transform: translateY(0px);
     }
     
-</style>
+
+    /* ============================================================
+     THUMBPRINTS MASONRY CSS
+     ============================================================ */
+    .categories-masonry {
+      column-count: 4;
+      column-gap: 20px;
+      padding: 20px 0;
+    }
+    @media (max-width: 1024px) {
+      .categories-masonry { column-count: 3; }
+    }
+    @media (max-width: 768px) {
+      .categories-masonry { column-count: 2; }
+    }
+    @media (max-width: 480px) {
+      .categories-masonry { column-count: 1; }
+    }
+    
+    .category-card {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .category-card img {
+      width: 100%;
+      display: block;
+      opacity: 0.85;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    
+    .category-card:hover img {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .category-label {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      color: var(--teal-dark);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: capitalize;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+  </style>
 
 
 
@@ -2114,148 +2174,82 @@
   <!-- HERO -->
   <section class="hero">
     <video autoplay muted loop playsinline class="hero-bg-video">
-      <source src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116597/Untitled_design_5_ycrnpe_s2pf4h.mp4"
-        type="video/mp4">
-    </video>
-    <div class="container hero-inner">
-      <h1 class="hero-title load-stagger">We Don't Chase Trends.<br>We Leave <div class="highlight-wrapper"><span
-            class="highlight">Thumbprints.</span>
-          <div class="giant-fingerprint"></div>
-        </div>
-      </h1>
-      <p class="hero-intro load-stagger">Good brands deserve good stories. We’re here to tell yours.</p>
-      <div class="hero-actions load-stagger">
-        <a href="#contact" class="btn btn-primary">Leave Your Mark</a>
-        <a href="#work" class="btn btn-ghost">Our Thumbprints</a>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- STANDALONE STATS SECTION -->
-  <section class="stats-section" id="stats">
-    <div class="container">
-      <div class="stats-float" id="statsFloat">
-        <div class="stat">
-          <h3 data-target="100" data-prefix="" data-suffix="+">0+</h3>
-          <p>Clients Served</p>
-        </div>
-        <div class="stat">
-          <h3 data-target="30" data-prefix="" data-suffix="k+">0k+</h3>
-          <p>Hours of Making Content</p>
-        </div>
-        <div class="stat">
-          <h3 data-target="1000" data-prefix="" data-suffix="+">0+</h3>
-          <p>Days of Content Calendars</p>
-        </div>
-        <div class="stat">
-          <h3 data-target="120" data-prefix="" data-suffix="+">0+</h3>
-          <p>Campaigns Produced</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="work"
+      <source src="https://res.cloudinary.co<section id="work"
     style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem;">
-    <!-- Top area -->
-    <div class="s-print" style="top: -2%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
-    <div class="s-print" style="top: 15%; right: -5%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
-    <div class="s-print" style="top: 10%; left: 40%; width: 800px; height: 800px; transform: rotate(60deg); opacity: 0.02;"></div>
-    
-    <!-- Mid area -->
-    <div class="s-print" style="top: 35%; left: -10%; width: 700px; height: 700px; transform: rotate(45deg); opacity: 0.03;"></div>
-    <div class="s-print" style="top: 45%; right: 10%; width: 900px; height: 900px; transform: rotate(-65deg); opacity: 0.02;"></div>
-    <div class="s-print" style="top: 55%; left: 20%; width: 600px; height: 600px; transform: rotate(115deg); opacity: 0.04;"></div>
-    
-    <!-- Bottom area -->
-    <div class="s-print" style="top: 75%; right: -10%; width: 750px; height: 750px; transform: rotate(-15deg); opacity: 0.03;"></div>
-    <div class="s-print" style="bottom: 10%; left: -5%; width: 550px; height: 550px; transform: rotate(35deg); opacity: 0.04;"></div>
-    <div class="s-print" style="bottom: -5%; right: 25%; width: 650px; height: 650px; transform: rotate(-85deg); opacity: 0.03;"></div>
-    <div class="container">
-      <div class="section-head-row reveal-heading" style="align-items: flex-start; flex-direction: column;">
-        <div
-          style="display: flex; justify-content: space-between; width: 100%; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <span class="eyebrow" style="color: #3A2350;">Our Work</span>
-            <h2 class="section-heading" style="margin-bottom: 0; font-size: 3.5rem;">Our Thumbprints</h2>
-          </div>
-        </div>
-        <p class="section-sub" style="margin-top: 1rem;">A showcase of video reels, branding, and performance campaigns
-          that leave a lasting mark.</p>
+    <div class="container" style="max-width: var(--container); margin: 0 auto; padding: 0 20px;">
+      <div class="section-header text-center" style="margin-bottom: 40px; text-align: center;">
+        <h2 class="section-title" style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--teal-dark); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
-      <div class="bento-grid" style="margin-bottom: 4rem;">
-        <div class="bento-card bento-anim image-brand-card" data-brand="Creative Asset 17" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png" alt="Creative Asset 17">
-          <div class="view-overlay">View</div>
+      <div class="categories-masonry">
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/500?random=40" alt="Social Media">
+          <div class="category-label">Social Media</div>
         </div>
-        <div class="bento-card bento-anim image-brand-card" data-brand="Instagram Grid Mockup" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png" alt="Instagram Grid Mockup">
-          <div class="view-overlay">View</div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/650?random=41" alt="Branding">
+          <div class="category-label">Branding</div>
         </div>
-        
-        <div class="bento-card bento-anim image-brand-card" data-brand="Creative Asset 23" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png" alt="Creative Asset 23">
-          <div class="view-overlay">View</div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/450?random=42" alt="Design Panel">
+          <div class="category-label">Design Panel</div>
         </div>
-        <div class="bento-card bento-anim image-brand-card" data-brand="App Screen 1" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png" alt="App Screen 1">
-          <div class="view-overlay">View</div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/600?random=43" alt="Standees">
+          <div class="category-label">Standees</div>
         </div>
-        <div class="bento-card bento-anim image-brand-card" data-brand="App Screen 2" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png" alt="App Screen 2">
-          <div class="view-overlay">View</div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/550?random=44" alt="Booth Designing">
+          <div class="category-label">Booth Designing</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/480?random=45" alt="Welcome Board">
+          <div class="category-label">Welcome Board</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/620?random=46" alt="App Design">
+          <div class="category-label">App Design</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/520?random=47" alt="Wedding Invites">
+          <div class="category-label">Wedding Invites</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/450?random=48" alt="Tent Cards">
+          <div class="category-label">Tent Cards</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/600?random=49" alt="Look Book">
+          <div class="category-label">Look Book</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/400?random=50" alt="Visiting Card">
+          <div class="category-label">Visiting Card</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/650?random=51" alt="Poster">
+          <div class="category-label">Poster</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/420?random=52" alt="Voucher">
+          <div class="category-label">Voucher</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/480?random=53" alt="Envelops">
+          <div class="category-label">Envelops</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/580?random=54" alt="Packaging">
+          <div class="category-label">Packaging</div>
+        </div>
+        <div class="category-card" onclick="window.location.href='portfolio.html'">
+          <img src="https://picsum.photos/400/500?random=55" alt="Logos">
+          <div class="category-label">Logos</div>
         </div>
       </div>
-
-      <div class="work-grid">
-
-        <!-- Card 1: Meena Bazaar ad video (Cloudinary Video) -->
-        <div class="work-card reveal-heading brand-card" data-brand="Meena Bazaar Ad Video"
-          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786116676/Meena_Bazaar_ad_video_dzufcr.mp4']"
-          style="cursor: pointer;">
-          <div class="work-img">
-            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116676/Meena_Bazaar_ad_video_dzufcr.mp4"
-              muted loop autoplay playsinline></video>
-            <div class="play-overlay"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-          </div>
-          <div class="work-info">
-            <p>A cinematic advertisement campaign highlighting Meena Bazaar's heritage.</p>
-          </div>
-        </div>
-
-        <!-- Card 2: Luzo hair color video (Cloudinary Video) -->
-        <div class="work-card reveal-heading brand-card" data-brand="Luzo Hair Color Video"
-          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786116635/Luzo_hair_color_video_xtwluc.mp4']"
-          style="cursor: pointer;">
-          <div class="work-img">
-            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116635/Luzo_hair_color_video_xtwluc.mp4"
-              muted loop autoplay playsinline></video>
-            <div class="play-overlay"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-          </div>
-          <div class="work-info">
-            <p>Vibrant and stylish hair color transformations for Luzo.</p>
-          </div>
-        </div>
-
-        <!-- Card 3: Baulkline video (Cloudinary Video) -->
-        <div class="work-card reveal-heading brand-card" data-brand="Baulkline Video"
-          data-videos="['https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4']"
-          style="cursor: pointer;">
-          <div class="work-img">
-            <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted
-              loop playsinline autoplay muted loop playsinline></video>
-            <div class="play-overlay"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-          </div>
-          <div class="work-info">
-            <p>A bold and premium brand identity presentation for Baulkline.</p>
+    </div>
+  </section>
+           <p>A bold and premium brand identity presentation for Baulkline.</p>
           </div>
         </div>
 
