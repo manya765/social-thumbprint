@@ -136,7 +136,7 @@
       stroke-width: 2;
       stroke-dasharray: 500;
       stroke-dashoffset: 500;
-      animation: scanIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
     .loader-text {
@@ -184,7 +184,7 @@
       height: 3px;
       background: var(--white);
       box-shadow: 0 0 10px var(--white);
-      animation: scanLine 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanLine 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       opacity: 0;
     }
 
@@ -856,6 +856,9 @@
     .stats-float:not(.in-view) .stat:nth-child(3) {
       transform: translateX(-120%) scale(0.6) rotate(15deg);
     }
+    .stats-float:not(.in-view) .stat:nth-child(4) {
+      transform: translateY(-100px) scale(0.6) rotate(-10deg);
+    }
 
     /* Final positions */
     .stats-float.in-view .stat {
@@ -874,6 +877,9 @@
 
     .stats-float.in-view .stat:nth-child(3) {
       transition-delay: 0.5s;
+    }
+    .stats-float.in-view .stat:nth-child(4) {
+      transition-delay: 0.7s;
     }
 
     /* Continuous floating after entrance */
@@ -903,6 +909,9 @@
 
     .stats-float.in-view .stat:nth-child(3) {
       animation-delay: 1.7s;
+    }
+    .stats-float.in-view .stat:nth-child(4) {
+      animation-delay: 1.9s;
     }
 
     .stat h3 {
@@ -1527,7 +1536,7 @@
       -webkit-appearance: none;
       width: 16px;
       height: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      border: 2px solid var(--primary);
       border-radius: 4px;
       outline: none;
       cursor: none;
@@ -1536,8 +1545,8 @@
     }
 
     .checkbox-label input:checked {
-      background: var(--white);
-      border-color: var(--white);
+      background: var(--primary);
+      border-color: var(--primary);
     }
 
     .checkbox-label input:checked::after {
@@ -1732,7 +1741,16 @@
     .testi-next {
       right: max(2rem, calc(50vw - 650px));
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
 
 
 
@@ -1955,7 +1973,16 @@
     .testi-next {
       right: max(2rem, calc(50vw - 650px));
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
   <script id="cuberto-scripts">
     window.addEventListener('DOMContentLoaded', () => {
       const cursor = document.getElementById('customCursor');
@@ -1982,7 +2009,7 @@
   <!-- LOADING SCREEN -->
   <div id="loader">
     <div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading"
-        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
+        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
     </div>
     <div class="loader-text">Leaving Your Mark..</div>
   </div>
@@ -2337,7 +2364,16 @@
 
 
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
 
 
   <!-- BRAND HONEYCOMB GRID -->
@@ -2600,7 +2636,16 @@
       background: var(--teal);
       transform: translateY(-2px);
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
   <!-- TESTIMONIALS -->
   <section id="testimonials"
     style="padding: 6rem 0 3rem 0; overflow: hidden; background: var(--teal); border-radius: 60px 60px 0 0; margin-top: -2rem; position: relative; z-index: 2;">
@@ -2999,7 +3044,16 @@
     }
 
 
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.testimonials-track');
@@ -3200,7 +3254,16 @@
       position: relative;
       z-index: 1;
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
   <section id="contact">
     <div class="s-print" style="top: -5%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
     <div class="s-print" style="top: 20%; right: -10%; width: 600px; height: 600px; transform: rotate(-25deg);"></div>
@@ -3308,9 +3371,7 @@
   <script>
     // Loader sequence
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-      }, 1500); // Wait for fingerprint draw + text fade + a little extra
+      setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 900); // Wait for fingerprint draw + text fade + a little extra
     });
 
     // Custom Cursor
@@ -3702,7 +3763,16 @@
     .testi-next {
       right: max(2rem, calc(50vw - 650px));
     }
-  </style>
+  
+    /* Fix cursor in modals */
+    body.modal-open, body.modal-open * {
+      cursor: auto !important;
+    }
+    body.modal-open .cursor-fingerprint {
+      display: none !important;
+    }
+
+</style>
 
   <div class="video-modal" id="videoModal">
     <button class="video-modal-close" id="closeModal">&times;</button>
@@ -3741,11 +3811,12 @@
       modalBrandTitle.textContent = brand;
       updateVideo();
       modal.classList.add('active');
+      document.body.classList.add('modal-open');
     }
 
     function updateVideo() {
       if (currentVideos.length === 0) return;
-      videoPlayer.src = 'videos/' + currentVideos[currentIndex];
+      videoPlayer.src = currentVideos[currentIndex].startsWith('http') ? currentVideos[currentIndex] : 'videos/' + currentVideos[currentIndex];
       videoPlayer.play();
 
       if (currentVideos.length > 1) {
@@ -3774,6 +3845,7 @@
 
     closeBtn.addEventListener('click', () => {
       modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
       videoPlayer.pause();
       videoPlayer.src = '';
     });
@@ -3812,6 +3884,7 @@
 
     closeImgBtn.addEventListener('click', () => {
       imgModal.classList.remove('active');
+      document.body.classList.remove('modal-open');
       modalImage.src = '';
     });
 
@@ -3823,6 +3896,7 @@
         modalImageTitle.textContent = brand;
         modalImage.src = imgSrc;
         imgModal.classList.add('active');
+        document.body.classList.add('modal-open');
       });
     });
   </script>
