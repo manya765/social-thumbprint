@@ -2312,7 +2312,14 @@
       align-items: center;
     }
 
+    
     .bento-card {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+
       width: calc(20% - 0.8rem);
       position: relative;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2381,7 +2388,14 @@
 
     @media (max-width: 900px) {
       .bento-grid { flex-direction: column; gap: 3rem; }
-      .bento-card { width: 100%; }
+      
+    .bento-card {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+ width: 100%; }
 
     
     
