@@ -1887,6 +1887,91 @@
       .categories-solid-row { grid-template-columns: 1fr; gap: 2px;}
     }
 
+  
+    /* ============================================================
+     THUMBPRINTS SERVICE CARDS CSS
+     ============================================================ */
+    .categories-service-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    .service-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-color: var(--purple);
+    }
+    
+    .service-icon-wrapper {
+      width: 80px;
+      height: 80px;
+      background: rgba(144, 89, 212, 0.1); /* light purple bg */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      transition: all 0.4s ease;
+    }
+    
+    .service-card:hover .service-icon-wrapper {
+      background: var(--purple);
+    }
+    
+    .service-icon-wrapper i {
+      font-size: 32px;
+      color: var(--purple);
+      transition: all 0.4s ease;
+    }
+    
+    .service-card:hover .service-icon-wrapper i {
+      color: #ffffff;
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+    
+    .service-card:hover .service-title {
+      color: var(--purple);
+    }
+    
+    .service-desc {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    @media (max-width: 1024px) {
+      .categories-service-row { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    }
+    @media (max-width: 576px) {
+      .categories-service-row { grid-template-columns: 1fr; gap: 20px; padding: 10px; }
+    }
+
   </style>
 
 
@@ -2160,6 +2245,7 @@
       }
     });
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -2290,18 +2376,41 @@
         <h2 class="section-title" style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--purple); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
-      <div class="categories-solid-row">
-        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
-          <div class="category-solid-title">Social Media</div>
+      <div class="categories-service-row">
+        <!-- Social Media Card -->
+        <div class="service-card" onclick="window.location.href='portfolio.html'">
+          <div class="service-icon-wrapper">
+            <i class="fa-solid fa-share-nodes"></i>
+          </div>
+          <h3 class="service-title">Social Media</h3>
+          <p class="service-desc">We offer a full range of social media marketing services, creating engaging content and building brand awareness through proven techniques.</p>
         </div>
-        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
-          <div class="category-solid-title">Branding</div>
+        
+        <!-- Branding Card -->
+        <div class="service-card" onclick="window.location.href='portfolio.html'">
+          <div class="service-icon-wrapper">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3 class="service-title">Branding</h3>
+          <p class="service-desc">We craft unique brand identities that resonate with your target audience, establishing a strong and memorable presence in the market.</p>
         </div>
-        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
-          <div class="category-solid-title">Print</div>
+        
+        <!-- Print Card -->
+        <div class="service-card" onclick="window.location.href='portfolio.html'">
+          <div class="service-icon-wrapper">
+            <i class="fa-solid fa-print"></i>
+          </div>
+          <h3 class="service-title">Print</h3>
+          <p class="service-desc">From stunning brochures to professional business cards, we provide high-quality print designs that leave a lasting physical impression.</p>
         </div>
-        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
-          <div class="category-solid-title">Logo Design</div>
+        
+        <!-- Logo Design Card -->
+        <div class="service-card" onclick="window.location.href='portfolio.html'">
+          <div class="service-icon-wrapper">
+            <i class="fa-solid fa-bezier-curve"></i>
+          </div>
+          <h3 class="service-title">Logo Design</h3>
+          <p class="service-desc">We design custom, scalable, and impactful logos that capture the essence of your business and help you stand out from the competition.</p>
         </div>
       </div>
     </div>
