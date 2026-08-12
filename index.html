@@ -2057,8 +2057,8 @@
   </div>
 
   <!-- CUSTOM CURSOR -->
-  <div class="cursor-fingerprint" id="customCursor" style="display: none; mix-blend-mode: difference;">
-    <img src="cursor-thumb-transparent.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain;" />
+  <div class="cursor-fingerprint" id="customCursor" style="display: none; z-index: 99999;">
+    <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));" />
   </div>
 
   <!-- AMBIENT BACKGROUND -->
@@ -3215,15 +3215,25 @@
           if (activeIdx !== -1) {
             let nextIdx = activeIdx + 1;
             
-            // If we are at the very last clone, silently jump back to the middle (the original last) or start
+            // If we are about to scroll past the clones
             if (nextIdx >= cards.length) {
               nextIdx = 1;
               let resetCard = cards[0];
               let resetPos = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
-              track.scrollTo({ left: resetPos, behavior: 'instant' });
               
-              // Force reflow
-              void track.offsetWidth;
+              // Silently snap back to the beginning
+              track.style.scrollBehavior = 'auto';
+              track.scrollLeft = resetPos;
+              void track.offsetWidth; // Force reflow
+              
+              // Then gracefully smooth scroll to the next card after a tiny delay
+              setTimeout(() => {
+                track.style.scrollBehavior = 'smooth';
+                let nextCard = cards[nextIdx];
+                let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+              }, 50);
+              return;
             }
 
             let nextCard = cards[nextIdx];
@@ -3232,7 +3242,7 @@
                 track.scrollTo({ left: scrollPos, behavior: 'smooth' });
             }
           }
-        }, 2500); // 2.5 seconds
+        }, 2500);
       };
       
       startAutoScroll();
