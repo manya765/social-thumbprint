@@ -2263,11 +2263,20 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      max-width: 100%;
-      margin: 3rem auto 14rem; /* Reduced top margin from 10rem to 3rem to decrease gap */
-      padding: 0 2vw;
+      width: 98vw;
+      max-width: 1800px;
+      margin: 3rem auto 14rem;
+      padding: 0;
       align-items: center;
     }
+    
+    @media (min-width: 1024px) {
+       .bento-grid {
+           margin-left: calc(50% - 49vw);
+           margin-right: calc(50% - 49vw);
+       }
+    }
+
     .bento-card {
       width: calc(20% - 0.8rem);
       position: relative;
@@ -3482,8 +3491,6 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
-          } else {
-            entry.target.classList.remove('in-view');
           }
         });
       }, { threshold: 0.1 });
@@ -3650,8 +3657,8 @@
 
     .video-modal-close {
       position: absolute;
-      top: 30px;
-      right: 40px;
+      top: max(20px, env(safe-area-inset-top));
+      right: max(20px, env(safe-area-inset-right));
       background: none;
       border: none;
       color: white;
@@ -3659,6 +3666,15 @@
       cursor: pointer;
       line-height: 1;
       z-index: 100000;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .video-modal-close {
+        top: max(15px, env(safe-area-inset-top));
+        right: max(15px, env(safe-area-inset-right));
+        font-size: 2.5rem;
+      }
     }
 
     .video-modal-content {
