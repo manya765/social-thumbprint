@@ -2057,15 +2057,8 @@
   </div>
 
   <!-- CUSTOM CURSOR -->
-  <div class="cursor-fingerprint" id="customCursor">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z" fill="none"
-        stroke="currentColor" stroke-width="4" />
-      <path d="M50 25 C38 25 25 38 25 50 C25 62 38 75 50 75 C62 75 75 62 75 50 C75 38 62 25 50 25 Z" fill="none"
-        stroke="currentColor" stroke-width="4" />
-      <path d="M50 40 C45 40 40 45 40 50 C40 55 45 60 50 60 C55 60 60 55 60 50 C60 45 55 40 50 40 Z" fill="none"
-        stroke="currentColor" stroke-width="4" />
-    </svg>
+  <div class="cursor-fingerprint" id="customCursor" style="display: none; mix-blend-mode: screen;">
+    <img src="cursor-thumb.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain;" />
   </div>
 
   <!-- AMBIENT BACKGROUND -->
@@ -3213,7 +3206,6 @@
         if (autoScrollInterval) clearInterval(autoScrollInterval);
         autoScrollInterval = setInterval(() => {
           let activeIdx = -1;
-
           cards.forEach((card, idx) => {
             if (card.classList.contains('is-active')) {
               activeIdx = idx;
@@ -3221,12 +3213,24 @@
           });
 
           if (activeIdx !== -1) {
-            let nextIdx = (activeIdx + 1) % cards.length;
-            let nextCard = cards[nextIdx];
+            let nextIdx = activeIdx + 1;
+            
+            // If we are at the very last clone, silently jump back to the middle (the original last) or start
+            if (nextIdx >= cards.length) {
+              nextIdx = 1;
+              let resetCard = cards[0];
+              let resetPos = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
+              track.scrollTo({ left: resetPos, behavior: 'instant' });
+              
+              // Force reflow
+              void track.offsetWidth;
+            }
 
-            // Calculate scroll position
-            let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-            track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            let nextCard = cards[nextIdx];
+            if (nextCard) {
+                let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            }
           }
         }, 2500); // 2.5 seconds
       };
