@@ -118,6 +118,7 @@
     0% { 
       opacity: 0; 
       transform: translateY(30px) scale(0.95);
+      -webkit-clip-path: inset(100% 0 0 0);
       clip-path: inset(100% 0 0 0); 
     }
     20% {
@@ -126,6 +127,7 @@
     100% { 
       opacity: 1; 
       transform: translateY(0) scale(1);
+      -webkit-clip-path: inset(0 0 0 0);
       clip-path: inset(0 0 0 0); 
     }
   }
@@ -273,7 +275,8 @@
   }
   .btn-ghost {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: var(--white);
     border: 1px solid rgba(255, 255, 255, 0.4);
@@ -306,7 +309,8 @@
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .navbar.scrolled .nav-pill {
-    background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    background: rgba(5, 5, 5, 0.95); -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
@@ -318,7 +322,8 @@
   
   .mobile-menu-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(10, 10, 12, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(10, 10, 12, 0.98); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     z-index: 9999; display: flex; flex-direction: column; padding: 1.5rem 2rem;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
   }
@@ -470,7 +475,8 @@
   .stat { 
     flex: 1; text-align: center; padding: 2.5rem 1.5rem; 
     background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -598,7 +604,8 @@
     width: 240px;
     height: 276px;
     background: rgba(255, 255, 255, 0.15);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     margin: 0 4px;
     display: flex;
     align-items: center;
@@ -608,7 +615,8 @@
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--white);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     
     /* Animation state for zoom-in on scroll */
@@ -642,7 +650,8 @@
   /* Testimonials */
   .testimonial-card {
     max-width: 900px; margin: 0 auto; background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: var(--radius-lg); padding: 3.5rem; text-align: center;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -912,6 +921,7 @@
   
   .work-card:hover .work-info {
       background: rgba(20, 20, 30, 0.65);
+      -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-top: 1px solid rgba(255,255,255,0.15);
@@ -963,6 +973,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       opacity: 1;
@@ -1506,6 +1517,7 @@
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(10, 10, 15, 0.75);
+      -webkit-backdrop-filter: blur(24px);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       z-index: 99999;
@@ -1580,6 +1592,7 @@
     }
     .vid-btn {
       background: rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);

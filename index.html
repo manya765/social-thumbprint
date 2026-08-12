@@ -94,7 +94,7 @@
       width: 100%;
       height: 100%;
       fill: none;
-      color: var(--teal-light);
+      color: #ffffff;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
@@ -153,7 +153,8 @@
       0% {
         opacity: 0;
         transform: translateY(30px) scale(0.95);
-        clip-path: inset(100% 0 0 0);
+        -webkit-clip-path: inset(100% 0 0 0);
+      clip-path: inset(100% 0 0 0);
       }
 
       20% {
@@ -163,7 +164,8 @@
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
-        clip-path: inset(0 0 0 0);
+        -webkit-clip-path: inset(0 0 0 0);
+      clip-path: inset(0 0 0 0);
       }
     }
 
@@ -400,6 +402,7 @@
 
     .btn-ghost {
       background: rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: var(--white);
@@ -449,6 +452,7 @@
 
     .navbar.scrolled .nav-pill {
       background: rgba(5, 5, 5, 0.95);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
@@ -498,6 +502,7 @@
       height: 100vh;
       height: 100dvh;
       background: rgba(10, 10, 12, 0.98);
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 9999;
@@ -1046,7 +1051,7 @@
     .service-list-desc {
       font-family: var(--font-body);
       font-size: 1.1rem;
-      color: var(--teal-light);
+      color: #ffffff;
       font-weight: 400;
       line-height: 1.5;
       opacity: 0;
@@ -1072,43 +1077,34 @@
       overflow: visible;
     }
 
-    @keyframes driftGrid {
-      from {
-        transform: translateX(300px);
-      }
-
-      to {
-        transform: translateX(-300px);
-      }
-    }
-
-    .hex-container {
+            .hex-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      overflow: visible;
+      align-items: flex-start;
+      overflow: hidden;
       width: 100vw;
+      max-width: 100vw !important;
       margin-left: calc(-50vw + 50%);
-      /* Full bleed horizontal */
-      animation: driftGrid 20s linear infinite;
+      padding-bottom: 50px; /* Prevent the last row from being clipped due to negative margins */
+    }
+
+                .hex-row {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: -36px;
+      width: max-content;
+      flex-wrap: nowrap;
       will-change: transform;
     }
 
-    .hex-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: -46px;
-      width: 100%;
-      flex-wrap: nowrap;
-    }
-
-    .hex {
-      flex-shrink: 0;
+                .hex {
+      flex: 0 0 160px;
       width: 160px;
       height: 184px;
       background: rgba(255, 255, 255, 0.15);
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      margin: 0 4px;
+      margin: 0 5px; /* 10px total gap between columns */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1117,9 +1113,9 @@
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--white);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-
       opacity: 0;
       transform: scale(0.3);
       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1171,6 +1167,7 @@
       max-width: 900px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 0.88);
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: var(--radius-lg);
@@ -1313,7 +1310,7 @@
 
     .founder-role {
       font-size: 1.2rem;
-      color: var(--teal-light);
+      color: #ffffff;
       font-weight: 600;
       margin-bottom: 2rem;
     }
@@ -1752,7 +1749,7 @@
       gap: 0;
       padding: 4rem 2vw 8rem;
       max-width: 1200px;
-      margin: 16rem auto 0;
+      margin: 2rem auto 0;
       overflow: visible;
     }
 
@@ -1868,6 +1865,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       transition: all 0.3s ease;
@@ -1906,6 +1904,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       opacity: 1;
@@ -2234,7 +2233,7 @@
       justify-content: center;
       gap: 2rem;
       max-width: 1400px;
-      margin: 10rem auto 14rem;
+      margin: 3rem auto 14rem; /* Reduced top margin from 10rem to 3rem to decrease gap */
       padding: 0 2vw;
       align-items: center;
     }
@@ -2280,6 +2279,7 @@
       border: 2px solid #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       transition: all 0.4s ease;
@@ -2321,48 +2321,122 @@
         </div>
       </div>
     </div>
-    <div class="container hex-container">
-      <div class="hex-row">
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
+    <div class="hex-container" data-marquee-speed="30">
+      <div class="hex-row" data-loop-width="1530" style="margin-left: 0px;">
+        <div class="hex reveal-hex"><img src="logos/logo_page_01.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_02.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_04.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_05.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_01.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_02.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_04.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_05.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_01.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_02.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_04.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_05.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
       </div>
-      <div class="hex-row">
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
+      <div class="hex-row" data-loop-width="1530" style="margin-left: 85px;">
+        <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_11.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_12.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_13.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_14.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_15.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_16.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_17.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_11.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_12.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_13.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_14.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_15.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_16.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_17.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_11.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_12.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_13.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_14.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_15.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_16.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_17.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
       </div>
-      <div class="hex-row">
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
+      <div class="hex-row" data-loop-width="1530" style="margin-left: 0px;">
+        <div class="hex reveal-hex"><img src="logos/logo_page_18.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_19.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_20.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_21.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_22.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_23.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_24.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_25.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_26.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_18.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_19.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_20.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_21.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_22.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_23.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_24.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_25.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_26.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_18.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_19.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_20.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_21.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_22.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_23.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_24.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_25.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_26.png" alt="Logo"></div>
       </div>
-      <div class="hex-row">
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
-        <div class="hex reveal-hex"></div>
+      <div class="hex-row" data-loop-width="1530" style="margin-left: 85px;">
+        <div class="hex reveal-hex"><img src="logos/logo_page_27.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_29.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_30.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_2.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_27.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_29.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_30.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_2.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_27.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_29.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_30.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/new_logo_page_2.png" alt="Logo"></div>
       </div>
     </div>
   </section>
@@ -2383,51 +2457,61 @@
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">BRANDING</div>
+            <div class="service-list-desc">Shaping your identity and leaving a lasting impression.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">CONTENT WRITING</div>
+            <div class="service-list-desc">Crafting compelling stories that engage your audience.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">SOCIAL MEDIA ADS</div>
+            <div class="service-list-desc">Targeted campaigns that drive conversions and growth.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">GRAPHIC DESIGNING</div>
+            <div class="service-list-desc">Visually stunning designs that speak volumes.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">CONTENT CREATION & CURATION</div>
+            <div class="service-list-desc">Delivering high-quality content that resonates.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">CAMPAIGN CONCEPTS & STRATEGIES</div>
+            <div class="service-list-desc">Strategic planning for maximum impact.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">START TO END SOCIAL MEDIA MANAGEMENT</div>
+            <div class="service-list-desc">Full-service management for your online presence.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">LIVE EVENT CONTENT COVERAGE</div>
+            <div class="service-list-desc">Capturing the magic of your events in real-time.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">WEDDING SOCIAL MEDIA COVERAGE</div>
+            <div class="service-list-desc">Preserving your special moments beautifully.</div>
           </div>
         </a>
         <a href="#contact" class="service-list-item reveal-heading">
           <div class="service-list-content">
             <div class="service-list-title">BESPOKE INVITATION DESIGN</div>
+            <div class="service-list-desc">Custom invitations tailored to your unique style.</div>
           </div>
         </a>
       </div>
@@ -3318,6 +3402,30 @@
       });
     })();
 
+    // Honeycomb marquee - a single requestAnimationFrame loop drives every
+    // row from the same timestamp, so rows with matching loop widths never
+    // drift apart (independent CSS animations on separate elements aren't
+    // guaranteed to start on the same frame).
+    (function () {
+      var container = document.querySelector('.hex-container');
+      if (!container) return;
+      var speed = parseFloat(container.getAttribute('data-marquee-speed')) || 30;
+      var rows = Array.from(container.querySelectorAll('.hex-row')).map(function (row) {
+        return { el: row, loopWidth: parseFloat(row.getAttribute('data-loop-width')) || 0 };
+      });
+      var start = performance.now();
+      function tick(now) {
+        var elapsed = (now - start) / 1000;
+        rows.forEach(function (row) {
+          if (!row.loopWidth) return;
+          var offset = (elapsed * speed) % row.loopWidth;
+          row.el.style.transform = 'translateX(-' + offset + 'px)';
+        });
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
     // Navbar background on scroll
     (function () {
       var navbar = document.querySelector('.navbar');
@@ -3433,6 +3541,7 @@
       height: 100vh;
       height: 100dvh;
       background: rgba(0, 0, 0, 0.9);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       z-index: 99999;
       display: flex;
@@ -3494,7 +3603,7 @@
     }
 
     .video-modal-header h2 {
-      color: var(--teal-light);
+      color: #ffffff;
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
