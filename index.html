@@ -2057,7 +2057,7 @@
   </div>
 
   <!-- CUSTOM CURSOR -->
-  <div class="cursor-fingerprint" id="customCursor" style="display: none; z-index: 99999;">
+  <div class="cursor-fingerprint" id="customCursor" style="display: block; z-index: 99999;">
     <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));" />
   </div>
 
@@ -3214,30 +3214,24 @@
 
           if (activeIdx !== -1) {
             let nextIdx = activeIdx + 1;
+            const originalCount = cards.length / 2;
             
-            // If we are about to scroll past the clones
-            if (nextIdx >= cards.length) {
-              nextIdx = 1;
+            // If we have reached the first clone, silently snap back to the first original
+            if (activeIdx === originalCount) {
               let resetCard = cards[0];
               let resetPos = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
               
-              // Silently snap back to the beginning
               track.style.scrollBehavior = 'auto';
               track.scrollLeft = resetPos;
               void track.offsetWidth; // Force reflow
               
-              // Then gracefully smooth scroll to the next card after a tiny delay
-              setTimeout(() => {
-                track.style.scrollBehavior = 'smooth';
-                let nextCard = cards[nextIdx];
-                let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-              }, 50);
-              return;
+              nextIdx = 1;
             }
 
+            // Smooth scroll to the next card
             let nextCard = cards[nextIdx];
             if (nextCard) {
+                track.style.scrollBehavior = 'smooth';
                 let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
                 track.scrollTo({ left: scrollPos, behavior: 'smooth' });
             }
