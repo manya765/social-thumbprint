@@ -120,7 +120,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
     #loader.hidden {
@@ -129,14 +129,14 @@
     }
 
     .loader-fingerprint {
-      width: 80px;
-      height: 80px;
+      width: 140px;
+      height: 140px;
       fill: none;
       stroke: var(--teal);
       stroke-width: 2;
       stroke-dasharray: 500;
       stroke-dashoffset: 500;
-      animation: scanIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
     .loader-text {
@@ -146,7 +146,7 @@
       color: var(--white);
       opacity: 0;
       transform: translateY(10px);
-      animation: textFadeIn 0.5s ease forwards 0.8s;
+      animation: textFadeIn 0.5s ease forwards 0.4s;
     }
 
     @keyframes scanIn {
@@ -184,7 +184,7 @@
       height: 3px;
       background: var(--white);
       box-shadow: 0 0 10px var(--white);
-      animation: scanLine 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: scanLine 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       opacity: 0;
     }
 
@@ -1982,7 +1982,7 @@
   <!-- LOADING SCREEN -->
   <div id="loader">
     <div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading"
-        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
+        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
     </div>
     <div class="loader-text">Leaving Your Mark..</div>
   </div>
@@ -2076,16 +2076,20 @@
     <div class="container">
       <div class="stats-float" id="statsFloat">
         <div class="stat">
+          <h3 data-target="100" data-prefix="" data-suffix="+">0+</h3>
+          <p>Clients Served</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="30" data-prefix="" data-suffix="k+">0k+</h3>
+          <p>Hours of Making Content</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="1000" data-prefix="" data-suffix="+">0+</h3>
+          <p>Days of Content Calendars</p>
+        </div>
+        <div class="stat">
           <h3 data-target="120" data-prefix="" data-suffix="+">0+</h3>
           <p>Campaigns Produced</p>
-        </div>
-        <div class="stat">
-          <h3 data-target="20" data-prefix="₹" data-suffix="L+">₹0L+</h3>
-          <p>Ad Budgets Delivered</p>
-        </div>
-        <div class="stat">
-          <h3 data-target="35" data-prefix="" data-suffix="%">0%</h3>
-          <p>Avg. CPL Reduction</p>
         </div>
       </div>
     </div>
@@ -2184,7 +2188,7 @@
           style="cursor: pointer;">
           <div class="work-img">
             <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted
-              loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+              loop playsinline autoplay muted loop playsinline></video>
             <div class="play-overlay"><svg viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg></div>
@@ -2200,7 +2204,7 @@
           style="cursor: pointer;">
           <div class="work-img">
             <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4" muted
-              loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+              loop playsinline autoplay muted loop playsinline></video>
             <div class="play-overlay"><svg viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg></div>
@@ -2231,20 +2235,43 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 2rem;
-      max-width: 1400px;
+      gap: 1rem;
+      max-width: 100%;
       margin: 3rem auto 14rem; /* Reduced top margin from 10rem to 3rem to decrease gap */
       padding: 0 2vw;
       align-items: center;
     }
     .bento-card {
-      width: calc(20% - 1.6rem);
+      width: calc(20% - 0.8rem);
       position: relative;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       border-radius: 24px;
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
+
+    .bento-card:nth-child(1), .bento-card:nth-child(3), .bento-card:nth-child(5) {
+      transform: translateY(-40px);
+    }
+    
+    .bento-card:nth-child(2), .bento-card:nth-child(4) {
+      transform: translateY(0px);
+    }
+    
+    .bento-card:hover {
+      transform: translateY(-50px) scale(1.05) !important;
+      box-shadow: 0 25px 50px rgba(0, 176, 185, 0.25);
+      z-index: 10;
+    }
+    
+    @media (max-width: 900px) {
+      .bento-card:nth-child(n) {
+        transform: none !important;
+        aspect-ratio: auto;
+      }
+    }
+
+
     .bento-card img {
       width: 100%;
       height: auto;
@@ -2254,22 +2281,6 @@
     }
     
     /* Staggered 2D arrangement */
-    .bento-card:nth-child(1), .bento-card:nth-child(5) {
-      transform: translateY(40px);
-    }
-    .bento-card:nth-child(2), .bento-card:nth-child(4) {
-      transform: translateY(0px);
-    }
-    .bento-card:nth-child(3) {
-      transform: translateY(-40px);
-    }
-
-    .bento-card:hover {
-      transform: translateY(-20px) scale(1.05) !important;
-      box-shadow: 0 25px 50px rgba(0, 176, 185, 0.25);
-      z-index: 10;
-    }
-
     .view-overlay {
       position: absolute;
       top: 50%; left: 50%;
@@ -2302,11 +2313,29 @@
     @media (max-width: 900px) {
       .bento-grid { flex-direction: column; gap: 3rem; }
       .bento-card { width: 100%; }
+
+    .bento-card:nth-child(1), .bento-card:nth-child(3), .bento-card:nth-child(5) {
+      transform: translateY(-40px);
+    }
+    
+    .bento-card:nth-child(2), .bento-card:nth-child(4) {
+      transform: translateY(0px);
+    }
+    
+    .bento-card:hover {
+      transform: translateY(-50px) scale(1.05) !important;
+      box-shadow: 0 25px 50px rgba(0, 176, 185, 0.25);
+      z-index: 10;
+    }
+    
+    @media (max-width: 900px) {
       .bento-card:nth-child(n) {
         transform: none !important;
         aspect-ratio: auto;
       }
-      .bento-card:hover { transform: translateY(-5px) !important; }
+    }
+
+
     }
   </style>
 
