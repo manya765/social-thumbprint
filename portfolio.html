@@ -815,6 +815,27 @@
   @media(max-width: 480px) {
     .checkbox-group { grid-template-columns: 1fr; }
   }
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
 
   
@@ -987,7 +1008,28 @@
       letter-spacing: 2px;
   }
 
-  </style>
+  
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
+</style>
   <script id="cuberto-scripts">
     window.addEventListener('DOMContentLoaded', () => {
         const cursor = document.getElementById('customCursor');
@@ -1087,7 +1129,28 @@
         pointer-events: none;
         z-index: -1;
     }
-  </style>
+  
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
+</style>
   <section class="hero" style="min-height: 50vh; padding-top: 10rem; padding-bottom: 3rem; background: transparent; position: relative;">
     <div class="hero-bg-accent"></div>
     <div class="container hero-inner">
@@ -1401,7 +1464,7 @@
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.service-card, .reveal-heading, .work-card, .reveal-hex').forEach(function (el) {
+    document.querySelectorAll('.service-card, .reveal-heading, .bento-anim, .work-card, .reveal-hex').forEach(function (el) {
       revealObserver.observe(el);
     });
   })();
@@ -1628,7 +1691,28 @@
     .vid-counter.active {
       display: inline-block;
     }
-  </style>
+  
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
+</style>
 
   <div class="video-modal" id="videoModal">
     <button class="video-modal-close" id="closeModal">&times;</button>

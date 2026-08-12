@@ -1750,6 +1750,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
 
 
@@ -1982,6 +2003,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
   <script id="cuberto-scripts">
     window.addEventListener('DOMContentLoaded', () => {
@@ -2152,24 +2194,24 @@
       </div>
 
       <div class="bento-grid" style="margin-bottom: 4rem;">
-        <div class="bento-card reveal-heading image-brand-card" data-brand="Creative Asset 17" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png">
+        <div class="bento-card bento-anim image-brand-card" data-brand="Creative Asset 17" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786182236/Screenshot_2026-08-08_140527-removebg-preview_kmam4t.png" alt="Creative Asset 17">
           <div class="view-overlay">View</div>
         </div>
-        <div class="bento-card reveal-heading image-brand-card" data-brand="Instagram Grid Mockup" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png">
+        <div class="bento-card bento-anim image-brand-card" data-brand="Instagram Grid Mockup" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184460/Screenshot_2026-08-08_152126_upscaled-removebg-preview_jjjjxr.png" alt="Instagram Grid Mockup">
           <div class="view-overlay">View</div>
         </div>
         
-        <div class="bento-card reveal-heading image-brand-card" data-brand="Creative Asset 23" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png">
+        <div class="bento-card bento-anim image-brand-card" data-brand="Creative Asset 23" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png" alt="Creative Asset 23">
           <div class="view-overlay">View</div>
         </div>
-        <div class="bento-card reveal-heading image-brand-card" data-brand="App Screen 1" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png">
+        <div class="bento-card bento-anim image-brand-card" data-brand="App Screen 1" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185746/Screenshot_2026-08-08_161038_upscaled-removebg-preview_g13i2p.png" alt="App Screen 1">
           <div class="view-overlay">View</div>
         </div>
-        <div class="bento-card reveal-heading image-brand-card" data-brand="App Screen 2" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png">
+        <div class="bento-card bento-anim image-brand-card" data-brand="App Screen 2" data-image="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png">
           <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786185753/Screenshot_2026-08-08_160726_upscaled-removebg-preview_pvrmua.png" alt="App Screen 2">
           <div class="view-overlay">View</div>
         </div>
@@ -2263,10 +2305,10 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      width: 95vw;
+      width: 100%;
       max-width: 1400px;
       margin: 3rem auto 14rem;
-      padding: 0;
+      padding: 0 2rem;
       align-items: center;
     }
 
@@ -2279,13 +2321,9 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    .bento-card:nth-child(1), .bento-card:nth-child(3), .bento-card:nth-child(5) {
-      transform: translateY(-40px);
-    }
     
-    .bento-card:nth-child(2), .bento-card:nth-child(4) {
-      transform: translateY(0px);
-    }
+    
+    
     
     @media (hover: hover) {
       .bento-card:hover {
@@ -2345,13 +2383,9 @@
       .bento-grid { flex-direction: column; gap: 3rem; }
       .bento-card { width: 100%; }
 
-    .bento-card:nth-child(1), .bento-card:nth-child(3), .bento-card:nth-child(5) {
-      transform: translateY(-40px);
-    }
     
-    .bento-card:nth-child(2), .bento-card:nth-child(4) {
-      transform: translateY(0px);
-    }
+    
+    
     
     .bento-card:hover {
       transform: translateY(-50px) scale(1.05) !important;
@@ -2377,6 +2411,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
 
 
@@ -2649,6 +2704,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
   <!-- TESTIMONIALS -->
   <section id="testimonials"
@@ -3057,6 +3133,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -3267,6 +3364,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
   <section id="contact">
     <div class="s-print" style="top: -5%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg);"></div>
@@ -3489,7 +3607,7 @@
           }
         });
       }, { threshold: 0.1 });
-      document.querySelectorAll('.service-card, .reveal-heading, .work-card, .reveal-hex, .testimonial-card-new, .hero-title').forEach(function (el) {
+      document.querySelectorAll('.service-card, .reveal-heading, .bento-anim, .work-card, .reveal-hex, .testimonial-card-new, .hero-title').forEach(function (el) {
         revealObserver.observe(el);
       });
     })();
@@ -3783,6 +3901,27 @@
       display: none !important;
     }
 
+
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
 </style>
 
   <div class="video-modal" id="videoModal">
