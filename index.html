@@ -1845,6 +1845,48 @@
       .categories-grid { grid-template-columns: 1fr; }
     }
 
+  
+    /* ============================================================
+     THUMBPRINTS SOLID ROW CSS
+     ============================================================ */
+    .categories-solid-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px; /* Very thin gap just like the reference */
+      background-color: transparent;
+      margin: 0 auto;
+    }
+    
+    .category-solid-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      color: #fff;
+      padding: 30px 15px; /* Taller padding to make them substantial blocks */
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    
+    .category-solid-card:hover {
+      background: var(--purple); /* Or a highlight color */
+      transform: translateY(-2px);
+    }
+    
+    .category-solid-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    
+    @media (max-width: 768px) {
+      .categories-solid-row { grid-template-columns: repeat(2, 1fr); padding: 10px; gap: 2px;}
+    }
+    @media (max-width: 480px) {
+      .categories-solid-row { grid-template-columns: 1fr; gap: 2px;}
+    }
+
   </style>
 
 
@@ -2232,7 +2274,7 @@
 
   <section id="work"
     style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem; position: relative; overflow: hidden;">
-        <!-- Scattered Fingerprints Background -->
+    <!-- Scattered Fingerprints Background -->
     <div class="s-print" style="top: -2%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg); opacity: 0.04;"></div>
     <div class="s-print" style="top: 15%; right: -5%; width: 600px; height: 600px; transform: rotate(-25deg); opacity: 0.04;"></div>
     <div class="s-print" style="top: 10%; left: 40%; width: 800px; height: 800px; transform: rotate(60deg); opacity: 0.02;"></div>
@@ -2243,127 +2285,28 @@
     <div class="s-print" style="bottom: 10%; left: -5%; width: 550px; height: 550px; transform: rotate(35deg); opacity: 0.04;"></div>
     <div class="s-print" style="bottom: -5%; right: 25%; width: 650px; height: 650px; transform: rotate(-85deg); opacity: 0.03;"></div>
     
-    <div class="container" style="max-width: var(--container); margin: 0 auto; padding: 0 20px;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
       <div class="section-header text-center" style="margin-bottom: 40px; text-align: center;">
         <h2 class="section-title" style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--purple); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
-      <div class="categories-grid">
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=60" alt="Social Media">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">01.</span>
-            <div class="category-grid-title">Social Media</div>
-          </div>
+      <div class="categories-solid-row">
+        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
+          <div class="category-solid-title">Social Media</div>
         </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=61" alt="Branding">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">02.</span>
-            <div class="category-grid-title">Branding</div>
-          </div>
+        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
+          <div class="category-solid-title">Branding</div>
         </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=62" alt="Design Panel">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">03.</span>
-            <div class="category-grid-title">Design Panel</div>
-          </div>
+        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
+          <div class="category-solid-title">Print</div>
         </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=63" alt="Standees">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">04.</span>
-            <div class="category-grid-title">Standees</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=64" alt="Booth Designing">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">05.</span>
-            <div class="category-grid-title">Booth Designing</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=65" alt="Welcome Board">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">06.</span>
-            <div class="category-grid-title">Welcome Board</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=66" alt="App Design">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">07.</span>
-            <div class="category-grid-title">App Design</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=67" alt="Wedding Invites">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">08.</span>
-            <div class="category-grid-title">Wedding Invites</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=68" alt="Tent Cards">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">09.</span>
-            <div class="category-grid-title">Tent Cards</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=69" alt="Look Book">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">10.</span>
-            <div class="category-grid-title">Look Book</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=70" alt="Visiting Card">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">11.</span>
-            <div class="category-grid-title">Visiting Card</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=71" alt="Poster">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">12.</span>
-            <div class="category-grid-title">Poster</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=72" alt="Voucher">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">13.</span>
-            <div class="category-grid-title">Voucher</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=73" alt="Envelops">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">14.</span>
-            <div class="category-grid-title">Envelops</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=74" alt="Packaging">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">15.</span>
-            <div class="category-grid-title">Packaging</div>
-          </div>
-        </div>
-        <div class="category-grid-card" onclick="window.location.href='portfolio.html'">
-          <img src="https://picsum.photos/400/500?random=75" alt="Logos">
-          <div class="category-grid-overlay">
-            <span class="category-grid-num">16.</span>
-            <div class="category-grid-title">Logos</div>
-          </div>
+        <div class="category-solid-card" onclick="window.location.href='portfolio.html'">
+          <div class="category-solid-title">Logo Design</div>
         </div>
       </div>
     </div>
   </section>
+
 
 
 
