@@ -3471,42 +3471,57 @@
 </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-            const track = document.querySelector('.testimonials-track');
-      let cards = document.querySelectorAll('.testimonial-card-new');
-      if (!track || cards.length === 0) return;
+                        const track = document.querySelector('.testimonials-track');
+      let originalCards = Array.from(document.querySelectorAll('.testimonial-card-new'));
+      if (!track || originalCards.length === 0) return;
 
-      // Duplicate testimonials to make them longer and loop better
-      cards.forEach(card => {
-        let clone = card.cloneNode(true);
-        track.appendChild(clone);
+      // Duplicate testimonials TWICE to make 3 sets for perfect infinite looping
+      originalCards.forEach(card => {
+        track.appendChild(card.cloneNode(true));
       });
-      cards = document.querySelectorAll('.testimonial-card-new');
+      originalCards.forEach(card => {
+        track.appendChild(card.cloneNode(true));
+      });
+      
+      let cards = Array.from(document.querySelectorAll('.testimonial-card-new'));
+      const originalCount = originalCards.length;
+
+      // Cache positions to prevent layout thrashing
+      let cardPositions = [];
+      const cachePositions = () => {
+          cardPositions = cards.map(card => {
+              return card.offsetLeft - track.offsetLeft + card.clientWidth / 2;
+          });
+      };
+      
+      // Call once on load, and on window resize
+      cachePositions();
+      window.addEventListener('resize', cachePositions);
 
       const updateActive = () => {
-        const trackCenter = track.getBoundingClientRect().left + track.getBoundingClientRect().width / 2;
-        let closest = cards[0];
+        if (cardPositions.length === 0) return;
+        const centerViewPos = track.scrollLeft + track.clientWidth / 2;
+        
+        let closestIdx = 0;
         let minDiff = Infinity;
 
-        cards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const cardCenter = rect.left + rect.width / 2;
-          const diff = Math.abs(trackCenter - cardCenter);
+        for (let i = 0; i < cardPositions.length; i++) {
+          const diff = Math.abs(centerViewPos - cardPositions[i]);
           if (diff < minDiff) {
             minDiff = diff;
-            closest = card;
+            closestIdx = i;
           }
-        });
+        }
 
-        cards.forEach(card => {
-          if (card === closest) {
-            card.classList.add('is-active');
+        cards.forEach((card, idx) => {
+          if (idx === closestIdx) {
+            if (!card.classList.contains('is-active')) card.classList.add('is-active');
           } else {
-            card.classList.remove('is-active');
+            if (card.classList.contains('is-active')) card.classList.remove('is-active');
           }
         });
       };
 
-      // Auto-scroll functionality
       let autoScrollInterval;
       
       const startAutoScroll = () => {
@@ -3517,43 +3532,71 @@
       };
 
       const slideCards = (direction) => {
-        let activeIdx = -1;
-        cards.forEach((card, idx) => {
-          if (card.classList.contains('is-active')) activeIdx = idx;
-        });
+        let activeIdx = cards.findIndex(card => card.classList.contains('is-active'));
+        if (activeIdx === -1) activeIdx = originalCount;
         
-        if (activeIdx !== -1) {
-          let nextIdx = activeIdx + direction;
-          const originalCount = cards.length / 2;
-          
-          if (nextIdx >= originalCount * 2) {
-            // Reached the very end of the cloned list
-            nextIdx = originalCount; 
-            let resetCard = cards[nextIdx - direction];
-            track.style.scrollBehavior = 'auto';
-            let resetPos = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
-            track.scrollLeft = resetPos;
-          } else if (nextIdx < 0) {
-            // Reached the very beginning of the original list
-            nextIdx = originalCount - 1;
-            let resetCard = cards[originalCount];
-            track.style.scrollBehavior = 'auto';
-            let resetPos = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
-            track.scrollLeft = resetPos;
-          }
-
-          // Force reflow and smooth scroll
-          void track.offsetWidth; 
-          
-          let nextCard = cards[nextIdx];
-          if (nextCard) {
-            track.style.scrollBehavior = 'smooth';
-            let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-            track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-          }
+        let nextIdx = activeIdx + direction;
+        
+        // Loop logic during slide
+        if (nextIdx >= originalCount * 2) {
+             // Jump back instantly to the 2nd set
+             track.style.scrollBehavior = 'auto';
+             let resetIdx = nextIdx - originalCount;
+             let resetCard = cards[resetIdx];
+             track.scrollLeft = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
+             
+             // Wait a frame then smooth scroll to the target
+             requestAnimationFrame(() => {
+                 requestAnimationFrame(() => {
+                     track.style.scrollBehavior = 'smooth';
+                     let targetCard = cards[resetIdx + direction];
+                     if(targetCard) {
+                         let targetPos = targetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (targetCard.clientWidth / 2);
+                         track.scrollTo({ left: targetPos, behavior: 'smooth' });
+                     }
+                 });
+             });
+             return;
+        } else if (nextIdx < originalCount) {
+             // Jump forward instantly to the 2nd set
+             track.style.scrollBehavior = 'auto';
+             let resetIdx = nextIdx + originalCount;
+             let resetCard = cards[resetIdx];
+             track.scrollLeft = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
+             
+             requestAnimationFrame(() => {
+                 requestAnimationFrame(() => {
+                     track.style.scrollBehavior = 'smooth';
+                     let targetCard = cards[resetIdx + direction];
+                     if(targetCard) {
+                         let targetPos = targetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (targetCard.clientWidth / 2);
+                         track.scrollTo({ left: targetPos, behavior: 'smooth' });
+                     }
+                 });
+             });
+             return;
+        }
+        
+        // Normal slide
+        let nextCard = cards[nextIdx];
+        if (nextCard) {
+          track.style.scrollBehavior = 'smooth';
+          let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
+          track.scrollTo({ left: scrollPos, behavior: 'smooth' });
         }
       };
       
+      // Initialize starting position
+      setTimeout(() => {
+        cachePositions();
+        let startCard = cards[originalCount];
+        if (startCard) {
+            track.style.scrollBehavior = 'auto';
+            track.scrollLeft = startCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (startCard.clientWidth / 2);
+            updateActive();
+        }
+      }, 50);
+
       startAutoScroll();
 
       track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
@@ -3561,12 +3604,9 @@
       track.addEventListener('touchstart', () => clearInterval(autoScrollInterval), { passive: true });
       track.addEventListener('touchend', startAutoScroll, { passive: true });
 
-      track.addEventListener('scroll', updateActive, { passive: true });
-      updateActive();
-
-      // Wait for images/fonts to load and layout to stabilize
-      setTimeout(updateActive, 100);
-      setTimeout(updateActive, 500);
+      track.addEventListener('scroll', () => {
+          updateActive();
+      }, { passive: true });
 
       const testiPrevBtn = document.querySelector('.testi-prev');
       const testiNextBtn = document.querySelector('.testi-next');
@@ -3583,7 +3623,7 @@
           startAutoScroll();
         });
       }
-    });
+});
   </script>
 
   <!-- FOUNDER SECTION -->
@@ -4382,6 +4422,8 @@
       });
     });
   </script>
+
+
 
 </body>
 
