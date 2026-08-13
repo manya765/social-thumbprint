@@ -3586,8 +3586,13 @@
         }
       };
       
-      // Initialize starting position
-      setTimeout(() => {
+      // Initialize starting position robustly (wait for layout)
+      const initScroll = () => {
+        if (cards[originalCount].offsetLeft === 0) {
+            // Layout not ready yet, retry
+            setTimeout(initScroll, 50);
+            return;
+        }
         cachePositions();
         let startCard = cards[originalCount];
         if (startCard) {
@@ -3595,7 +3600,14 @@
             track.scrollLeft = startCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (startCard.clientWidth / 2);
             updateActive();
         }
-      }, 50);
+      };
+      
+      initScroll();
+      
+      // Fallback update active when fonts load
+      window.addEventListener('load', () => {
+          initScroll();
+      });
 
       startAutoScroll();
 
