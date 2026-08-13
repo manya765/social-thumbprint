@@ -2049,6 +2049,111 @@
       .showcase-gallery { grid-template-columns: 1fr; }
     }
 
+  
+    /* Thumbprints Cards Grid */
+    .thumbprint-cards-container {
+      display: flex;
+      width: 100%;
+      height: 350px;
+      gap: 15px;
+      position: relative;
+      margin-top: 2rem;
+      
+      
+    }
+    
+    .tp-card {
+      flex: 1;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      transition: all 0.4s ease;
+    }
+    .tp-card:last-child {
+      border-right: none;
+    }
+    
+    .tp-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+      transition: transform 0.6s ease;
+    }
+    .tp-card:hover .tp-bg {
+      transform: scale(1.05);
+    }
+    
+    .tp-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      z-index: 2;
+    }
+    
+    .tp-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+    }
+    
+    .tp-num {
+      display: block;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      margin-bottom: 10px;
+    }
+    
+    .tp-title {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      line-height: 1.2;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 10;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .slider-arrow.left { left: 20px; }
+    .slider-arrow.right { right: 20px; }
+    .slider-arrow:hover { background: rgba(0,0,0,0.8); }
+    
+    @media (max-width: 991px) {
+      .thumbprint-cards-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .tp-card {
+        height: 300px;
+        border-radius: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+
   </style>
 
 
@@ -2448,72 +2553,46 @@
         <h2 class="section-title" style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--purple); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
-      <!-- Tab Navigation (The black blocks) -->
-      <div class="showcase-tabs">
-        <button class="showcase-tab active" onclick="openTab('social-media', this)">Social Media</button>
-        <button class="showcase-tab" onclick="openTab('branding', this)">Branding</button>
-        <button class="showcase-tab" onclick="openTab('print', this)">Print</button>
-        <button class="showcase-tab" onclick="openTab('logo-design', this)">Logo Design</button>
-      </div>
-
-      <!-- Tab Content Area -->
-      <div class="showcase-content">
-        <!-- Social Media Gallery -->
-        <div id="social-media" class="showcase-gallery active">
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media 1"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media 2"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media 3"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media 4"></div>
-        </div>
-        
-        <!-- Branding Gallery -->
-        <div id="branding" class="showcase-gallery">
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Branding 1"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Branding 2"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Branding 3"></div>
-        </div>
-
-        <!-- Print Gallery -->
-        <div id="print" class="showcase-gallery">
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Print 1"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Print 2"></div>
-        </div>
-
-        <!-- Logo Design Gallery -->
-        <div id="logo-design" class="showcase-gallery">
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Logo 1"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Logo 2"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Logo 3"></div>
-            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Logo 4"></div>
-        </div>
-      </div>
       
+      <!-- Thumbprints Cards -->
+      <div class="thumbprint-cards-container">
+        
+        
+        <div class="tp-card">
+          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png')"></div>
+          <div class="tp-content">
+            <span class="tp-num">01.</span>
+            <h3 class="tp-title">Social Media</h3>
+          </div>
+        </div>
+
+        <div class="tp-card">
+          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png')"></div>
+          <div class="tp-content">
+            <span class="tp-num">02.</span>
+            <h3 class="tp-title">Branding</h3>
+          </div>
+        </div>
+
+        <div class="tp-card">
+          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png')"></div>
+          <div class="tp-content">
+            <span class="tp-num">03.</span>
+            <h3 class="tp-title">Print</h3>
+          </div>
+        </div>
+
+        <div class="tp-card">
+          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png')"></div>
+          <div class="tp-content">
+            <span class="tp-num">04.</span>
+            <h3 class="tp-title">Logo Design</h3>
+          </div>
+        </div>
+
+        
+      </div>
     </div>
-    
-    <script>
-      function openTab(tabName, elmnt) {
-        // Hide all elements with class="showcase-gallery"
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("showcase-gallery");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-          tabcontent[i].classList.remove("active");
-        }
-        
-        // Remove the background color of all tablinks/buttons
-        tablinks = document.getElementsByClassName("showcase-tab");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].classList.remove("active");
-        }
-        
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(tabName).style.display = "grid";
-        setTimeout(() => {
-          document.getElementById(tabName).classList.add("active");
-        }, 10);
-        elmnt.classList.add("active");
-      }
-    </script>
   </section>
 
 
@@ -2684,7 +2763,7 @@
       <div class="hex-row" data-loop-width="1530" style="margin-left: 0px;">
         <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
@@ -2693,7 +2772,7 @@
         <div class="hex reveal-hex"><img src="logos/logo_page_12.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
@@ -2702,7 +2781,7 @@
         <div class="hex reveal-hex"><img src="logos/logo_page_12.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_06.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_09.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_08.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_03.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_10.png" alt="Logo"></div>
@@ -2772,7 +2851,7 @@
         <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="luzo-logo.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
@@ -2781,7 +2860,7 @@
         <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="luzo-logo.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
@@ -2790,7 +2869,7 @@
         <div class="hex reveal-hex"><img src="logos/logo_page_31.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_32.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_28.png" alt="Logo"></div>
-        <div class="hex reveal-hex"><img src="logos/logo_page_33.png" alt="Logo"></div>
+        <div class="hex reveal-hex"><img src="logos/logo_page_07.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="luzo-logo.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/logo_page_34.png" alt="Logo"></div>
         <div class="hex reveal-hex"><img src="logos/new_logo_page_1.png" alt="Logo"></div>
@@ -3780,15 +3859,6 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
     });
 
-    // Dynamic Cursor Reveal for Services
-    document.querySelectorAll('.service-list-item').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('view-mode');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('view-mode');
-      });
-    });
 
     // Animated stat count-up
     (function () {
