@@ -4316,10 +4316,22 @@
         const filterLinks = document.querySelectorAll('.cat-link');
         
         cards.forEach(card => {
-          const categories = (card.getAttribute('data-category') || '').split(',').map(c => c.trim());
-          if (filterValue === 'all' || categories.includes(filterValue)) {
+          const cardCat = (card.getAttribute('data-category') || '').trim();
+          if (filterValue === 'all' || cardCat === filterValue) {
             card.style.display = 'block';
           } else {
+            card.style.display = 'none';
+          }
+        });
+
+        filterLinks.forEach(l => {
+          if (l.getAttribute('data-filter') === filterValue) {
+            l.classList.add('active');
+          } else {
+            l.classList.remove('active');
+          }
+        });
+      } else {
             card.style.display = 'none';
           }
         });

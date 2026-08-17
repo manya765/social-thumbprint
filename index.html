@@ -111,7 +111,62 @@
     }
 
     /* Loading Screen */
-    #loader { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+    /* Fingerprint Scanning Loader Animation */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #loader.hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    .loader-fingerprint-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .loader-fingerprint-wrapper img {
+      width: 350px;
+      height: 350px;
+      object-fit: contain;
+      margin-bottom: -10px;
+      animation: scanIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+    .loader-fingerprint-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--white);
+      box-shadow: 0 0 10px var(--white);
+      animation: scanLine 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes scanIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes scanLine {
+      0% { top: 0; opacity: 0.8; }
+      50% { top: 100%; opacity: 1; }
+      100% { top: 0; opacity: 0.8; }
+    }
+    .loader-text {
+      margin-top: 1.5rem;
+      font-family: var(--font-heading), 'Fraunces', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
 
     #loader.hidden {
       opacity: 0;
@@ -2421,10 +2476,10 @@
 </head>
 
 <body>
-  <!-- LOADING SCREEN -->
+      <!-- FINGERPRINT SCANNING LOADER ANIMATION -->
   <div id="loader">
     <div class="loader-fingerprint-wrapper">
-      <img src="fingerprint.png" alt="Loading" style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
+      <img src="fingerprint.png" alt="Loading">
     </div>
     <div class="loader-text">Leaving Your Mark..</div>
   </div>
