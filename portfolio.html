@@ -4307,32 +4307,17 @@
         });
       }
 
-      // Immediate Instant Category Filter Application
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramFilter = urlParams.get('filter') || window.location.hash.replace('#', '');
+      window.addEventListener('DOMContentLoaded', () => {
+      const filterLinks = document.querySelectorAll('.cat-link');
+      const cards = document.querySelectorAll('.webee-card');
 
       function runInstantFilter(filterValue) {
-        const cards = document.querySelectorAll('.webee-card');
-        const filterLinks = document.querySelectorAll('.cat-link');
-        
         cards.forEach(card => {
           const cardCat = (card.getAttribute('data-category') || '').trim();
           if (filterValue === 'all' || cardCat === filterValue) {
-            card.style.display = 'block';
+            card.style.setProperty('display', 'block', 'important');
           } else {
-            card.style.display = 'none';
-          }
-        });
-
-        filterLinks.forEach(l => {
-          if (l.getAttribute('data-filter') === filterValue) {
-            l.classList.add('active');
-          } else {
-            l.classList.remove('active');
-          }
-        });
-      } else {
-            card.style.display = 'none';
+            card.style.setProperty('display', 'none', 'important');
           }
         });
 
@@ -4345,15 +4330,12 @@
         });
       }
 
+      // Check URL query parameters or hash for filter
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramFilter = urlParams.get('filter') || window.location.hash.replace('#', '');
+
       if (paramFilter) {
         runInstantFilter(paramFilter);
-        // Smooth scroll directly to the portfolio main section
-        setTimeout(() => {
-          const mainSec = document.querySelector('.portfolio-main-section');
-          if (mainSec) {
-            mainSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 50);
       } else {
         runInstantFilter('social-media');
       }
@@ -4365,7 +4347,6 @@
           runInstantFilter(selectedFilter);
         });
       });
-    });
     });
   </script>
 
