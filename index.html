@@ -111,17 +111,7 @@
     }
 
     /* Loading Screen */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
+    #loader { display: none !important; opacity: 0 !important; visibility: hidden !important; }
 
     #loader.hidden {
       opacity: 0;
@@ -2432,17 +2422,11 @@
 
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loader">
-    <div class="loader-fingerprint-wrapper"><img src="fingerprint.png" alt="Loading"
-        style="width: 350px; height: 350px; object-fit: contain; margin-bottom: -10px; animation: scanIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; opacity: 0;">
-    </div>
-    <div class="loader-text">Leaving Your Mark..</div>
-  </div>
+  <!-- LOADING SCREEN REMOVED FOR INSTANT NAVIGATION -->
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor-fingerprint" id="customCursor" style="display: block; z-index: 99999;">
-    <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));" />
+    <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); transform: rotate(-15deg);" />
   </div>
 
   <!-- AMBIENT BACKGROUND -->
@@ -2452,7 +2436,7 @@
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-pill">
-      <a href="#" class="nav-logo-link"><img
+      <a href="index.html" class="nav-logo-link"><img
           src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png"
           alt="The Social Thumbprint" class="nav-logo-img"></a>
       <nav class="nav-links">
@@ -2558,37 +2542,37 @@
       <div class="thumbprint-cards-container">
         
         
-        <div class="tp-card">
+        <a href="portfolio.html?filter=social-media" class="tp-card" style="text-decoration: none; cursor: pointer;">
           <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png')"></div>
           <div class="tp-content">
             <span class="tp-num">01.</span>
             <h3 class="tp-title">Social Media</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="tp-card">
+        <a href="portfolio.html?filter=branding" class="tp-card" style="text-decoration: none; cursor: pointer;">
           <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png')"></div>
           <div class="tp-content">
             <span class="tp-num">02.</span>
             <h3 class="tp-title">Branding</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="tp-card">
+        <a href="portfolio.html?filter=print" class="tp-card" style="text-decoration: none; cursor: pointer;">
           <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png')"></div>
           <div class="tp-content">
             <span class="tp-num">03.</span>
             <h3 class="tp-title">Print</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="tp-card">
+        <a href="portfolio.html?filter=logo-design" class="tp-card" style="text-decoration: none; cursor: pointer;">
           <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png')"></div>
           <div class="tp-content">
             <span class="tp-num">04.</span>
             <h3 class="tp-title">Logo Design</h3>
           </div>
-        </div>
+        </a>
 
         
       </div>

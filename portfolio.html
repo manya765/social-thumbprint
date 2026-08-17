@@ -11,7 +11,1149 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
+
+  
+  
+
+
+
+  <style id="cuberto-styles">
+
+  /* DYNAMIC ASYMMETRIC GRID & GLASSMORPHISM */
+  .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem 12rem;
+  }
+  
+  .work-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 24px;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      opacity: 0; 
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      aspect-ratio: 4/5;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  }
+  
+  /* Feature some cards to span 2 columns */
+  .work-card:nth-child(5n+1) {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+  }
+  
+  .work-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+  .work-card:hover {
+      box-shadow: 0 20px 60px rgba(0, 176, 185, 0.4);
+      transform: translateY(-5px);
+  }
+  
+  @media (max-width: 991px) {
+      .work-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+      }
+      .work-card:nth-child(5n+1) {
+          grid-column: span 2;
+          aspect-ratio: 16/9;
+      }
+  }
+  
+  @media (max-width: 600px) {
+      .work-grid {
+          grid-template-columns: 1fr;
+      }
+      .work-card:nth-child(5n+1) {
+          grid-column: span 1;
+          grid-row: span 1;
+          aspect-ratio: 4/5;
+      }
+  }
+
+  .work-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+  }
+
+  .work-img video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .work-card:hover .work-img video {
+      transform: scale(1.1); 
+  }
+
+  .work-info {
+      position: absolute;
+      bottom: 0; left: 0; width: 100%;
+      padding: 3rem 2rem 2rem;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      border-top: 1px solid transparent;
+  }
+  
+  .work-card:hover .work-info {
+      background: rgba(20, 20, 30, 0.65);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  }
+  
+  .work-info h4 {
+      font-size: 1.8rem;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+      transform: translateY(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .work-card:hover .work-info h4 {
+      transform: translateY(0);
+      color: var(--teal-light);
+  }
+  
+  .work-info p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.6;
+      max-width: 95%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .work-card:hover .work-info p {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+  
+  
+  
+  
+
+  
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
+
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Matching User Design Diagram)
+           ============================================================ */
+        
+
+        
+
+        /* Central Timeline Axes matching screenshot */
+        
+
+        
+
+        
+
+        /* Rows */
+        
+
+        
+
+        
+
+        
+
+        
+
+        .b-left {
+          width: 52%;
+          margin-right: auto;
+        }
+
+        .b-right {
+          width: 52%;
+          margin-left: auto;
+        }
+
+        .b-wide {
+          width: 72% !important;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 768px) {
+          
+          
+          .b-left, .b-right, .b-wide { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Large Assets, Clean Layout, Crisp Font)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .b-left {
+          width: 65%;
+          margin-right: auto;
+        }
+
+        .b-right {
+          width: 65%;
+          margin-left: auto;
+        }
+
+        .b-wide {
+          width: 88% !important;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, .b-right { width: 75%; }
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, .b-wide { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        
+
+        
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Pixel-Perfect Matching Reference Diagram)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-left {
+          width: 65%;
+          margin-right: auto;
+        }
+
+        .p-right {
+          width: 65%;
+          margin-left: auto;
+        }
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide {
+          width: 88% !important;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right { width: 78%; }
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Exact Layout & Order Matching User Screenshots)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-left {
+          width: 65%;
+          margin-right: auto;
+        }
+
+        .p-right {
+          width: 68%;
+          margin-left: auto;
+        }
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide {
+          width: 88% !important;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right { width: 78%; }
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Correct Section Order & Layout)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-left {
+          width: 65%;
+          margin-right: auto;
+        }
+
+        .p-right {
+          width: 68%;
+          margin-left: auto;
+        }
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide {
+          width: 88% !important;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right { width: 78%; }
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           FLOW SHOWCASE STYLES (BRANDING & PRINT)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        .p-right, .b-right {
+          width: 68%;
+          margin-left: auto;
+        }
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide, .b-wide {
+          width: 88% !important;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right, .b-left, .b-right { width: 78%; }
+          
+          
+        }
+
+  
+
+        .p-asset36-box {
+          width: 88% !important;
+          max-width: 1150px !important;
+          margin-right: auto !important;
+          margin-left: 0 !important;
+        }
+
+
+
+    
+
+    /* Home Page Exact Fingerprint Custom Cursor Dimensions */
+    html, body, a, button, label {
+      cursor: none !important;
+    }
+    input, textarea {
+      cursor: text !important;
+    }
+    
+    .cursor-fingerprint img {
+      width: 200px !important;
+      height: 280px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+    
+
+
+
+    
+
+    
+
+    /* Custom Fingerprint Cursor (Identical to index.html) */
+    html {
+      scroll-behavior: smooth;
+      cursor: none;
+    }
+    a, label, button, .cat-link, .nav-link, .webee-card {
+      cursor: none;
+    }
+    input, textarea {
+      cursor: text !important;
+    }
+    .cursor-fingerprint {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 280px;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      opacity: 0.8;
+      display: block;
+    }
+    .cursor-fingerprint img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .cursor-fingerprint.stamping {
+      transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
+      opacity: 1;
+    }
+
+</style>
+  <script id="cuberto-scripts">
+    window.addEventListener('DOMContentLoaded', () => {
+        
+    });
+    */
+  </script>
 <style>
+
+        /* ============================================================
+           PRINT FLOW ROW CARDS (Teal Color #00B0B9, Website Font Inter)
+           ============================================================ */
+        .print-flow-row-card {
+          grid-column: span 12 !important;
+          width: 100% !important;
+          background: transparent !important;
+          border-radius: 0 !important;
+          margin-bottom: 3.5rem !important;
+          position: relative !important;
+          box-sizing: border-box !important;
+          display: block;
+        }
+
+        .p-row-inner {
+          max-width: 1150px !important;
+          margin: 0 auto !important;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          min-height: 220px !important;
+          box-sizing: border-box !important;
+        }
+
+        .p-img-box {
+          position: relative !important;
+          z-index: 2 !important;
+          transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+          border-radius: 8px !important;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18) !important;
+        }
+
+        .p-img-box img {
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          border-radius: 8px !important;
+        }
+
+        .p-img-box:hover {
+          transform: scale(1.015) !important;
+        }
+
+        .p-left-img {
+          width: 62% !important;
+          margin-right: auto !important;
+          margin-left: 0 !important;
+        }
+
+        .p-right-img {
+          width: 65% !important;
+          margin-left: auto !important;
+          margin-right: 0 !important;
+        }
+
+        .p-wide-img {
+          width: 88% !important;
+          margin: 0 auto !important;
+        }
+
+        .p-text-box {
+          position: absolute !important;
+          z-index: 3 !important;
+          pointer-events: none !important;
+        }
+
+        .p-text-box.pos-right {
+          left: 68% !important;
+          right: auto !important;
+          width: auto !important;
+          text-align: left !important;
+        }
+
+        .p-text-box.pos-left {
+          right: 68% !important;
+          left: auto !important;
+          width: auto !important;
+          text-align: right !important;
+        }
+
+        .p-text-title,
+        .b-text-title,
+        .s-text-title {
+          font-family: var(--font-heading), 'Fraunces', serif !important;
+          font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+          font-weight: 400 !important;
+          color: #00B0B9 !important;
+          letter-spacing: 2px !important;
+          text-transform: uppercase !important;
+          line-height: 1.15 !important;
+          display: inline-block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+@media (max-width: 992px) {
+          .p-left-img, .p-right-img { width: 78% !important; }
+          .p-text-box.pos-right { left: 80% !important; }
+          .p-text-box.pos-left { right: 80% !important; }
+        }
+
+        @media (max-width: 768px) {
+          .p-row-inner { flex-direction: column !important; justify-content: center !important; text-align: center !important; }
+          .p-left-img, .p-right-img, .p-wide-img { width: 100% !important; margin: 0 !important; }
+          .p-text-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+        }
+
+
+
+        /* ============================================================
+           BRANDING FLOW ROW CARDS (Matching Reference Graphic)
+           ============================================================ */
+        .branding-flow-row-card {
+          grid-column: span 12 !important;
+          width: 100% !important;
+          background: transparent !important;
+          border-radius: 0 !important;
+          margin-bottom: 3.5rem !important;
+          position: relative !important;
+          box-sizing: border-box !important;
+          display: block;
+        }
+
+        .b-row-inner {
+          max-width: 1150px !important;
+          margin: 0 auto !important;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          min-height: 220px !important;
+          box-sizing: border-box !important;
+        }
+
+        
+
+        .b-img-box {
+          position: relative !important;
+          z-index: 2 !important;
+          transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+          border-radius: 8px !important;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .b-img-box img {
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          border-radius: 8px !important;
+        }
+
+        .b-img-box:hover {
+          transform: scale(1.015) !important;
+        }
+
+        .b-left-img {
+          width: 60% !important;
+          margin-right: auto !important;
+          margin-left: 0 !important;
+        }
+
+        .b-right-img {
+          width: 62% !important;
+          margin-left: auto !important;
+          margin-right: 0 !important;
+        }
+
+        .b-wide-img {
+          width: 88% !important;
+          margin: 0 auto !important;
+        }
+
+        .b-text-box {
+          position: absolute !important;
+          z-index: 3 !important;
+          pointer-events: none !important;
+        }
+
+        .b-text-box.pos-right {
+          left: 66% !important;
+          right: auto !important;
+          width: auto !important;
+          text-align: left !important;
+        }
+
+        .b-text-box.pos-left {
+          right: 66% !important;
+          left: auto !important;
+          width: auto !important;
+          text-align: right !important;
+        }
+
+        
+
+        .b-text-sub { color: #00B0B9 !important; font-family: var(--font-heading), 'Fraunces', serif !important; font-weight: 400 !important; font-size: clamp(1.8rem, 3.5vw, 3rem) !important; letter-spacing: 2px !important; text-transform: uppercase !important; }
+
+        @media (max-width: 992px) {
+          .b-left-img, .b-right-img { width: 75% !important; }
+          .b-text-box.pos-right { left: 78% !important; }
+          .b-text-box.pos-left { right: 78% !important; }
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-row-inner { flex-direction: column !important; justify-content: center !important; text-align: center !important; }
+          .b-left-img, .b-right-img, .b-wide-img { width: 100% !important; margin: 0 !important; }
+          .b-text-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+          .b-text-sub { color: #00B0B9 !important; font-family: var(--font-heading), 'Fraunces', serif !important; font-weight: 400 !important; font-size: clamp(1.8rem, 3.5vw, 3rem) !important; letter-spacing: 2px !important; text-transform: uppercase !important; }
+        }
+
+
+
+
+        /* ============================================================
+           BRANDING CATEGORY CARDS (Exact Match to User Snapshots)
+           ============================================================ */
+        .branding-row-card {
+          grid-column: span 12 !important;
+          width: 100% !important;
+          background: transparent !important;
+          border-radius: 0 !important;
+          margin-bottom: 3rem !important;
+          position: relative !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-row-container {
+          max-width: 1150px !important;
+          margin: 0 auto !important;
+          position: relative !important;
+          padding: 10px 20px !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-row {
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          z-index: 2 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-img-box {
+          position: relative !important;
+          transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+          border-radius: 8px !important;
+        }
+
+        .b-img-box img {
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          border-radius: 8px !important;
+          filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25)) !important;
+        }
+
+        .b-img-box:hover {
+          transform: scale(1.015) !important;
+        }
+
+        /* Image Position Wrappers */
+        .b-img-box
+
+        .b-img-box
+
+        .b-img-box
+
+        /* Text Label Box Classes (Only apply to .b-label-box!) */
+        .b-label-box {
+          position: absolute !important;
+          z-index: 3 !important;
+          pointer-events: none !important;
+        }
+
+        .b-label-box
+
+        .b-label-box
+
+        .b-label {
+          font-family: var(--font-heading), 'Fraunces', serif !important;
+          font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+          font-weight: 400 !important;
+          color: #D4B2EE !important;
+          text-transform: uppercase !important;
+          letter-spacing: 3px !important;
+          line-height: 1.1 !important;
+          text-shadow: none !important;
+          display: inline-block !important;
+        }
+
+        .b-label-sub {
+          position: absolute !important;
+          bottom: -45px !important;
+          left: 10px !important;
+          font-family: var(--font-heading), 'Fraunces', serif !important;
+          font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important;
+          font-weight: 400 !important;
+          color: #D4B2EE !important;
+          letter-spacing: 3px !important;
+          text-transform: uppercase !important;
+        }
+
+        @media (max-width: 992px) {
+          .b-img-box.b-left, .b-img-box
+          .b-label-box
+          .b-label-box
+        }
+
+        @media (max-width: 768px) {
+          .b-row { flex-direction: column !important; align-items: center !important; margin-bottom: 20px !important; }
+          .b-img-box.b-left, .b-img-box.b-right, .b-img-box
+          .b-label-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+          .b-label-sub { position: static !important; text-align: center !important; margin-top: 10px !important; display: block !important; }
+        }
+
+
+
+        /* ============================================================
+           BRANDING CATEGORY CARDS (Guaranteed Visibility & Layout)
+           ============================================================ */
+        .branding-row-card {
+          grid-column: span 12 !important;
+          width: 100% !important;
+          background: transparent !important;
+          border-radius: 0 !important;
+          margin-bottom: 2.5rem !important;
+          position: relative !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-row-container {
+          max-width: 1150px !important;
+          margin: 0 auto !important;
+          position: relative !important;
+          padding: 10px 20px !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-row {
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          z-index: 2 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .b-img-box {
+          position: relative !important;
+          transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+          border-radius: 8px !important;
+        }
+
+        .b-img-box img {
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          border-radius: 8px !important;
+          filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25)) !important;
+        }
+
+        .b-img-box:hover {
+          transform: scale(1.015) !important;
+        }
+
+        
+
+        
+
+        
+
+        .b-label-box {
+          position: absolute !important;
+          z-index: 3 !important;
+          pointer-events: none !important;
+        }
+
+        .b-row .b-label-box
+
+        .b-row .b-label-box
+
+        .b-label {
+          font-family: var(--font-heading), 'Fraunces', serif !important;
+          font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+          font-weight: 400 !important;
+          color: #D4B2EE !important;
+          text-transform: uppercase !important;
+          letter-spacing: 3px !important;
+          line-height: 1.1 !important;
+          text-shadow: none !important;
+          display: inline-block !important;
+        }
+
+        .b-label-sub {
+          position: absolute !important;
+          bottom: -45px !important;
+          left: 10px !important;
+          font-family: var(--font-heading), 'Fraunces', serif !important;
+          font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important;
+          font-weight: 400 !important;
+          color: #D4B2EE !important;
+          letter-spacing: 3px !important;
+          text-transform: uppercase !important;
+        }
+
+        @media (max-width: 992px) {
+          .b-left, 
+          .b-row .b-label-box
+          .b-row .b-label-box
+        }
+
+        @media (max-width: 768px) {
+          .b-row { flex-direction: column !important; align-items: center !important; margin-bottom: 20px !important; }
+          .b-left, .b-right, 
+          .b-label-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+          .b-label-sub { position: static !important; text-align: center !important; margin-top: 10px !important; display: block !important; }
+        }
+
+
+
+/* ============================================================
+   BRANDING FLOW SHOWCASE CSS (Guaranteed Direct Injection)
+   ============================================================ */
+.branding-flow-wrapper {
+  grid-column: span 12 !important;
+  width: 100% !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 20px 0 60px 0 !important;
+  position: relative !important;
+  display: block;
+  box-sizing: border-box !important;
+}
+
+.branding-flow-container {
+  max-width: 1150px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.branding-timeline-axis {
+  position: absolute !important;
+  top: 20px !important;
+  bottom: 20px !important;
+  right: 15% !important;
+  width: 2px !important;
+  background: rgba(77, 47, 107, 0.6) !important;
+  z-index: 1 !important;
+}
+
+.b-row {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 65px !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.b-img-box {
+  position: relative !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  border-radius: 6px !important;
+}
+
+.b-img-box img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 6px !important;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25)) !important;
+}
+
+.b-img-box:hover {
+  transform: scale(1.015) !important;
+}
+
+
+
+
+
+
+
+.b-label-box {
+  position: absolute !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+
+.b-row .b-label-box
+
+.b-row .b-label-box
+
+.b-label {
+  font-family: var(--font-heading), 'Fraunces', serif !important;
+  font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+  font-weight: 400 !important;
+  color: #D4B2EE !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  line-height: 1.1 !important;
+  text-shadow: none !important;
+  display: inline-block !important;
+}
+
+.b-label-sub {
+  position: absolute !important;
+  bottom: -45px !important;
+  left: 10px !important;
+  font-family: var(--font-heading), 'Fraunces', serif !important;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important;
+  font-weight: 400 !important;
+  color: #D4B2EE !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+}
+
+@media (max-width: 992px) {
+  .b-left, 
+  .b-row .b-label-box
+  .b-row .b-label-box
+}
+
+@media (max-width: 768px) {
+  .branding-timeline-axis { display: none !important; }
+  .b-row { flex-direction: column !important; align-items: center !important; margin-bottom: 40px !important; }
+  .b-left, .b-right, 
+  .b-label-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+  .b-label-sub { position: static !important; text-align: center !important; margin-top: 10px !important; display: block !important; }
+}
+
+
   /* ============================================================
      DESIGN TOKENS
      ============================================================ */
@@ -52,16 +1194,7 @@
   }
 
   /* Custom Fingerprint Cursor */
-  .cursor-fingerprint {
-    position: fixed;
-    top: 0; left: 0;
-    width: 32px; height: 32px;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, opacity 0.15s ease;
-    opacity: 0.8;
-  }
+  
   .cursor-fingerprint svg {
     width: 100%; height: 100%;
     fill: none;
@@ -70,15 +1203,8 @@
   }
   
   /* Stamp effect when hovering clickables */
-  .cursor-fingerprint.stamping {
-    transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
-    opacity: 1;
-  }
-  .cursor-fingerprint.stamping svg {
-    color: var(--white);
-    filter: drop-shadow(0 0 12px rgba(255,255,255,0.8));
-    stroke-width: 6;
-  }
+  
+  
 
   /* Loading Screen */
   #loader {
@@ -309,10 +1435,8 @@
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .navbar.scrolled .nav-pill {
-    background: rgba(5, 5, 5, 0.95); -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--teal) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
   }
   .nav-logo-link { display: flex; align-items: center; }
   .nav-logo-img { height: 50px; max-width: 220px; object-fit: contain; }
@@ -365,34 +1489,9 @@
     overflow: hidden;
     background: #000;
   }
-  .hero-bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    opacity: 1;
-    filter: grayscale(100%);
-    pointer-events: none;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Black filter */
-    z-index: 2;
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
-    pointer-events: none;
-    z-index: 3; /* Texture */
-  }
+  
+  
+  
   .hero-inner {
     display: flex; flex-direction: column; align-items: center;
     position: relative; z-index: 10;
@@ -836,268 +1935,318 @@
       transform: translateY(0px);
     }
     
-</style>
 
-  
-  
-
-
-
-  <style id="cuberto-styles">
-
-  /* DYNAMIC ASYMMETRIC GRID & GLASSMORPHISM */
-  .work-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 4rem 2rem 12rem;
-  }
-  
-  .work-card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 24px;
-      overflow: hidden;
-      display: block;
-      text-decoration: none;
-      opacity: 0; 
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
-      aspect-ratio: 4/5;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  }
-  
-  /* Feature some cards to span 2 columns */
-  .work-card:nth-child(5n+1) {
-      grid-column: span 2;
-      grid-row: span 2;
-      aspect-ratio: auto;
-  }
-  
-  .work-card.in-view {
-      opacity: 1;
-      transform: translateY(0);
-  }
-  
-  .work-card:hover {
-      box-shadow: 0 20px 60px rgba(0, 176, 185, 0.4);
-      transform: translateY(-5px);
-  }
-  
-  @media (max-width: 991px) {
-      .work-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2rem;
-      }
-      .work-card:nth-child(5n+1) {
-          grid-column: span 2;
-          aspect-ratio: 16/9;
-      }
-  }
-  
-  @media (max-width: 600px) {
-      .work-grid {
-          grid-template-columns: 1fr;
-      }
-      .work-card:nth-child(5n+1) {
-          grid-column: span 1;
-          grid-row: span 1;
-          aspect-ratio: 4/5;
-      }
-  }
-
-  .work-img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-  }
-
-  .work-img video {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transform: scale(1.02);
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .work-card:hover .work-img video {
-      transform: scale(1.1); 
-  }
-
-  .work-info {
-      position: absolute;
-      bottom: 0; left: 0; width: 100%;
-      padding: 3rem 2rem 2rem;
-      z-index: 2;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      border-top: 1px solid transparent;
-  }
-  
-  .work-card:hover .work-info {
-      background: rgba(20, 20, 30, 0.65);
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
-  }
-  
-  .work-info h4 {
-      font-size: 1.8rem;
-      color: var(--white);
-      font-family: var(--font-heading);
-      font-weight: 600;
-      margin: 0 0 0.5rem 0;
-      line-height: 1.2;
-      transform: translateY(10px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .work-card:hover .work-info h4 {
-      transform: translateY(0);
-      color: var(--teal-light);
-  }
-  
-  .work-info p {
-      font-size: 1.05rem;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 400;
-      margin: 0;
-      line-height: 1.6;
-      max-width: 95%;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .work-card:hover .work-info p {
-      opacity: 1;
-      transform: translateY(0);
-  }
-
-  .cursor-fingerprint {
-      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
-  }
-  .cursor-fingerprint.view-mode {
-      width: 200px; height: 120px;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 176, 185, 0.9);
-      border: none;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      opacity: 1;
-  }
-  .cursor-fingerprint.view-mode svg { display: none; }
-  .cursor-fingerprint.view-mode::after {
-      content: 'PLAY';
-      color: var(--white);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 2px;
-  }
-
-  
-    /* Bento Loading Animation */
-    .bento-anim {
-      opacity: 0;
-      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
-      transform: translateY(-100px);
-    }
-    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
-      transform: translateY(100px);
-    }
-    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
-      opacity: 1;
-      transform: translateY(-40px);
-    }
-    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-    
-</style>
-  <script id="cuberto-scripts">
-    window.addEventListener('DOMContentLoaded', () => {
-        const cursor = document.getElementById('customCursor');
-        if(!cursor) return;
         
-        setTimeout(() => {
-            document.querySelectorAll('.brand-card').forEach(card => {
-                card.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
-                card.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
-            });
-        }, 1000);
-    });
-    */
-  </script>
-</head>
-<body>
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Updated: Larger Assets, Clean Layout, Clear Font)
+           ============================================================ */
+        
 
-  <!-- LOADING SCREEN -->
-  <!-- Loader removed as per request -->
+        
 
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor-fingerprint" id="customCursor" style="display: block; z-index: 99999;">
-    <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));" />
-  </div>
+        
 
-  <!-- AMBIENT BACKGROUND -->
-  <div class="bg-blobs"></div>
-  <div class="bg-fingerprint"></div>
+        
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="nav-pill">
-      <a href="#" class="nav-logo-link"><img src="logo.png" alt="The Social Thumbprint" class="nav-logo-img"></a>
-      <nav class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#work">Our Thumbprints</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-right">
-        <a href="#contact" class="nav-cta">Get in Touch</a>
-        <button class="hamburger-btn" aria-label="Open Menu">
-          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
-      </div>
-    </div>
-  </div>
+        /* Rows */
+        
 
-  <!-- FULL SCREEN MOBILE MENU -->
-  <div class="mobile-menu-overlay" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <img src="logo.png" alt="Logo" class="mobile-logo">
-      <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close Menu">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-    </div>
-    <div class="mobile-nav-links">
-      <a href="#services">Services</a>
-      <a href="#work">Our Thumbprints</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="#contact" class="mobile-nav-cta">Get in Touch</a>
-  </div>
+        
 
-  <!-- HERO -->
+        
+
+        
+
+        /* Larger asset sizes */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* High-visibility, bold, crisp white Inter font */
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
   
-  <style>
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Large Assets, Clean Layout, Crisp Font)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        
+
+        
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Pixel-Perfect Matching Reference Diagram)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Exact Layout & Order Matching User Screenshots)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Correct Section Order & Layout)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           FLOW SHOWCASE STYLES (BRANDING & PRINT)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        .p-right, 
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide, 
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right, .b-left, 
+          
+          
+        }
+
+  
+
     /* Animated Gradient Title */
     .gradient-title {
         background: linear-gradient(to right, var(--white), var(--teal-light), var(--teal), var(--white));
@@ -1146,228 +2295,1670 @@
       transform: translateY(0px);
     }
     
+
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Matching User Design Diagram)
+           ============================================================ */
+        
+
+        
+
+        /* Central Timeline Axes matching screenshot */
+        
+
+        
+
+        
+
+        /* Rows */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 768px) {
+          
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Large Assets, Clean Layout, Crisp Font)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        
+
+        
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Pixel-Perfect Matching Reference Diagram)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Exact Layout & Order Matching User Screenshots)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Correct Section Order & Layout)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           FLOW SHOWCASE STYLES (BRANDING & PRINT)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        .p-right, 
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide, 
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right, .b-left, 
+          
+          
+        }
+
+  
+
+        .cat-link {
+          color: #3A2350;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          font-size: 0.95rem;
+          text-transform: uppercase;
+          position: relative;
+          transition: transform 0.3s ease, color 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+          padding: 0.4rem 0.8rem;
+        }
+        .cat-link:hover, .cat-link.active {
+          color: var(--teal-dark);
+          transform: scale(1.08);
+        }
+        .cat-link::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 0;
+          height: 3px;
+          background: var(--teal);
+          border-radius: 2px;
+          transition: width 0.3s ease, left 0.3s ease;
+          transform: translateX(-50%);
+        }
+        .cat-link:hover::after, .cat-link.active::after {
+          width: 80%;
+        }
+
+        .webee-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          gap: 1rem;
+          align-items: start;
+          margin-top: 1.25rem;
+        }
+
+        /* Full Width Vertical Flow Image Showcase (Matching User Screenshot Layout - Minimal Spacing) */
+        .flow-image-card {
+          grid-column: span 12;
+          width: 100%;
+          background: transparent;
+          border-radius: 0;
+          overflow: visible;
+          position: relative;
+          box-shadow: none;
+          border: none;
+          margin-bottom: 0rem;
+          text-align: center;
+        }
+        .flow-image-card img {
+          width: 100%;
+          max-width: 1100px;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+          filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.06));
+          transition: transform 0.4s ease;
+        }
+        .flow-image-card:hover img {
+          transform: scale(1.015);
+        }
+
+        .webee-vid-item {
+          grid-column: span 4;
+          position: relative;
+          overflow: hidden;
+          border-radius: 20px;
+          aspect-ratio: 9 / 14;
+          background: #000000;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          transition: transform 0.4s ease;
+        }
+        .webee-vid-item:hover {
+          transform: scale(1.02);
+        }
+        .webee-vid-item video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .webee-standard-item {
+          grid-column: span 6;
+          position: relative;
+          overflow: hidden;
+          border-radius: 20px;
+          aspect-ratio: 4 / 3;
+          background: #f8f9fa;
+          transition: transform 0.4s ease;
+        }
+        .webee-standard-item:hover {
+          transform: scale(1.02);
+        }
+        .webee-standard-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .webee-card:hover .webee-overlay {
+          opacity: 1 !important;
+        }
+
+        @media (max-width: 992px) {
+          .webee-vid-item, .webee-standard-item {
+            grid-column: span 6;
+            aspect-ratio: 4 / 3;
+          }
+        }
+        @media (max-width: 640px) {
+          .webee-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .webee-vid-item, .webee-standard-item {
+            grid-column: span 1 !important;
+            aspect-ratio: 4 / 3;
+          }
+        }
+      
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Matching User Design Diagram)
+           ============================================================ */
+        
+
+        
+
+        /* Central Timeline Axes matching screenshot */
+        
+
+        
+
+        
+
+        /* Rows */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 768px) {
+          
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Large Assets, Clean Layout, Crisp Font)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        
+
+        
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Pixel-Perfect Matching Reference Diagram)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Exact Layout & Order Matching User Screenshots)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Correct Section Order & Layout)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           FLOW SHOWCASE STYLES (BRANDING & PRINT)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        .p-right, 
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide, 
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right, .b-left, 
+          
+          
+        }
+
+  
+
+    .video-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(10, 10, 15, 0.75);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .video-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .video-modal-close {
+      position: absolute;
+      top: max(20px, env(safe-area-inset-top));
+      right: max(20px, env(safe-area-inset-right));
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 100000;
+      padding: 10px;
+    }
+    @media (max-width: 768px) {
+      .video-modal-close {
+        top: max(15px, env(safe-area-inset-top));
+        right: max(15px, env(safe-area-inset-right));
+        font-size: 2.5rem;
+      }
+    }
+    .video-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .video-modal-content {
+      width: 90%;
+      max-width: 1000px;
+      position: relative;
+    }
+    .video-player-container {
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      position: relative;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .video-player-container video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .video-modal-header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .video-modal-header h2 {
+      color: var(--white);
+      font-size: 2.2rem;
+      margin-bottom: 0;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+    }
+    .video-controls-custom {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .vid-btn {
+      background: rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 999px;
+      font-weight: 500;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease;
+    }
+    .vid-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--teal-light);
+      transform: translateY(-2px);
+    }
+    .vid-btn.active {
+      display: inline-block;
+    }
+    .vid-counter {
+      color: rgba(255, 255, 255, 0.6);
+      align-self: center;
+      font-size: 1.1rem;
+      display: none;
+      font-weight: 500;
+    }
+    .vid-counter.active {
+      display: inline-block;
+    }
+  
+    /* Bento Loading Animation */
+    .bento-anim {
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
+      transform: translateY(-100px);
+    }
+    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
+      transform: translateY(100px);
+    }
+    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
+      opacity: 1;
+      transform: translateY(-40px);
+    }
+    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    
+
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Matching User Design Diagram)
+           ============================================================ */
+        
+
+        
+
+        /* Central Timeline Axes matching screenshot */
+        
+
+        
+
+        
+
+        /* Rows */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 768px) {
+          
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        /* ============================================================
+           BRANDING FLOW SHOWCASE (Large Assets, Clean Layout, Crisp Font)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .b-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .b-left, .b-right, 
+          
+          
+        }
+
+  
+        
+
+        
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Pixel-Perfect Matching Reference Diagram)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Exact Layout & Order Matching User Screenshots)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           PRINT FLOW SHOWCASE (Correct Section Order & Layout)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, 
+          
+          
+        }
+
+        @media (max-width: 768px) {
+          
+          .p-left, .p-right, .p-wide, .p-mid { width: 100% !important; margin: 0 !important; }
+          
+          
+        }
+
+  
+        /* ============================================================
+           FLOW SHOWCASE STYLES (BRANDING & PRINT)
+           ============================================================ */
+        
+
+        
+
+        
+
+        
+
+        .p-right, 
+
+        .p-mid {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        .p-wide, 
+
+        
+
+        
+
+        
+
+        @media (max-width: 992px) {
+          .p-left, .p-right, .b-left, 
+          
+          
+        }
+
+  
+
+
+  /* ============================================================
+     BRANDING CATEGORY CARDS (Single Master CSS Definition)
+     ============================================================ */
+  .branding-row-card {
+    grid-column: span 12 !important;
+    width: 100% !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    margin-bottom: 3rem !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+
+  .b-row-container {
+    max-width: 1150px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    padding: 10px 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .b-row {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .b-img-box {
+    position: relative !important;
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+    border-radius: 8px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .b-img-box img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 8px !important;
+  }
+
+  .b-img-box:hover {
+    transform: scale(1.015) !important;
+  }
+
+  /* Image Box Positions */
+  .b-img-box.b-left {
+    width: 62% !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .b-img-box.b-right {
+    width: 65% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  .b-img-box.b-wide {
+    width: 88% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Text Label Box Classes */
+  .b-label-box {
+    position: absolute !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+  }
+
+  .b-label-box.b-right {
+    left: 68% !important;
+    right: auto !important;
+    width: auto !important;
+  }
+
+  .b-label-box.b-left {
+    right: 68% !important;
+    left: auto !important;
+    width: auto !important;
+    text-align: right !important;
+  }
+
+  .b-label {
+    font-family: var(--font-heading), 'Fraunces', serif !important;
+    font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+    font-weight: 400 !important;
+    color: #D4B2EE !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    line-height: 1.1 !important;
+    text-shadow: none !important;
+    display: inline-block !important;
+  }
+
+  .b-label-sub {
+    position: absolute !important;
+    bottom: -45px !important;
+    left: 10px !important;
+    font-family: var(--font-heading), 'Fraunces', serif !important;
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important;
+    font-weight: 400 !important;
+    color: #D4B2EE !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+  }
+
+  @media (max-width: 992px) {
+    .b-img-box.b-left, .b-img-box.b-right { width: 75% !important; }
+    .b-label-box.b-right { left: 78% !important; }
+    .b-label-box.b-left { right: 78% !important; }
+  }
+
+  @media (max-width: 768px) {
+    .b-row { flex-direction: column !important; align-items: center !important; margin-bottom: 20px !important; }
+    .b-img-box.b-left, .b-img-box.b-right, .b-img-box.b-wide { width: 100% !important; margin: 0 !important; }
+    .b-label-box { position: static !important; margin-top: 15px !important; text-align: center !important; }
+    .b-label-sub { position: static !important; text-align: center !important; margin-top: 10px !important; display: block !important; }
+  }
+
 </style>
-  <section class="hero" style="min-height: 50vh; padding-top: 10rem; padding-bottom: 3rem; background: transparent; position: relative;">
-    <div class="hero-bg-accent"></div>
-    <div class="container hero-inner">
-      <h1 class="hero-title load-stagger" style="font-size: clamp(3rem, 6vw, 4.5rem);">Our <span class="highlight-wrapper"><span class="highlight gradient-title">Thumbprints</span></span></h1>
-      <p class="hero-intro load-stagger" style="max-width: 700px; margin-top: 1rem; color: rgba(255,255,255,0.8); font-size: 1.2rem;">Explore our complete collection of digital experiences, campaigns, and creative content.</p>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <!-- Loader removed as per request -->
+
+  
+
+  <!-- AMBIENT BACKGROUND -->
+  <div class="bg-blobs"></div>
+  <div class="bg-fingerprint"></div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-pill">
+      <a href="index.html" class="nav-logo-link"><img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="The Social Thumbprint" class="nav-logo-img"></a>
+      <nav class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="portfolio.html">Our Thumbprints</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+        <button class="hamburger-btn" aria-label="Open Menu">
+          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL SCREEN MOBILE MENU -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="Logo" class="mobile-logo">
+      <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close Menu">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="portfolio.html">Our Thumbprints</a>
+      <a href="index.html#testimonials">Testimonials</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="index.html#contact" class="mobile-nav-cta">Get in Touch</a>
+  </div>
+
+        <!-- HERO (Signature Teal Background with Home Page Reactive White Thumbprints) -->
+  <section class="hero" style="position: relative; overflow: hidden; background: var(--teal) !important; min-height: 45vh !important; padding-top: 4.5rem !important; padding-bottom: 2.5rem !important; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <!-- Reactive White Thumbprints Pattern from Home Page -->
+    <div class="bg-fingerprint" id="bgFingerprint" style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; z-index: 1; pointer-events: none; background-color: #ffffff; -webkit-mask: url('fingerprint.png') repeat center / 600px; mask: url('fingerprint.png') repeat center / 600px; opacity: 0.12; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));"></div>
+
+    <div class="container hero-inner text-center" style="text-align: center; position: relative; z-index: 10;">
+      <h1 class="hero-title load-stagger" style="font-size: clamp(2.5rem, 5.2vw, 3.8rem); margin-bottom: 0.5rem; color: #ffffff; text-shadow: none;">Our <span class="highlight-wrapper" style="display: inline-block; position: relative;"><span class="highlight" style="color: #ffffff; text-shadow: none;">Thumbprints</span></span></h1>
+      <p class="hero-intro load-stagger" style="max-width: 650px; margin: 0.75rem auto 0; color: #ffffff; font-size: 1.15rem; font-weight: 400;">Explore our complete collection of digital experiences, campaigns, and creative content.</p>
     </div>
   </section>
 
-  <section class="portfolio-gallery" style="padding: 2rem 0 6rem;">
-    <div class="container">
-      <div class="work-grid">
+  <!-- Categories & Portfolio White Background Section -->
+  <section class="portfolio-main-section" style="background: #ffffff; padding: 2rem 0 5rem; position: relative; z-index: 2;">
+    <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;">
 
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Adorne Executive Jewellers" data-videos="['Adorne executive jewellers.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Adorne executive jewellers.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Showcasing the elegance and timeless beauty of the exclusive jewellery collection.</p>
-          </div>
-        </div>
+      
 
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Arctic Star Video 2" data-videos="['Arctic star video 2.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Arctic star video 2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A dynamic and refreshing visual campaign crafted for Arctic Star.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Arctic Star Video" data-videos="['Arctic star video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Arctic star video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A dynamic and refreshing visual campaign crafted for Arctic Star.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Baggit Ad Video" data-videos="['Baggit ad video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Baggit ad video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Highlighting modern fashion and durable aesthetics for Baggit's latest line.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Baulkline Video 2" data-videos="['Baulkline video 2.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Baulkline video 2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A bold and premium brand identity presentation for Baulkline.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Baulkline Video" data-videos="['Baulkline video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Baulkline video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A bold and premium brand identity presentation for Baulkline.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Luzo Influencer Video" data-videos="['Luzo Influencer video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Luzo Influencer video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Engaging influencer-driven content crafted for Luzo's social platforms.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Luzo App Video" data-videos="['Luzo app video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Luzo app video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Sleek and intuitive app walkthrough highlighting Luzo's digital experience.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Luzo Hair Color Video" data-videos="['Luzo hair color video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Luzo hair color video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Vibrant and stylish hair color transformations for Luzo.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Influencer Video 2" data-videos="['Meena Bazaar Influencer video 2.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar Influencer video 2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Curated influencer collaborations showcasing Meena Bazaar's ethnic wear.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Influencer Video 3" data-videos="['Meena Bazaar Influencer video 3.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar Influencer video 3.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Curated influencer collaborations showcasing Meena Bazaar's ethnic wear.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Ad Video" data-videos="['Meena Bazaar ad video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar ad video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A cinematic advertisement campaign highlighting Meena Bazaar's heritage.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Influencer Video 4" data-videos="['Meena Bazaar influencer video 4.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar influencer video 4.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Curated influencer collaborations showcasing Meena Bazaar's ethnic wear.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Influencer Video 5" data-videos="['Meena Bazaar influencer video 5.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar influencer video 5.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Curated influencer collaborations showcasing Meena Bazaar's ethnic wear.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Influencer Video" data-videos="['Meena Bazaar influencer video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar influencer video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Curated influencer collaborations showcasing Meena Bazaar's ethnic wear.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Meena Bazaar Saree Video" data-videos="['Meena Bazaar saree video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Meena Bazaar saree video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>An elegant display of traditional and modern sarees by Meena Bazaar.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Riwaaj Video 2" data-videos="['Riwaaj video 2.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Riwaaj video 2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Capturing the essence of tradition and modern grace in the Riwaaj collection.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="The Cappacino Collection" data-videos="['The Cappacino Collection.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/The Cappacino Collection.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A sophisticated and warm lifestyle campaign for The Cappacino Collection.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Velvet Reverie" data-videos="['Velvet Reverie.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/Velvet Reverie.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>A luxurious and dreamy aesthetic experience crafted for Velvet Reverie.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Kira New Tv Video Final2" data-videos="['kira new TV video final2.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/kira new TV video final2.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>High-energy, fast-paced commercial production for Kira's television campaign.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Kira Tv Video 2 Final" data-videos="['kira tv video 2 final.mp4']" style="cursor: pointer; transform: translateY(0) rotate(-3deg) !important;">
-          <div class="work-img">
-             <video src="videos/kira tv video 2 final.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>High-energy, fast-paced commercial production for Kira's television campaign.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Luzo Video" data-videos="['luzo video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/luzo video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Engaging influencer-driven content crafted for Luzo's social platforms.</p>
-          </div>
-        </div>
-
-        <div class="work-card reveal-heading in-view brand-card" data-brand="Riwaaj Video" data-videos="['riwaaj video.mp4']" style="cursor: pointer;">
-          <div class="work-img">
-             <video src="videos/riwaaj video.mp4" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
-          </div>
-          <div class="work-info">
-            <p>Capturing the essence of tradition and modern grace in the Riwaaj collection.</p>
-          </div>
-        </div>
-
+      <div class="category-tabs load-stagger" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="cat-link active" data-filter="social-media">SOCIAL MEDIA</a>
+        <a href="#" class="cat-link" data-filter="branding">BRANDING</a>
+        <a href="#" class="cat-link" data-filter="print">PRINT</a>
+        
       </div>
-    </div>
+
+      <div class="webee-grid" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; align-items: start; margin-top: 1.5rem;">
+
+        <!-- Social Media Category -->
+        <div class="webee-card flow-image-card" data-category="social-media" style="grid-column: span 12; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #ffffff; margin-bottom: 1.5rem;">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786698895/Asset_13_2x_2_oyi39k.png" alt="Social Media Showcase 1" style="width: 100%; max-width: 1100px; height: auto; display: block; margin: 0 auto; border-radius: 16px;">
+        </div>
+        <div class="webee-card flow-image-card" data-category="social-media" style="grid-column: span 12; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #ffffff; margin-bottom: 1.5rem;">
+          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786697889/Asset_14_2x_le9zxv.png" alt="Social Media Showcase 2" style="width: 100%; max-width: 1100px; height: auto; display: block; margin: 0 auto; border-radius: 16px;">
+        </div>
+        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
+          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+        </div>
+        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
+          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116653/Baggit_ad_video_koglbd.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+        </div>
+        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
+          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+        </div>
+
+
+        <!-- BRANDING CATEGORY (Arranged Exactly Like Reference Graphic) -->
+        
+        <!-- 1. Wall -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-left-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png" alt="Wall Branding">
+            </div>
+            <div class="b-text-box pos-right">
+              <span class="b-text-title">WALL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Exit Gate -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-text-box pos-left">
+              <span class="b-text-title">EXIT<br>GATE</span>
+            </div>
+            <div class="b-img-box b-right-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786940931/Asset_16_2x_yqhnao.png" alt="Exit Gate Branding">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Design Panel -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-left-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" alt="Design Panel">
+            </div>
+            <div class="b-text-box pos-right">
+              <span class="b-text-title">DESIGN<br>PANEL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Standees -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-text-box pos-left">
+              <span class="b-text-title">STANDEES</span>
+            </div>
+            <div class="b-img-box b-right-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941187/Asset_18_2x_s3ic8b.png" alt="Standees Branding">
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Backdrop -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-left-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941191/Asset_21_2x_wmvoly.png" alt="Backdrop Branding">
+            </div>
+            <div class="b-text-box pos-right">
+              <span class="b-text-title">BACKDROP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Booth Designing -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-text-box pos-left">
+              <span class="b-text-title">BOOTH<br>DESIGNING</span>
+            </div>
+            <div class="b-img-box b-right-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941933/Asset_22_2x_gr4f0z.png" alt="Booth Designing">
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Exhibition Booth Structure -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-wide-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117281/Asset_23_2x_lvksqc.png" alt="Exhibition Booth structure">
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Welcome Board -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-left-img" style="width: 55%;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941196/Asset_24_2x_f3ubgq.png" alt="Welcome Board">
+            </div>
+            <div class="b-text-box pos-right" style="left: 60%;">
+              <span class="b-text-title">WELCOME<br>BOARD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. App Design -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner" style="padding-bottom: 40px;">
+            <div class="b-img-box b-right-img b-wide-img" style="position: relative;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941749/Asset_26_2x_sflq12.png" alt="App Design">
+              <span class="b-text-title">APP DESIGN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Notifications -->
+        <div class="webee-card branding-flow-row-card" data-category="branding">
+          <div class="b-row-inner">
+            <div class="b-img-box b-left-img" style="width: 56%;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941753/Asset_27_2x_i9zvdb.png" alt="App Notifications">
+            </div>
+            <div class="b-text-box pos-right" style="left: 62%;">
+              <span class="b-text-title">NOTIFICATIONS</span>
+            </div>
+          </div>
+        </div>
+
+
+        
+        
+        
+        <!-- PRINT CATEGORY (All 12 Print Assets Included - Zero Exclusions) -->
+        
+        <!-- 1. Asset 28: Wedding Invites Main Cover -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-img-box p-left-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943013/Asset_28_2x_scuik8.png" alt="Wedding Invites Cover">
+            </div>
+            <div class="p-text-box pos-right">
+              <span class="p-text-title">WEDDING<br>INVITES</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Asset 29: Wedding Invites 3 Cards Row -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-img-box p-wide-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943021/Asset_29_2x_nshvqv.png" alt="Wedding Invites Cards">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Asset 30: Gold Wedding Invite Suite (Moved Right with Left TENT CARDS Text) -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-text-box pos-left">
+              <span class="p-text-title">TENT<br>CARDS</span>
+            </div>
+            <div class="p-img-box p-right-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117284/Asset_30_2x_m4kg31.png" alt="Gold Wedding Invite Suite">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Asset 31: Wedding Invites 8-Card Grid (Moved Left with Right LOOK BOOKS Text) -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-img-box p-left-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943008/Asset_31_2x_s5k5ev.png" alt="Wedding Invites Grid">
+            </div>
+            <div class="p-text-box pos-right">
+              <span class="p-text-title">LOOK<br>BOOKS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Asset 32: Wedding Invites Suite Grid 2 -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-img-box p-wide-img">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943200/Asset_32_2x_l22lce.png" alt="Wedding Invites Grid Suite">
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Asset 33, Asset 34, Asset 35 Composite Section -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 1.8rem; position: relative;">
+            <!-- Left Column: VISITING CARDS Title + Asset 34 -->
+            <div style="width: 48%; display: flex; flex-direction: column; gap: 1rem; align-self: flex-start; padding-top: 15px;">
+              <div style="text-align: left;">
+                <span class="p-text-title">VISITING<br>CARDS</span>
+              </div>
+              <div class="p-img-box" style="width: 100%;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png" alt="Asset 34 Catalog Spreads Showcase">
+              </div>
+            </div>
+
+            <!-- Right Column: Asset 33 (Top) + Asset 35 (Bottom) Stacked -->
+            <div style="width: 48%; display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="p-img-box" style="width: 100%;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943074/Asset_33_2x_bwpan2.png" alt="Asset 33 Tent Cards">
+              </div>
+              <div class="p-img-box" style="width: 100%;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117290/Asset_35_2x_uvnvxl.png" alt="Asset 35 Rwaaj Card">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Asset 37: Bottle Stickers & Pouch -->
+        
+        <!-- Asset 36: Increased size to 76% width + POSTERS Text Right -->
+        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
+          <div class="p-row-inner" style="position: relative; width: 100%; max-width: 1150px; margin: 0 auto;">
+            <div class="p-img-box" style="width: 76% !important; max-width: 1150px !important; margin-left: 0 !important; margin-right: auto !important;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942980/Asset_36_2x_vrngpg.png" alt="Folded Posters Showcase" style="width: 100% !important; height: auto !important; display: block !important;">
+            </div>
+            <div class="p-text-box pos-right" style="left: 78% !important; top: 10px !important; right: auto !important;">
+              <span class="p-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-weight: 400 !important; color: #00B0B9 !important; font-size: clamp(2rem, 3.8vw, 3.2rem) !important; font-weight: 400 !important; letter-spacing: 2px !important;">POSTERS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asset 37: Increased size to 76% width + VOUCHERS Text Left -->
+        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
+          <div class="p-row-inner" style="position: relative; width: 100%; max-width: 1150px; margin: 0 auto;">
+            <div class="p-text-box pos-left" style="right: 78% !important; top: 10px !important; left: auto !important;">
+              <span class="p-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-weight: 400 !important; color: #00B0B9 !important; font-size: clamp(2rem, 3.8vw, 3.2rem) !important; font-weight: 400 !important; letter-spacing: 2px !important;">VOUCHERS</span>
+            </div>
+            <div class="p-img-box" style="width: 76% !important; max-width: 1150px !important; margin-left: auto !important; margin-right: 0 !important;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942984/Asset_37_2x_b9hzuw.png" alt="Luzo Vouchers Showcase" style="width: 100% !important; height: auto !important; display: block !important;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Asset 39: Centered PACKAGING Title in Branding Category Serif Font -->
+        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
+          <div style="max-width: 1150px; margin: 0 auto 1.5rem auto; text-align: center;">
+            <span class="b-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-size: clamp(2.2rem, 4vw, 3.5rem) !important; font-weight: 400 !important; letter-spacing: 3px !important; text-transform: uppercase !important;">PACKAGING</span>
+          </div>
+          <div class="p-row-inner">
+            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png" alt="Packaging Showcase Asset 39" style="width: 100% !important; height: auto !important; display: block !important;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Asset 40: Posters & Vouchers Suite -->
+        <div class="webee-card print-flow-row-card" data-category="print">
+          <div class="p-row-inner">
+            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943001/Asset_40_2x_umic2n.png" alt="Posters & Vouchers Suite" style="width: 100% !important; height: auto !important; display: block !important;">
+            </div>
+          </div>
+        </div>
+
+        </div>
   </section>
 
 <footer>
@@ -1383,31 +3974,7 @@
   //   }, 2400); 
   // });
 
-  // Custom Cursor
-  const cursor = document.getElementById('customCursor');
-  window.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      let elem = document.elementFromPoint(e.clientX, e.clientY);
-      let bgColor = 'rgba(0, 0, 0, 0)';
-      while (elem && elem.nodeType === 1) {
-        bgColor = window.getComputedStyle(elem).backgroundColor;
-        if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
-          break;
-        }
-        elem = elem.parentElement;
-      }
-      
-      const cursorImg = cursor.querySelector('img');
-      if (cursorImg) {
-        if (bgColor === 'rgb(0, 176, 185)') {
-          cursorImg.src = 'cursor-thumb-white.png';
-        } else {
-          cursorImg.src = 'cursor-thumb-teal.png';
-        }
-      }
-    });
+  
 
   // Stamp effect on hover
   document.querySelectorAll('a, button, input, textarea, label, img, .service-card').forEach(el => {
@@ -1590,144 +4157,7 @@
 </script>
 
   <!-- VIDEO MODAL -->
-  <style>
-    .video-modal {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(10, 10, 15, 0.75);
-      -webkit-backdrop-filter: blur(24px);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .video-modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .video-modal-close {
-      position: absolute;
-      top: max(20px, env(safe-area-inset-top));
-      right: max(20px, env(safe-area-inset-right));
-      background: none;
-      border: none;
-      color: white;
-      font-size: 3rem;
-      cursor: pointer;
-      line-height: 1;
-      z-index: 100000;
-      padding: 10px;
-    }
-    @media (max-width: 768px) {
-      .video-modal-close {
-        top: max(15px, env(safe-area-inset-top));
-        right: max(15px, env(safe-area-inset-right));
-        font-size: 2.5rem;
-      }
-    }
-    .video-modal-close:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.1);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    .video-modal-content {
-      width: 90%;
-      max-width: 1000px;
-      position: relative;
-    }
-    .video-player-container {
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      position: relative;
-      background: #000;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .video-player-container video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-    }
-    .video-modal-header {
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    .video-modal-header h2 {
-      color: var(--white);
-      font-size: 2.2rem;
-      margin-bottom: 0;
-      font-family: var(--font-heading);
-      letter-spacing: -0.02em;
-    }
-    .video-controls-custom {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .vid-btn {
-      background: rgba(255, 255, 255, 0.08);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 999px;
-      font-weight: 500;
-      cursor: pointer;
-      display: none;
-      transition: all 0.3s ease;
-    }
-    .vid-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: var(--teal-light);
-      transform: translateY(-2px);
-    }
-    .vid-btn.active {
-      display: inline-block;
-    }
-    .vid-counter {
-      color: rgba(255, 255, 255, 0.6);
-      align-self: center;
-      font-size: 1.1rem;
-      display: none;
-      font-weight: 500;
-    }
-    .vid-counter.active {
-      display: inline-block;
-    }
   
-    /* Bento Loading Animation */
-    .bento-anim {
-      opacity: 0;
-      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .bento-anim:nth-child(1), .bento-anim:nth-child(3), .bento-anim:nth-child(5) {
-      transform: translateY(-100px);
-    }
-    .bento-anim:nth-child(2), .bento-anim:nth-child(4) {
-      transform: translateY(100px);
-    }
-    .bento-anim.in-view:nth-child(1), .bento-anim.in-view:nth-child(3), .bento-anim.in-view:nth-child(5) {
-      opacity: 1;
-      transform: translateY(-40px);
-    }
-    .bento-anim.in-view:nth-child(2), .bento-anim.in-view:nth-child(4) {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-    
-</style>
 
   <div class="video-modal" id="videoModal">
     <button class="video-modal-close" id="closeModal">&times;</button>
@@ -1814,6 +4244,167 @@
         openModal(brand, videos);
       });
     });
+  </script>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterLinks = document.querySelectorAll('.cat-link');
+      const cards = document.querySelectorAll('.webee-card');
+
+      function applyFilter(filterValue) {
+        cards.forEach(card => {
+          const categories = (card.getAttribute('data-category') || '').split(',').map(c => c.trim());
+          if (filterValue === 'all' || categories.includes(filterValue)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Immediate Instant Category Filter Application
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramFilter = urlParams.get('filter') || window.location.hash.replace('#', '');
+
+      function runInstantFilter(filterValue) {
+        const cards = document.querySelectorAll('.webee-card');
+        const filterLinks = document.querySelectorAll('.cat-link');
+        
+        cards.forEach(card => {
+          const categories = (card.getAttribute('data-category') || '').split(',').map(c => c.trim());
+          if (filterValue === 'all' || categories.includes(filterValue)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        filterLinks.forEach(l => {
+          if (l.getAttribute('data-filter') === filterValue) {
+            l.classList.add('active');
+          } else {
+            l.classList.remove('active');
+          }
+        });
+      }
+
+      if (paramFilter) {
+        runInstantFilter(paramFilter);
+        // Smooth scroll directly to the portfolio main section
+        setTimeout(() => {
+          const mainSec = document.querySelector('.portfolio-main-section');
+          if (mainSec) {
+            mainSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 50);
+      } else {
+        runInstantFilter('social-media');
+      }
+
+      filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedFilter = link.getAttribute('data-filter');
+          runInstantFilter(selectedFilter);
+        });
+      });
+    });
+    });
+  </script>
+
+
+  <!-- Custom Fingerprint Cursor matching Home Page -->
+  
+
+<script>
+
+  // Navbar scroll listener to apply Teal background when moving downward past hero
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero');
+    if (navbar && hero) {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+  });
+
+
+  
+
+</script>
+
+<script>
+
+  // Mousemove Reactive White Thumbprints Parallax for Hero Background
+  window.addEventListener('mousemove', (e) => {
+    const bgFingerprint = document.getElementById('bgFingerprint');
+    if (bgFingerprint) {
+      const mouseX = (e.clientX / window.innerWidth) - 0.5;
+      const mouseY = (e.clientY / window.innerHeight) - 0.5;
+      const moveX = mouseX * 40;
+      const moveY = mouseY * 40;
+      const rotate = mouseX * 10;
+      bgFingerprint.style.setProperty('--move-x', moveX + 'px');
+      bgFingerprint.style.setProperty('--move-y', moveY + 'px');
+      bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
+    }
+  });
+
+</script>
+
+  
+
+  <script>
+  
+  </script>
+
+
+  
+  <!-- CUSTOM CURSOR IDENTICAL TO INDEX.HTML -->
+  <div class="cursor-fingerprint" id="customCursor" style="display: block; z-index: 99999;">
+    <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); transform: rotate(-15deg);" />
+  </div>
+
+  <script>
+  // Custom Cursor JS (Identical to index.html)
+  (function() {
+    const cursor = document.getElementById('customCursor');
+    if (!cursor) return;
+
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      let elem = document.elementFromPoint(e.clientX, e.clientY);
+      let bgColor = 'rgba(0, 0, 0, 0)';
+      while (elem && elem.nodeType === 1) {
+        bgColor = window.getComputedStyle(elem).backgroundColor;
+        if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+          break;
+        }
+        elem = elem.parentElement;
+      }
+      
+      const cursorImg = cursor.querySelector('img');
+      if (cursorImg) {
+        if (bgColor === 'rgb(0, 176, 185)') {
+          cursorImg.src = 'cursor-thumb-white.png';
+        } else {
+          cursorImg.src = 'cursor-thumb-teal.png';
+        }
+      }
+    });
+
+    document.querySelectorAll('a, button, input, textarea, label, img, .webee-card, .cat-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
+    });
+  })();
   </script>
 
 </body>
