@@ -1173,14 +1173,17 @@
       opacity: 0;
       transform: scale(0.3);
       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 14px 12px;
+      box-sizing: border-box;
     }
 
     .hex img {
-      max-width: 85%;
-      max-height: 85%;
+      max-width: 78%;
+      max-height: 78%;
       object-fit: contain;
       pointer-events: none;
-      
+      margin: auto;
+      display: block;
     }
 
     .hex.in-view {
@@ -2101,21 +2104,21 @@
     .thumbprint-cards-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 28px;
       width: 100%;
-      margin-top: 2rem;
+      margin-top: 2.2rem;
     }
 
     .tp-card {
       background: #f4f5f7;
-      border-radius: 24px;
-      padding: 22px 18px 16px 18px;
+      border-radius: 28px;
+      padding: 28px 24px 22px 24px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 310px;
+      min-height: 385px;
       text-decoration: none !important;
       border: 1px solid rgba(0, 0, 0, 0.04);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
@@ -2123,8 +2126,8 @@
     }
 
     .tp-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-10px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.09);
       border-color: rgba(0, 176, 185, 0.3);
       background: #ffffff;
     }
@@ -2181,15 +2184,15 @@
 
     .tp-eyebrow {
       display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.85rem;
+      font-weight: 600;
       color: #6b7280;
       margin-bottom: 4px;
       letter-spacing: -0.01em;
     }
 
     .tp-title {
-      font-size: 1.55rem;
+      font-size: 1.85rem;
       font-weight: 800;
       color: #111827;
       margin: 0;
@@ -2202,12 +2205,12 @@
       position: relative;
       width: 100%;
       flex: 1;
-      margin-top: 12px;
+      margin-top: 16px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 18px;
     }
 
     /* Fanned Stack Artwork for 4 Stacked Cards */
@@ -2215,14 +2218,14 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      min-height: 170px;
+      min-height: 220px;
       width: 100%;
       position: relative;
     }
     .art-fanned-stack {
       position: relative;
       width: 100%;
-      height: 165px;
+      height: 215px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2230,14 +2233,14 @@
     }
     .fan-img {
       position: absolute;
-      width: 88px;
-      height: 112px;
-      border-radius: 14px;
+      width: 110px;
+      height: 142px;
+      border-radius: 18px;
       background-size: cover;
       background-position: center;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.14);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-      border: 2px solid #ffffff;
+      border: 2.5px solid #ffffff;
       overflow: hidden;
     }
     .fan-vid-card video {
@@ -2682,7 +2685,12 @@
 </head>
 
 <body>
-      <!-- FINGERPRINT SCANNING LOADER ANIMATION -->
+  <script>
+    if (sessionStorage.getItem('tst_has_loaded')) {
+      document.write('<style>#loader { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }</style>');
+    }
+  </script>
+  <!-- FINGERPRINT SCANNING LOADER ANIMATION -->
   <div id="loader">
     <div class="loader-fingerprint-wrapper">
       <img src="fingerprint.png" alt="Loading">
@@ -2862,8 +2870,8 @@
             <div class="art-fanned-stack">
               <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png');"></div>
               <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png');"></div>
-              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117274/Asset_16_2x_zy5k4q.png');"></div>
-              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png');"></div>
+              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786941191/Asset_21_2x_wmvoly.png');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786941196/Asset_24_2x_f3ubgq.png');"></div>
             </div>
           </div>
           <div class="tp-plus-btn">
@@ -2881,10 +2889,10 @@
             <div class="art-chip chip-left">#Tactile</div>
             <div class="art-chip chip-right">#Posters</div>
             <div class="art-fanned-stack">
-              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png');"></div>
-              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611348/Asset_36_2x_cghjkl.png');"></div>
-              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611349/Asset_37_2x_klmopq.png');"></div>
-              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png');"></div>
+              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786943013/Asset_28_2x_scuik8.png');"></div>
+              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117290/Asset_35_2x_uvnvxl.png');"></div>
+              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png');"></div>
             </div>
           </div>
           <div class="tp-plus-btn">
@@ -2902,12 +2910,10 @@
             <div class="art-chip chip-left">#Minimal</div>
             <div class="art-chip chip-right">#Marks</div>
             <div class="art-fanned-stack">
-              <div class="fan-img fan-1" style="background-image: url('https://webeesocial.com/wp-content/uploads/2025/05/grg_thumb.jpg');"></div>
-              <div class="fan-img fan-2 fan-logo-badge" style="background: #00b0b9; display: flex; align-items: center; justify-content: center;">
-                <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="TST Logo" style="width: 48px; height: auto;">
-              </div>
-              <div class="fan-img fan-3" style="background-image: url('https://webeesocial.com/wp-content/uploads/2018/10/acma.jpg');"></div>
-              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png');"></div>
+              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174080/TST-Website_Logo_4_uajdch.png');"></div>
+              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174085/TST-Website_Logo_3_fsznbz.png');"></div>
+              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174133/TST-Website_Logo_1_i1g60r.png');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174129/TST-Website_Logo_2_1_tvimgi.png');"></div>
             </div>
           </div>
           <div class="tp-plus-btn">
@@ -4768,6 +4774,7 @@
       if (loader) {
         setTimeout(() => {
           loader.classList.add('hidden');
+          try { sessionStorage.setItem('tst_has_loaded', 'true'); } catch(e){}
         }, 1400);
       }
     });
