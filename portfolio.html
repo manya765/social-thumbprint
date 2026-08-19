@@ -608,6 +608,318 @@
       opacity: 1;
     }
 
+
+    /* Pinterest-Style Categories Cards for Our Thumbprints */
+    .thumbprint-cards-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .tp-card {
+      background: #f4f5f7;
+      border-radius: 24px;
+      padding: 28px 22px 20px 22px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      text-decoration: none !important;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+    }
+
+    .tp-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 176, 185, 0.3);
+      background: #ffffff;
+    }
+
+    .tp-card-header {
+      position: relative;
+      z-index: 3;
+    }
+
+    .tp-eyebrow {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #6b7280;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .tp-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #111827;
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-family: var(--font-heading, sans-serif);
+    }
+
+    .tp-card-art {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      margin-top: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    /* ARTWORK 1: SOCIAL MEDIA */
+    .art-social {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .art-social-phone {
+      width: 82%;
+      height: 210px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      position: relative;
+      transform: rotate(-2deg) translateY(8px);
+      transition: transform 0.4s ease;
+      background: #000;
+    }
+    .art-social-phone video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .art-play-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #00b0b9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    .art-social-chip {
+      position: absolute;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #00b0b9;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      z-index: 4;
+      transition: transform 0.4s ease;
+    }
+    .chip-1 { top: 12px; left: 8px; transform: rotate(-5deg); }
+    .chip-2 { bottom: 20px; right: 8px; transform: rotate(4deg); }
+
+    .tp-card:hover .art-social-phone {
+      transform: rotate(0deg) translateY(0px) scale(1.04);
+    }
+
+    /* ARTWORK 2: BRANDING */
+    .art-branding {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .art-brand-mockup {
+      width: 92%;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
+      transform: rotate(-3deg) translateY(10px);
+      transition: transform 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .art-brand-mockup img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .art-brand-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding: 2px 6px;
+    }
+    .brand-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #111827;
+    }
+    .brand-url {
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+
+    .tp-card:hover .art-brand-mockup {
+      transform: rotate(0deg) translateY(2px) scale(1.03);
+    }
+
+    /* ARTWORK 3: PRINT */
+    .art-print {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .art-fanned-stack {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fan-img {
+      position: absolute;
+      width: 125px;
+      height: 145px;
+      border-radius: 20px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      transition: transform 0.4s ease;
+      border: 3px solid #ffffff;
+    }
+    .fan-1 {
+      transform: rotate(-14deg) translate(-32px, 8px);
+      z-index: 1;
+    }
+    .fan-2 {
+      transform: rotate(2deg) translate(0px, -5px);
+      z-index: 2;
+    }
+    .fan-3 {
+      transform: rotate(14deg) translate(32px, 12px);
+      z-index: 3;
+    }
+
+    .tp-card:hover .fan-1 { transform: rotate(-20deg) translate(-42px, 0px); }
+    .tp-card:hover .fan-2 { transform: rotate(0deg) translate(0px, -12px) scale(1.05); }
+    .tp-card:hover .fan-3 { transform: rotate(20deg) translate(42px, 4px); }
+
+    /* ARTWORK 4: LOGO DESIGN */
+    .art-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .art-logo-container {
+      position: relative;
+      width: 90%;
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .art-logo-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+    }
+    .card-main {
+      width: 88%;
+      height: 165px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .card-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      width: 65px;
+      height: 65px;
+      background: #00b0b9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 176, 185, 0.4);
+      transform: rotate(6deg);
+    }
+
+    .tp-card:hover .card-main {
+      transform: scale(1.03) translateY(-4px);
+    }
+    .tp-card:hover .card-overlay {
+      transform: rotate(0deg) scale(1.08);
+    }
+
+    /* PLUS BUTTON IN BOTTOM RIGHT */
+    .tp-plus-btn {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: all 0.35s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .tp-card:hover .tp-plus-btn {
+      background: #00b0b9;
+      color: #ffffff;
+      transform: scale(1.12) rotate(90deg);
+      box-shadow: 0 6px 16px rgba(0, 176, 185, 0.35);
+      border-color: transparent;
+    }
+
+    @media (max-width: 1100px) {
+      .thumbprint-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .thumbprint-cards-container {
+        grid-template-columns: 1fr;
+      }
+      .tp-card {
+        min-height: 380px;
+      }
+    }
+
 </style>
   <script id="cuberto-scripts">
     window.addEventListener('DOMContentLoaded', () => {
@@ -3607,6 +3919,335 @@
     .b-label-sub { position: static !important; text-align: center !important; margin-top: 10px !important; display: block !important; }
   }
 
+
+    /* Pinterest-Style Categories Cards with 4 Stacked Cards Each + Hashtags */
+    .thumbprint-cards-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .tp-card {
+      background: #f4f5f7;
+      border-radius: 24px;
+      padding: 22px 18px 16px 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 310px;
+      text-decoration: none !important;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+    }
+
+    .tp-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 176, 185, 0.3);
+      background: #ffffff;
+    }
+
+    /* Teal Background Thumbprints inside Card */
+    .tp-card::before {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      width: 180px;
+      height: 180px;
+      background-color: #00b0b9;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.14;
+      z-index: 1;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform: rotate(-15deg);
+    }
+
+    .tp-card::after {
+      content: '';
+      position: absolute;
+      top: -25px;
+      right: -25px;
+      width: 140px;
+      height: 140px;
+      background-color: #00b0b9;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.10;
+      z-index: 1;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform: rotate(35deg);
+    }
+
+    .tp-card:hover::before {
+      opacity: 0.25;
+      transform: rotate(0deg) scale(1.15);
+    }
+
+    .tp-card:hover::after {
+      opacity: 0.18;
+      transform: rotate(50deg) scale(1.12);
+    }
+
+    .tp-card-header {
+      position: relative;
+      z-index: 3;
+    }
+
+    .tp-eyebrow {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #6b7280;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .tp-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #111827;
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-family: var(--font-heading, sans-serif);
+    }
+
+    .tp-card-art {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      margin-top: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    /* Fanned Stack Artwork for 4 Stacked Cards */
+    .art-fanned-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 170px;
+      width: 100%;
+      position: relative;
+    }
+    .art-fanned-stack {
+      position: relative;
+      width: 100%;
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fan-img {
+      position: absolute;
+      width: 88px;
+      height: 112px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      border: 2px solid #ffffff;
+      overflow: hidden;
+    }
+    .fan-vid-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .art-play-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #00b0b9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 4 Card Positioning */
+    .fan-1 {
+      transform: rotate(-18deg) translate(-40px, 8px);
+      z-index: 1;
+    }
+    .fan-2 {
+      transform: rotate(-6deg) translate(-14px, -2px);
+      z-index: 2;
+    }
+    .fan-3 {
+      transform: rotate(6deg) translate(14px, -2px);
+      z-index: 3;
+    }
+    .fan-4 {
+      transform: rotate(18deg) translate(40px, 8px);
+      z-index: 4;
+    }
+
+    /* Floating Hashtag Chips & Doodles */
+    .art-chip {
+      position: absolute;
+      padding: 3px 9px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #00b0b9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      z-index: 6;
+      transition: transform 0.4s ease;
+      border: 1px solid rgba(0, 176, 185, 0.15);
+      pointer-events: none;
+    }
+    .chip-left { top: 2px; left: 2px; transform: rotate(-6deg); }
+    .chip-right { bottom: 10px; right: 4px; transform: rotate(5deg); }
+
+    /* Hover interactions to MAXIMIZE 4 fanned cards */
+    .tp-card:hover .art-fanned-stack {
+      transform: scale(1.08) translateY(-4px);
+    }
+
+    .tp-card:hover .fan-1 {
+      transform: rotate(-26deg) translate(-56px, 0px) scale(1.18);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .tp-card:hover .fan-2 {
+      transform: rotate(-10deg) translate(-20px, -12px) scale(1.24);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      z-index: 12;
+    }
+
+    .tp-card:hover .fan-3 {
+      transform: rotate(10deg) translate(20px, -12px) scale(1.24);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      z-index: 13;
+    }
+
+    .tp-card:hover .fan-4 {
+      transform: rotate(26deg) translate(56px, 0px) scale(1.18);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      z-index: 11;
+    }
+
+    .tp-card:hover .chip-left { transform: rotate(-10deg) scale(1.12) translateY(-2px); }
+    .tp-card:hover .chip-right { transform: rotate(8deg) scale(1.12) translateY(-2px); }
+
+    /* PLUS BUTTON IN TOP RIGHT */
+    .tp-plus-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.35s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .tp-card:hover .tp-plus-btn {
+      background: #00b0b9;
+      color: #ffffff;
+      transform: scale(1.12) rotate(90deg);
+      box-shadow: 0 6px 16px rgba(0, 176, 185, 0.35);
+      border-color: transparent;
+    }
+
+    @media (max-width: 1100px) {
+      .thumbprint-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .thumbprint-cards-container {
+        grid-template-columns: 1fr;
+      }
+      .tp-card {
+        min-height: 290px;
+      }
+    /* Category Pill Cards Styling & Hover Animation */
+    .cat-pill-card::before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+      width: 140px;
+      height: 140px;
+      background-color: #00b0b9;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.08;
+      z-index: 1;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform: rotate(20deg);
+    }
+
+    .cat-pill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 176, 185, 0.14) !important;
+      border-color: rgba(0, 176, 185, 0.3) !important;
+    }
+
+    .cat-pill-card:hover::before {
+      opacity: 0.18;
+      transform: rotate(0deg) scale(1.15);
+    }
+
+    .cat-pill-card:hover .cat-arrow {
+      background: #00b0b9 !important;
+      color: #ffffff !important;
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 1100px) {
+      .category-grid-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .category-grid-4 {
+        grid-template-columns: 1fr !important;
+    /* Simple Category Tab Headings (Reference Style) */
+    .cat-tab-heading:hover {
+      color: #00b0b9 !important;
+      border-bottom-color: rgba(0, 176, 185, 0.4) !important;
+    }
+    .cat-tab-heading.active {
+      color: #00b0b9 !important;
+      border-bottom-color: #00b0b9 !important;
+    }
+
 </style>
 </head>
 <body>
@@ -3667,343 +4308,22 @@
     </div>
   </section>
 
-  <!-- Categories & Portfolio White Background Section -->
-  <section class="portfolio-main-section" style="background: #ffffff; padding: 2rem 0 5rem; position: relative; z-index: 2;">
-    <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;">
-
+  <!-- SIMPLE HORIZONTAL CATEGORIES FILTER BAR -->
+  <section class="simple-categories-section" style="background: #ffffff; padding: 3rem 0 3.5rem; position: relative; z-index: 2;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; text-align: center;">
       
-
-      <div class="category-tabs load-stagger" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-        <a href="#" class="cat-link active" data-filter="social-media">SOCIAL MEDIA</a>
-        <a href="#" class="cat-link" data-filter="branding">BRANDING</a>
-        <a href="#" class="cat-link" data-filter="print">PRINT</a>
-        <a href="#" class="cat-link" data-filter="logo-design">LOGO DESIGN</a>
-        
+      <!-- Horizontal Simple Category Headings/Tabs -->
+      <div class="category-tabs-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2.8rem;">
+        <a href="index.html#work" class="cat-tab-heading active" data-filter="social-media" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #00b0b9; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid #00b0b9;">SOCIAL MEDIA</a>
+        <a href="index.html#work" class="cat-tab-heading" data-filter="branding" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING</a>
+        <a href="index.html#work" class="cat-tab-heading" data-filter="print" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">PRINT</a>
+        <a href="index.html#work" class="cat-tab-heading" data-filter="logo-design" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">LOGO DESIGN</a>
       </div>
 
-      <div class="webee-grid" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; align-items: start; margin-top: 1.5rem;">
-
-        <!-- Social Media Category -->
-        <div class="webee-card flow-image-card" data-category="social-media" style="grid-column: span 12; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #ffffff; margin-bottom: 1.5rem;">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786698895/Asset_13_2x_2_oyi39k.png" alt="Social Media Showcase 1" style="width: 100%; max-width: 1100px; height: auto; display: block; margin: 0 auto; border-radius: 16px;">
-        </div>
-        <div class="webee-card flow-image-card" data-category="social-media" style="grid-column: span 12; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #ffffff; margin-bottom: 1.5rem;">
-          <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786697889/Asset_14_2x_le9zxv.png" alt="Social Media Showcase 2" style="width: 100%; max-width: 1100px; height: auto; display: block; margin: 0 auto; border-radius: 16px;">
-        </div>
-        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
-          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          </div>
-        </div>
-        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
-          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116653/Baggit_ad_video_koglbd.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          </div>
-        </div>
-        <div class="webee-card webee-vid-item" data-category="social-media" style="grid-column: span 4; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9/14; background: #000;">
-          <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-          <div class="webee-overlay" style="position: absolute; inset: 0; background: rgba(0, 176, 185, 0.85); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          </div>
-        </div>
-
-
-        <!-- BRANDING CATEGORY (Arranged Exactly Like Reference Graphic) -->
-        
-        <!-- 1. Wall -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-left-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png" alt="Wall Branding">
-            </div>
-            <div class="b-text-box pos-right">
-              <span class="b-text-title">WALL</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Exit Gate -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-text-box pos-left">
-              <span class="b-text-title">EXIT<br>GATE</span>
-            </div>
-            <div class="b-img-box b-right-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786940931/Asset_16_2x_yqhnao.png" alt="Exit Gate Branding">
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Design Panel -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-left-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" alt="Design Panel">
-            </div>
-            <div class="b-text-box pos-right">
-              <span class="b-text-title">DESIGN<br>PANEL</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Standees -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-text-box pos-left">
-              <span class="b-text-title">STANDEES</span>
-            </div>
-            <div class="b-img-box b-right-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941187/Asset_18_2x_s3ic8b.png" alt="Standees Branding">
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Backdrop -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-left-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941191/Asset_21_2x_wmvoly.png" alt="Backdrop Branding">
-            </div>
-            <div class="b-text-box pos-right">
-              <span class="b-text-title">BACKDROP</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. Booth Designing -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-text-box pos-left">
-              <span class="b-text-title">BOOTH<br>DESIGNING</span>
-            </div>
-            <div class="b-img-box b-right-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941933/Asset_22_2x_gr4f0z.png" alt="Booth Designing">
-            </div>
-          </div>
-        </div>
-
-        <!-- 7. Exhibition Booth Structure -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-wide-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117281/Asset_23_2x_lvksqc.png" alt="Exhibition Booth structure">
-            </div>
-          </div>
-        </div>
-
-        <!-- 8. Welcome Board -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-left-img" style="width: 55%;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941196/Asset_24_2x_f3ubgq.png" alt="Welcome Board">
-            </div>
-            <div class="b-text-box pos-right" style="left: 60%;">
-              <span class="b-text-title">WELCOME<br>BOARD</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 9. App Design -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner" style="padding-bottom: 40px;">
-            <div class="b-img-box b-right-img b-wide-img" style="position: relative;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941749/Asset_26_2x_sflq12.png" alt="App Design">
-              <span class="b-text-title">APP DESIGN</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 10. Notifications -->
-        <div class="webee-card branding-flow-row-card" data-category="branding">
-          <div class="b-row-inner">
-            <div class="b-img-box b-left-img" style="width: 56%;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941753/Asset_27_2x_i9zvdb.png" alt="App Notifications">
-            </div>
-            <div class="b-text-box pos-right" style="left: 62%;">
-              <span class="b-text-title">NOTIFICATIONS</span>
-            </div>
-          </div>
-        </div>
-
-
-        
-        
-        
-        <!-- PRINT CATEGORY (All 12 Print Assets Included - Zero Exclusions) -->
-        
-        <!-- 1. Asset 28: Wedding Invites Main Cover -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-img-box p-left-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943013/Asset_28_2x_scuik8.png" alt="Wedding Invites Cover">
-            </div>
-            <div class="p-text-box pos-right">
-              <span class="p-text-title">WEDDING<br>INVITES</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Asset 29: Wedding Invites 3 Cards Row -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943021/Asset_29_2x_nshvqv.png" alt="Wedding Invites Cards">
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Asset 30: Gold Wedding Invite Suite (Moved Right with Left TENT CARDS Text) -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-text-box pos-left">
-              <span class="p-text-title">TENT<br>CARDS</span>
-            </div>
-            <div class="p-img-box p-right-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117284/Asset_30_2x_m4kg31.png" alt="Gold Wedding Invite Suite">
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Asset 31: Wedding Invites 8-Card Grid (Moved Left with Right LOOK BOOKS Text) -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-img-box p-left-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943008/Asset_31_2x_s5k5ev.png" alt="Wedding Invites Grid">
-            </div>
-            <div class="p-text-box pos-right">
-              <span class="p-text-title">LOOK<br>BOOKS</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Asset 32: Wedding Invites Suite Grid 2 -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943200/Asset_32_2x_l22lce.png" alt="Wedding Invites Grid Suite">
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. Asset 33, Asset 34, Asset 35 Composite Section -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 1.8rem; position: relative;">
-            <!-- Left Column: VISITING CARDS Title + Asset 34 -->
-            <div style="width: 48%; display: flex; flex-direction: column; gap: 1rem; align-self: flex-start; padding-top: 15px;">
-              <div style="text-align: left;">
-                <span class="p-text-title">VISITING<br>CARDS</span>
-              </div>
-              <div class="p-img-box" style="width: 100%;">
-                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png" alt="Asset 34 Catalog Spreads Showcase">
-              </div>
-            </div>
-
-            <!-- Right Column: Asset 33 (Top) + Asset 35 (Bottom) Stacked -->
-            <div style="width: 48%; display: flex; flex-direction: column; gap: 1.5rem;">
-              <div class="p-img-box" style="width: 100%;">
-                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943074/Asset_33_2x_bwpan2.png" alt="Asset 33 Tent Cards">
-              </div>
-              <div class="p-img-box" style="width: 100%;">
-                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117290/Asset_35_2x_uvnvxl.png" alt="Asset 35 Rwaaj Card">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 8. Asset 37: Bottle Stickers & Pouch -->
-        
-        <!-- Asset 36: Increased size to 76% width + POSTERS Text Right -->
-        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
-          <div class="p-row-inner" style="position: relative; width: 100%; max-width: 1150px; margin: 0 auto;">
-            <div class="p-img-box" style="width: 76% !important; max-width: 1150px !important; margin-left: 0 !important; margin-right: auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942980/Asset_36_2x_vrngpg.png" alt="Folded Posters Showcase" style="width: 100% !important; height: auto !important; display: block !important;">
-            </div>
-            <div class="p-text-box pos-right" style="left: 78% !important; top: 10px !important; right: auto !important;">
-              <span class="p-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-weight: 400 !important; color: #00B0B9 !important; font-size: clamp(2rem, 3.8vw, 3.2rem) !important; font-weight: 400 !important; letter-spacing: 2px !important;">POSTERS</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Asset 37: Increased size to 76% width + VOUCHERS Text Left -->
-        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
-          <div class="p-row-inner" style="position: relative; width: 100%; max-width: 1150px; margin: 0 auto;">
-            <div class="p-text-box pos-left" style="right: 78% !important; top: 10px !important; left: auto !important;">
-              <span class="p-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-weight: 400 !important; color: #00B0B9 !important; font-size: clamp(2rem, 3.8vw, 3.2rem) !important; font-weight: 400 !important; letter-spacing: 2px !important;">VOUCHERS</span>
-            </div>
-            <div class="p-img-box" style="width: 76% !important; max-width: 1150px !important; margin-left: auto !important; margin-right: 0 !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942984/Asset_37_2x_b9hzuw.png" alt="Luzo Vouchers Showcase" style="width: 100% !important; height: auto !important; display: block !important;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Asset 39: Centered PACKAGING Title in Branding Category Serif Font -->
-        <div class="webee-card print-flow-row-card" data-category="print" style="margin-bottom: 3.5rem;">
-          <div style="max-width: 1150px; margin: 0 auto 1.5rem auto; text-align: center;">
-            <span class="b-text-title" style="font-family: var(--font-heading), 'Fraunces', serif !important; color: #00B0B9 !important; font-size: clamp(2.2rem, 4vw, 3.5rem) !important; font-weight: 400 !important; letter-spacing: 3px !important; text-transform: uppercase !important;">PACKAGING</span>
-          </div>
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png" alt="Packaging Showcase Asset 39" style="width: 100% !important; height: auto !important; display: block !important;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Asset 40: Posters & Vouchers Suite -->
-        <div class="webee-card print-flow-row-card" data-category="print">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943001/Asset_40_2x_umic2n.png" alt="Posters & Vouchers Suite" style="width: 100% !important; height: auto !important; display: block !important;">
-            </div>
-          </div>
-        </div>
-
-        </div>
+    </div>
   </section>
 
 
-
-<!-- LOGO DESIGN CATEGORY -->
-        
-        <!-- Logo 1 -->
-        <div class="webee-card logo-flow-row-card" data-category="logo-design">
-          <div class="p-row-inner">
-            <div class="p-text-box pos-left">
-              <span class="b-text-title">LOGO<br>DESIGN</span>
-            </div>
-            <div class="p-img-box p-right-img">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png" alt="Logo Design Showcase 1">
-            </div>
-          </div>
-        </div>
-
-        <!-- Logo 2 -->
-        <div class="webee-card logo-flow-row-card" data-category="logo-design">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png" alt="Logo Design Showcase 2">
-            </div>
-          </div>
-        </div>
-
-        <!-- Logo 3 -->
-        <div class="webee-card logo-flow-row-card" data-category="logo-design">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" alt="Logo Design Showcase 3">
-            </div>
-          </div>
-        </div>
-
-        <!-- Logo 4 -->
-        <div class="webee-card logo-flow-row-card" data-category="logo-design">
-          <div class="p-row-inner">
-            <div class="p-img-box p-wide-img" style="width: 88% !important; max-width: 1150px !important; margin: 0 auto !important;">
-              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png" alt="Logo Design Showcase 4">
-            </div>
-          </div>
-        </div>
 
 <footer>
     <p>© 2026 The Social Thumbprint. Created by Priyanka Vithani.</p>

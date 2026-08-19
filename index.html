@@ -2096,78 +2096,284 @@
 
   
     /* Thumbprints Cards Grid */
+
+    /* Pinterest-Style Categories Cards with 4 Stacked Cards Each + Hashtags */
     .thumbprint-cards-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       width: 100%;
-      height: 350px;
-      gap: 15px;
-      position: relative;
       margin-top: 2rem;
-      
-      
     }
-    
+
     .tp-card {
-      flex: 1;
+      background: #f4f5f7;
+      border-radius: 24px;
+      padding: 22px 18px 16px 18px;
       position: relative;
-      border-radius: 16px;
       overflow: hidden;
-      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 30px;
-      transition: all 0.4s ease;
+      justify-content: space-between;
+      min-height: 310px;
+      text-decoration: none !important;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
     }
-    .tp-card:last-child {
-      border-right: none;
+
+    .tp-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 176, 185, 0.3);
+      background: #ffffff;
     }
-    
-    .tp-bg {
+
+    /* Teal Background Thumbprints inside Card */
+    .tp-card::before {
+      content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-size: cover;
-      background-position: center;
+      bottom: -20px;
+      left: -20px;
+      width: 180px;
+      height: 180px;
+      background-color: #00b0b9;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.14;
       z-index: 1;
-      transition: transform 0.6s ease;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform: rotate(-15deg);
     }
-    .tp-card:hover .tp-bg {
-      transform: scale(1.05);
-    }
-    
+
     .tp-card::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 60%;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      z-index: 2;
-    }
-    
-    .tp-content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-    }
-    
-    .tp-num {
-      display: block;
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: var(--font-heading);
-      margin-bottom: 10px;
-    }
-    
-    .tp-title {
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: 600;
-      font-family: var(--font-body);
-      line-height: 1.2;
+      top: -25px;
+      right: -25px;
+      width: 140px;
+      height: 140px;
+      background-color: #00b0b9;
+      -webkit-mask: url('fingerprint.png') no-repeat center / contain;
+      mask: url('fingerprint.png') no-repeat center / contain;
+      opacity: 0.10;
+      z-index: 1;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform: rotate(35deg);
     }
 
-    .slider-arrow {
+    .tp-card:hover::before {
+      opacity: 0.25;
+      transform: rotate(0deg) scale(1.15);
+    }
+
+    .tp-card:hover::after {
+      opacity: 0.18;
+      transform: rotate(50deg) scale(1.12);
+    }
+
+    .tp-card-header {
+      position: relative;
+      z-index: 3;
+    }
+
+    .tp-eyebrow {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #6b7280;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .tp-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #111827;
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-family: var(--font-heading, sans-serif);
+    }
+
+    .tp-card-art {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      margin-top: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    /* Fanned Stack Artwork for 4 Stacked Cards */
+    .art-fanned-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 170px;
+      width: 100%;
+      position: relative;
+    }
+    .art-fanned-stack {
+      position: relative;
+      width: 100%;
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fan-img {
+      position: absolute;
+      width: 88px;
+      height: 112px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      border: 2px solid #ffffff;
+      overflow: hidden;
+    }
+    .fan-vid-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .art-play-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #00b0b9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 4 Card Positioning */
+    .fan-1 {
+      transform: rotate(-18deg) translate(-40px, 8px);
+      z-index: 1;
+    }
+    .fan-2 {
+      transform: rotate(-6deg) translate(-14px, -2px);
+      z-index: 2;
+    }
+    .fan-3 {
+      transform: rotate(6deg) translate(14px, -2px);
+      z-index: 3;
+    }
+    .fan-4 {
+      transform: rotate(18deg) translate(40px, 8px);
+      z-index: 4;
+    }
+
+    /* Floating Hashtag Chips & Doodles */
+    .art-chip {
+      position: absolute;
+      padding: 3px 9px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #00b0b9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      z-index: 6;
+      transition: transform 0.4s ease;
+      border: 1px solid rgba(0, 176, 185, 0.15);
+      pointer-events: none;
+    }
+    .chip-left { top: 2px; left: 2px; transform: rotate(-6deg); }
+    .chip-right { bottom: 10px; right: 4px; transform: rotate(5deg); }
+
+    /* Hover interactions to MAXIMIZE 4 fanned cards */
+    .tp-card:hover .art-fanned-stack {
+      transform: scale(1.08) translateY(-4px);
+    }
+
+    .tp-card:hover .fan-1 {
+      transform: rotate(-26deg) translate(-56px, 0px) scale(1.18);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .tp-card:hover .fan-2 {
+      transform: rotate(-10deg) translate(-20px, -12px) scale(1.24);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      z-index: 12;
+    }
+
+    .tp-card:hover .fan-3 {
+      transform: rotate(10deg) translate(20px, -12px) scale(1.24);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      z-index: 13;
+    }
+
+    .tp-card:hover .fan-4 {
+      transform: rotate(26deg) translate(56px, 0px) scale(1.18);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      z-index: 11;
+    }
+
+    .tp-card:hover .chip-left { transform: rotate(-10deg) scale(1.12) translateY(-2px); }
+    .tp-card:hover .chip-right { transform: rotate(8deg) scale(1.12) translateY(-2px); }
+
+    /* PLUS BUTTON IN TOP RIGHT */
+    .tp-plus-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.35s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .tp-card:hover .tp-plus-btn {
+      background: #00b0b9;
+      color: #ffffff;
+      transform: scale(1.12) rotate(90deg);
+      box-shadow: 0 6px 16px rgba(0, 176, 185, 0.35);
+      border-color: transparent;
+    }
+
+    @media (max-width: 1100px) {
+      .thumbprint-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .thumbprint-cards-container {
+        grid-template-columns: 1fr;
+      }
+      .tp-card {
+        min-height: 380px;
+      }
+    }
+
+.slider-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -2588,58 +2794,126 @@
   </section>
 
   <section id="work" style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem; position: relative; overflow: hidden;">
-    <!-- Scattered Fingerprints Background -->
-    <div class="s-print" style="top: -2%; left: -5%; width: 500px; height: 500px; transform: rotate(15deg); opacity: 0.04;"></div>
-    <div class="s-print" style="top: 15%; right: -5%; width: 600px; height: 600px; transform: rotate(-25deg); opacity: 0.04;"></div>
-    <div class="s-print" style="top: 10%; left: 40%; width: 800px; height: 800px; transform: rotate(60deg); opacity: 0.02;"></div>
-    <div class="s-print" style="top: 35%; left: -10%; width: 700px; height: 700px; transform: rotate(45deg); opacity: 0.03;"></div>
-    <div class="s-print" style="top: 45%; right: 10%; width: 900px; height: 900px; transform: rotate(-65deg); opacity: 0.02;"></div>
+    <!-- Scattered Fingerprints Background (Rich Pattern) -->
+    <div class="s-print" style="top: -5%; left: -8%; width: 480px; height: 480px; transform: rotate(15deg); opacity: 0.08; background-color: var(--purple);"></div>
+    <div class="s-print" style="top: 5%; right: -5%; width: 550px; height: 550px; transform: rotate(-25deg); opacity: 0.08; background-color: var(--teal);"></div>
+    <div class="s-print" style="top: 12%; left: 35%; width: 650px; height: 650px; transform: rotate(60deg); opacity: 0.06; background-color: var(--purple);"></div>
+    <div class="s-print" style="top: 28%; left: -6%; width: 500px; height: 500px; transform: rotate(-45deg); opacity: 0.07; background-color: var(--teal);"></div>
+    <div class="s-print" style="top: 32%; right: 2%; width: 580px; height: 580px; transform: rotate(75deg); opacity: 0.07; background-color: var(--purple);"></div>
+    <div class="s-print" style="top: 48%; left: 20%; width: 620px; height: 620px; transform: rotate(-15deg); opacity: 0.06; background-color: var(--teal);"></div>
+    <div class="s-print" style="top: 55%; right: -8%; width: 520px; height: 520px; transform: rotate(110deg); opacity: 0.08; background-color: var(--purple);"></div>
+    <div class="s-print" style="top: 68%; left: -5%; width: 600px; height: 600px; transform: rotate(35deg); opacity: 0.07; background-color: var(--purple);"></div>
+    <div class="s-print" style="top: 75%; left: 45%; width: 700px; height: 700px; transform: rotate(-80deg); opacity: 0.06; background-color: var(--teal);"></div>
+    <div class="s-print" style="top: 85%; right: 5%; width: 540px; height: 540px; transform: rotate(40deg); opacity: 0.08; background-color: var(--purple);"></div>
+    <div class="s-print" style="bottom: 2%; left: 10%; width: 480px; height: 480px; transform: rotate(-30deg); opacity: 0.07; background-color: var(--teal);"></div>
+    <div class="s-print" style="bottom: -5%; right: -4%; width: 600px; height: 600px; transform: rotate(95deg); opacity: 0.08; background-color: var(--purple);"></div>
     
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
       <div class="section-header text-center" style="margin-bottom: 40px; text-align: center;">
-        <h2 class="section-title" style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--purple); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
+        <h2 class="section-title" style="font-size: 2.75rem; font-family: var(--font-heading); font-weight: 700; color: #00b0b9; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
       
       <!-- Thumbprints Cards -->
+      
+      <!-- Thumbprints Categories Cards (Pinterest Style with 4 Stacked Cards each + Hashtags) -->
       <div class="thumbprint-cards-container">
         
-        
-        <a href="portfolio.html?filter=social-media" class="tp-card" style="text-decoration: none; cursor: pointer;">
-          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png')"></div>
-          <div class="tp-content">
-            <span class="tp-num">01.</span>
+        <!-- Card 1: Social Media -->
+        <a href="portfolio.html?filter=social-media" class="tp-card tp-card-social" data-filter="social-media">
+          <div class="tp-card-header">
+            <span class="tp-eyebrow">Engage & Amplify</span>
             <h3 class="tp-title">Social Media</h3>
           </div>
+          <div class="tp-card-art art-fanned-container">
+            <div class="art-chip chip-left">#Reels</div>
+            <div class="art-chip chip-right">#Growth</div>
+            <div class="art-fanned-stack">
+              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786698895/Asset_13_2x_2_oyi39k.png');"></div>
+              <div class="fan-img fan-2 fan-vid-card">
+                <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" muted loop autoplay playsinline></video>
+                <div class="art-play-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+              </div>
+              <div class="fan-img fan-3 fan-vid-card">
+                <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116653/Baggit_ad_video_koglbd.mp4" muted loop autoplay playsinline></video>
+              </div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786697889/Asset_14_2x_le9zxv.png');"></div>
+            </div>
+          </div>
+          <div class="tp-plus-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
         </a>
 
-        <a href="portfolio.html?filter=branding" class="tp-card" style="text-decoration: none; cursor: pointer;">
-          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png')"></div>
-          <div class="tp-content">
-            <span class="tp-num">02.</span>
+        <!-- Card 2: Branding -->
+        <a href="portfolio.html?filter=branding" class="tp-card tp-card-branding" data-filter="branding">
+          <div class="tp-card-header">
+            <span class="tp-eyebrow">Identity & Voice</span>
             <h3 class="tp-title">Branding</h3>
           </div>
+          <div class="tp-card-art art-fanned-container">
+            <div class="art-chip chip-left">#Identity</div>
+            <div class="art-chip chip-right">#Strategy</div>
+            <div class="art-fanned-stack">
+              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png');"></div>
+              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png');"></div>
+              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117274/Asset_16_2x_zy5k4q.png');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786184477/Screenshot_2026-08-08_151500_upscaled-removebg-preview_phxuzp.png');"></div>
+            </div>
+          </div>
+          <div class="tp-plus-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
         </a>
 
-        <a href="portfolio.html?filter=print" class="tp-card" style="text-decoration: none; cursor: pointer;">
-          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png')"></div>
-          <div class="tp-content">
-            <span class="tp-num">03.</span>
+        <!-- Card 3: Print -->
+        <a href="portfolio.html?filter=print" class="tp-card tp-card-print" data-filter="print">
+          <div class="tp-card-header">
+            <span class="tp-eyebrow">Tactile Impression</span>
             <h3 class="tp-title">Print</h3>
           </div>
-        </a>
-
-        <a href="portfolio.html?filter=logo-design" class="tp-card" style="text-decoration: none; cursor: pointer;">
-          <div class="tp-bg" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png')"></div>
-          <div class="tp-content">
-            <span class="tp-num">04.</span>
-            <h3 class="tp-title">Logo Design</h3>
+          <div class="tp-card-art art-fanned-container">
+            <div class="art-chip chip-left">#Tactile</div>
+            <div class="art-chip chip-right">#Posters</div>
+            <div class="art-fanned-stack">
+              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png');"></div>
+              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611348/Asset_36_2x_cghjkl.png');"></div>
+              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611349/Asset_37_2x_klmopq.png');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png');"></div>
+            </div>
+          </div>
+          <div class="tp-plus-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
           </div>
         </a>
 
-        
+        <!-- Card 4: Logo Design -->
+        <a href="portfolio.html?filter=logo-design" class="tp-card tp-card-logo" data-filter="logo-design">
+          <div class="tp-card-header">
+            <span class="tp-eyebrow">Crafted Marks</span>
+            <h3 class="tp-title">Logo Design</h3>
+          </div>
+          <div class="tp-card-art art-fanned-container">
+            <div class="art-chip chip-left">#Minimal</div>
+            <div class="art-chip chip-right">#Marks</div>
+            <div class="art-fanned-stack">
+              <div class="fan-img fan-1" style="background-image: url('https://webeesocial.com/wp-content/uploads/2025/05/grg_thumb.jpg');"></div>
+              <div class="fan-img fan-2 fan-logo-badge" style="background: #00b0b9; display: flex; align-items: center; justify-content: center;">
+                <img src="https://res.cloudinary.com/rtozh6o5/image/upload/v1786102867/white_logo_c4ok9o.png" alt="TST Logo" style="width: 48px; height: auto;">
+              </div>
+              <div class="fan-img fan-3" style="background-image: url('https://webeesocial.com/wp-content/uploads/2018/10/acma.jpg');"></div>
+              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png');"></div>
+            </div>
+          </div>
+          <div class="tp-plus-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+        </a>
+
       </div>
-    </div>
+</div>
   </section>
 
 
