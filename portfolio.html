@@ -4540,7 +4540,6 @@
               -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1);
               transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1);
               cursor: pointer;
-              will-change: transform, opacity;
             }
 
             .sm-stack-card img {
@@ -4723,6 +4722,9 @@
           </style>
 
           <div class="sm-stack-stage" id="smStackStage">
+            <button id="stackPrevBtn" class="stack-nav-btn" style="position: absolute; left: 5%; top: 50%; margin-top: -24px; z-index: 50; transform: translateZ(10px);" aria-label="Previous image">&#10094;</button>
+            <button id="stackNextBtn" class="stack-nav-btn" style="position: absolute; right: 5%; top: 50%; margin-top: -24px; z-index: 50; transform: translateZ(10px);" aria-label="Next image">&#10095;</button>
+
             <div class="sm-stack-deck" id="smStackDeck">
               
               <!-- 14 Social Media UI Mockup Cards in Symmetric Both-Sides Fan Spread -->
