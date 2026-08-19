@@ -4248,6 +4248,164 @@
       border-bottom-color: #00b0b9 !important;
     }
 
+    /* =========================================================
+       UI MOCKUP COLLAGE GRID SYSTEM
+       ========================================================= */
+    .mockup-collage-section {
+      padding: 3rem 0 4rem;
+      position: relative;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 1rem;
+    }
+
+    /* Staggered Vertical Offsets for Collage Effect */
+    .mockup-grid .ui-mockup-card:nth-child(5n+1) { margin-top: 0px; }
+    .mockup-grid .ui-mockup-card:nth-child(5n+2) { margin-top: 36px; }
+    .mockup-grid .ui-mockup-card:nth-child(5n+3) { margin-top: -16px; }
+    .mockup-grid .ui-mockup-card:nth-child(5n+4) { margin-top: 28px; }
+    .mockup-grid .ui-mockup-card:nth-child(5n+5) { margin-top: 12px; }
+
+    .ui-mockup-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 9 / 16;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      background: #111827;
+      text-decoration: none !important;
+    }
+
+    .ui-mockup-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 24px 50px rgba(0, 176, 185, 0.2), 0 10px 20px rgba(0, 0, 0, 0.12);
+      border-color: rgba(0, 176, 185, 0.4);
+      z-index: 10;
+    }
+
+    /* Top Phone Notch Status Bar */
+    .mockup-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      padding: 8px 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .mockup-time {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.01em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .mockup-notch {
+      width: 54px;
+      height: 12px;
+      background: #000000;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .mockup-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .mockup-media-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ui-mockup-card:hover .mockup-media-bg {
+      transform: scale(1.08);
+    }
+
+    .mockup-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Bottom Info Overlay */
+    .mockup-info {
+      position: relative;
+      z-index: 4;
+      padding: 16px 14px 18px;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    .mockup-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      background: rgba(0, 176, 185, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .mockup-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 1200px) {
+      .mockup-grid { grid-template-columns: repeat(4, 1fr); }
+      .mockup-grid .ui-mockup-card:nth-child(n) { margin-top: 0px; }
+      .mockup-grid .ui-mockup-card:nth-child(4n+2) { margin-top: 24px; }
+      .mockup-grid .ui-mockup-card:nth-child(4n+4) { margin-top: 18px; }
+    }
+
+    @media (max-width: 900px) {
+      .mockup-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .mockup-grid .ui-mockup-card:nth-child(n) { margin-top: 0px; }
+      .mockup-grid .ui-mockup-card:nth-child(3n+2) { margin-top: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .mockup-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .mockup-grid .ui-mockup-card:nth-child(n) { margin-top: 0px; }
+    }
+
 </style>
 </head>
 <body>
@@ -4314,10 +4472,258 @@
       
       <!-- Horizontal Simple Category Headings/Tabs -->
       <div class="category-tabs-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2.8rem;">
-        <a href="index.html#work" class="cat-tab-heading active" data-filter="social-media" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #00b0b9; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid #00b0b9;">SOCIAL MEDIA</a>
-        <a href="index.html#work" class="cat-tab-heading" data-filter="branding" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING</a>
-        <a href="index.html#work" class="cat-tab-heading" data-filter="print" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">PRINT</a>
-        <a href="index.html#work" class="cat-tab-heading" data-filter="logo-design" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">LOGO DESIGN</a>
+        <a href="#all" class="cat-tab-heading active" data-filter="all" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #00b0b9; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid #00b0b9;">ALL</a>
+        <a href="#social-media" class="cat-tab-heading" data-filter="social-media" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">SOCIAL MEDIA</a>
+        <a href="#branding" class="cat-tab-heading" data-filter="branding" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING</a>
+        <a href="#print" class="cat-tab-heading" data-filter="print" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">PRINT</a>
+        <a href="#logo-design" class="cat-tab-heading" data-filter="logo-design" style="font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: #4b5563; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">LOGO DESIGN</a>
+      </div>
+
+      <!-- UI MOCKUP COLLAGE GRID -->
+      <div class="mockup-collage-section">
+        <div class="mockup-grid" id="mockupGrid">
+          
+          <!-- Card 1: Baulkline Reel (Social Media) -->
+          <div class="ui-mockup-card" data-category="social-media" style="background: #0d1b2a;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786159157/Baulkline_video_aaxvmk.mp4" class="mockup-media-bg" muted loop autoplay playsinline></video>
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(0,176,185,0.85);">#Reels</span>
+                <h4 class="mockup-title">Baulkline Reel Campaign</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Baggit Ad Reel (Social Media) -->
+          <div class="ui-mockup-card" data-category="social-media" style="background: #ff5722;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116653/Baggit_ad_video_koglbd.mp4" class="mockup-media-bg" muted loop autoplay playsinline></video>
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(255,87,34,0.85);">#Growth</span>
+                <h4 class="mockup-title">Baggit Ad Campaign</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Velvet Reverie Reel (Social Media) -->
+          <div class="ui-mockup-card" data-category="social-media" style="background: #6366f1;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <video src="https://res.cloudinary.com/bbgr69ke/video/upload/v1786116697/Velvet_Reverie_txuqbb.mp4" class="mockup-media-bg" muted loop autoplay playsinline></video>
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(139,92,246,0.85);">#Reels</span>
+                <h4 class="mockup-title">Velvet Reverie Showcase</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Wall Environmental Branding (Branding) -->
+          <div class="ui-mockup-card" data-category="branding" style="background: #1e293b;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png" class="mockup-media-bg" alt="Wall Branding">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(16,185,129,0.85);">#Identity</span>
+                <h4 class="mockup-title">Wall Environmental Branding</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Social Media Post Suite (Social Media) -->
+          <div class="ui-mockup-card" data-category="social-media" style="background: #f59e0b;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786698895/Asset_13_2x_2_oyi39k.png" class="mockup-media-bg" alt="Social Post 1">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(245,158,11,0.85);">#Campaigns</span>
+                <h4 class="mockup-title">Creative Social Content</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Exit Gate Signage (Branding) -->
+          <div class="ui-mockup-card" data-category="branding" style="background: #ef4444;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786940931/Asset_16_2x_yqhnao.png" class="mockup-media-bg" alt="Exit Gate">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(239,68,68,0.85);">#Spatial</span>
+                <h4 class="mockup-title">Exit Gate Spatial Design</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: Design Panel Suite (Branding) -->
+          <div class="ui-mockup-card" data-category="branding" style="background: #8b5cf6;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" class="mockup-media-bg" alt="Design Panel">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(139,92,246,0.85);">#Strategy</span>
+                <h4 class="mockup-title">Brand Design Panel</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8: Luxury Wedding Invites (Print) -->
+          <div class="ui-mockup-card" data-category="print" style="background: #faf5ff;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943013/Asset_28_2x_scuik8.png" class="mockup-media-bg" alt="Wedding Invites">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(0,176,185,0.85);">#Tactile</span>
+                <h4 class="mockup-title">Luxury Wedding Suite</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 9: Premium Visiting Cards (Print) -->
+          <div class="ui-mockup-card" data-category="print" style="background: #00b0b9;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png" class="mockup-media-bg" alt="Visiting Cards">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge">#Print</span>
+                <h4 class="mockup-title">Premium Visiting Cards</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 10: Folded Posters Series (Print) -->
+          <div class="ui-mockup-card" data-category="print" style="background: #ec4899;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942980/Asset_36_2x_vrngpg.png" class="mockup-media-bg" alt="Posters">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(236,72,153,0.85);">#Posters</span>
+                <h4 class="mockup-title">Folded Posters Series</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 11: Packaging Suite (Print) -->
+          <div class="ui-mockup-card" data-category="print" style="background: #d97706;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png" class="mockup-media-bg" alt="Packaging">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(217,119,6,0.85);">#Packaging</span>
+                <h4 class="mockup-title">Bespoke Packaging</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 12: GRG Brand Identity (Logo Design) -->
+          <div class="ui-mockup-card" data-category="logo-design" style="background: #111827;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://webeesocial.com/wp-content/uploads/2025/05/grg_thumb.jpg" class="mockup-media-bg" alt="GRG Logo">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(0,176,185,0.85);">#Minimal</span>
+                <h4 class="mockup-title">GRG Brand Identity</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 13: ACMA Signature Mark (Logo Design) -->
+          <div class="ui-mockup-card" data-category="logo-design" style="background: #ffffff;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://webeesocial.com/wp-content/uploads/2018/10/acma.jpg" class="mockup-media-bg" alt="ACMA Logo">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(16,185,129,0.85);">#Marks</span>
+                <h4 class="mockup-title">ACMA Signature Mark</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 14: TST Logo Emblem (Logo Design) -->
+          <div class="ui-mockup-card" data-category="logo-design" style="background: #00b0b9;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611358/Screenshot_2026-08-13_142512_e7pfku.png" class="mockup-media-bg" alt="TST Emblem">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge">#Emblem</span>
+                <h4 class="mockup-title">TST Identity Mark</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 15: Event Standees (Branding) -->
+          <div class="ui-mockup-card" data-category="branding" style="background: #3b82f6;">
+            <div class="mockup-screen">
+              <div class="mockup-header">
+                <span class="mockup-time">9:41</span>
+                <div class="mockup-notch"></div>
+              </div>
+              <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941187/Asset_18_2x_s3ic8b.png" class="mockup-media-bg" alt="Standees">
+              <div class="mockup-overlay-gradient"></div>
+              <div class="mockup-info">
+                <span class="mockup-badge" style="background: rgba(59,130,246,0.85);">#Display</span>
+                <h4 class="mockup-title">Event Standees & Displays</h4>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -4757,11 +5163,58 @@
       }
     });
 
-    document.querySelectorAll('a, button, input, textarea, label, img, .webee-card, .cat-link').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, label, img, .webee-card, .cat-link, .ui-mockup-card, .cat-tab-heading').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
     });
   })();
+  </script>
+
+  <!-- Dynamic Filtering Script for UI Mockup Collage -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabHeadings = document.querySelectorAll('.cat-tab-heading');
+      const mockupCards = document.querySelectorAll('.ui-mockup-card');
+
+      function filterMockups(selectedCat) {
+        mockupCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (selectedCat === 'all' || cardCat === selectedCat) {
+            card.style.display = 'flex';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1)';
+            }, 30);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+
+        tabHeadings.forEach(tab => {
+          if (tab.getAttribute('data-filter') === selectedCat) {
+            tab.classList.add('active');
+            tab.style.color = '#00b0b9';
+            tab.style.borderBottomColor = '#00b0b9';
+          } else {
+            tab.classList.remove('active');
+            tab.style.color = '#4b5563';
+            tab.style.borderBottomColor = 'transparent';
+          }
+        });
+      }
+
+      tabHeadings.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          const filterValue = tab.getAttribute('data-filter');
+          filterMockups(filterValue);
+        });
+      });
+    });
   </script>
 
 </body>
