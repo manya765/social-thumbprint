@@ -271,20 +271,17 @@
     /* Animated Ambient Fingerprint Background (iOS Safari Safe) */
     .bg-fingerprint {
       position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       pointer-events: none;
       background-color: var(--white);
       -webkit-mask: url('fingerprint.png') repeat center / 600px;
       mask: url('fingerprint.png') repeat center / 600px;
       opacity: 0.08;
-
-      /* transition for smooth mouse following */
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));
+      transform: translateZ(0); /* Hardware acceleration to fix Safari compositing */
     }
 
     .cursor-fingerprint.purple-mode svg {
@@ -4405,29 +4402,7 @@
 
     // Interactive Background Animations
     (function () {
-      const bgFingerprint = document.querySelector('.bg-fingerprint');
-      const bgBlobs = document.querySelector('.bg-blobs');
-      if (!bgFingerprint) return;
-
-      window.addEventListener('mousemove', function (e) {
-        const mouseX = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
-        const mouseY = e.clientY / window.innerHeight - 0.5;
-
-        // Fingerprint subtle translation and rotation
-        const moveX = mouseX * 50; // max 50px movement
-        const moveY = mouseY * 50;
-        const rotate = mouseX * 10; // max 5deg rotation based on X axis
-
-        bgFingerprint.style.setProperty('--move-x', moveX + 'px');
-        bgFingerprint.style.setProperty('--move-y', moveY + 'px');
-        bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
-
-        // Gradient shift for blobs
-        if (bgBlobs) {
-          bgBlobs.style.setProperty('--blob-x', (mouseX * 20) + '%');
-          bgBlobs.style.setProperty('--blob-y', (mouseY * 20) + '%');
-        }
-      });
+      // Background reactivity removed as per user request
     })();
 
     // Mobile Menu Toggle

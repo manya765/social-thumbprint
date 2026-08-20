@@ -1602,20 +1602,15 @@
   /* Animated Ambient Fingerprint Background */
   .bg-fingerprint {
     position: fixed;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
     pointer-events: none;
-    background-image: url('fingerprint.png'); 
-    background-size: 600px;
-    
-    /* Move opacity into filter chain to prevent Safari/WebKit composite bugs */
-    filter: grayscale(1) invert(1) brightness(10) contrast(10) opacity(15%);
-    mix-blend-mode: screen; 
-    
-    /* transition for smooth mouse following */
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translate(var(--move-x, 0px), var(--move-y, 0px)) rotate(var(--rotate, 0deg));
+    background-color: var(--white);
+    -webkit-mask: url('fingerprint.png') repeat center / 600px;
+    mask: url('fingerprint.png') repeat center / 600px;
+    opacity: 0.08;
+    transform: translateZ(0); /* Hardware acceleration to fix Safari compositing */
   }
   
   /* Update blobs to also shift with mouse for gradient shifting effect */
@@ -5602,19 +5597,7 @@
 <script>
 
   // Mousemove Reactive White Thumbprints Parallax for Hero Background
-  window.addEventListener('mousemove', (e) => {
-    const bgFingerprint = document.getElementById('bgFingerprint');
-    if (bgFingerprint) {
-      const mouseX = (e.clientX / window.innerWidth) - 0.5;
-      const mouseY = (e.clientY / window.innerHeight) - 0.5;
-      const moveX = mouseX * 40;
-      const moveY = mouseY * 40;
-      const rotate = mouseX * 10;
-      bgFingerprint.style.setProperty('--move-x', moveX + 'px');
-      bgFingerprint.style.setProperty('--move-y', moveY + 'px');
-      bgFingerprint.style.setProperty('--rotate', rotate + 'deg');
-    }
-  });
+  // Reactivity removed as per user request
 
 </script>
 
