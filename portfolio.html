@@ -4492,7 +4492,7 @@
       <!-- 3D UI MOCKUPS GRID (3 Columns x 3 Rows) -->
       <div class="grid-3d-layout" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0px; max-width: 100%; margin: 0 auto; align-items: start; justify-content: center;">
         <!-- SOCIAL MEDIA FEATURED 3D STACKED MOCKUP SHOWCASE -->
-        <div class="sm-3d-stack-showcase" data-category="social-media" style="grid-column: 1 / -1; width: 100%; position: relative; overflow: hidden; padding: 1.5rem 0 3.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent !important; border: none !important; box-shadow: none !important;">
+        <div class="ui-mockup-card sm-3d-stack-showcase" data-category="social-media" style="grid-column: 1 / -1; width: 100%; position: relative; overflow: hidden; padding: 1.5rem 0 3.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent !important; border: none !important; box-shadow: none !important;">
           
           <style>
             .sm-stack-stage {
@@ -5026,8 +5026,288 @@
           </div>
 
         </div>
-        <!-- 3D CIRCULAR REVOLVING RING CAROUSEL (BRANDING, PRINT, LOGO DESIGN) -->
-        <div class="ui-mockup-card circular-showcase-card" data-category="branding print logo-design" style="grid-column: 1 / -1; width: 100%; position: relative; overflow: hidden; padding: 2.5rem 0 4rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <!-- BRANDING GALLERY SHOWCASE (Assets 15, 16, 17, 18) -->
+        <!-- BRANDING GALLERY SHOWCASE (Bento Hero Layout) -->
+        <div class="ui-mockup-card branding-showcase-card" data-category="branding" style="grid-column: 1 / -1; width: 100%; position: relative; overflow: hidden; padding: 1.5rem 0 3.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent !important; border: none !important; box-shadow: none !important;">
+          <style>
+            .branding-bento-grid {
+              display: grid;
+              grid-template-columns: repeat(12, 1fr);
+              gap: 2rem;
+              width: 100%;
+              max-width: 1440px;
+              margin: 0 auto;
+              padding: 0 1.5rem;
+            }
+
+            .bento-col-7 {
+              grid-column: span 7;
+            }
+
+            .bento-col-6 {
+              grid-column: span 6;
+            }
+
+            .bento-col-5 {
+              grid-column: span 5;
+            }
+
+            .bento-col-8 {
+              grid-column: span 8;
+            }
+
+            .bento-col-4 {
+              grid-column: span 4;
+            }
+
+            @media (max-width: 1024px) {
+              .bento-col-7, .bento-col-6, .bento-col-5, .bento-col-8, .bento-col-4 {
+                grid-column: span 12;
+              }
+            }
+
+            .branding-bento-item,
+            .branding-bento-img-box,
+            .branding-bento-img-box img {
+              box-shadow: none !important;
+              filter: none !important;
+              -webkit-filter: none !important;
+            }
+
+            .branding-bento-item {
+              position: relative;
+              background: transparent;
+              border: none;
+              box-shadow: none !important;
+              filter: none !important;
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .branding-bento-item:hover {
+              transform: translateY(-6px);
+              box-shadow: none !important;
+              filter: none !important;
+            }
+
+            .branding-bento-img-box {
+              width: 100%;
+              height: 440px;
+              overflow: hidden;
+              position: relative;
+              background: transparent;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 18px;
+              box-shadow: none !important;
+              filter: none !important;
+            }
+
+            /* Custom varied height adjustments for proportional bento layout */
+            .bento-col-7 .branding-bento-img-box,
+            .bento-col-6 .branding-bento-img-box,
+            .bento-col-5 .branding-bento-img-box {
+              height: 500px;
+            }
+
+            .bento-asset17-box {
+              height: 440px !important;
+            }
+
+            .bento-asset23-box,
+            .bento-asset24-box {
+              height: 480px !important;
+            }
+
+            .bento-asset18-box {
+              height: 500px !important;
+            }
+
+            @media (max-width: 1200px) {
+              .branding-bento-img-box,
+              .bento-col-7 .branding-bento-img-box,
+              .bento-col-5 .branding-bento-img-box,
+              .bento-asset17-box, .bento-asset23-box, .bento-asset18-box, .bento-asset24-box {
+                height: 380px !important;
+              }
+            }
+
+            @media (max-width: 900px) {
+              .branding-bento-img-box,
+              .bento-col-7 .branding-bento-img-box,
+              .bento-col-5 .branding-bento-img-box,
+              .bento-asset17-box, .bento-asset23-box, .bento-asset18-box, .bento-asset24-box {
+                height: 340px !important;
+              }
+            }
+
+            @media (max-width: 600px) {
+              .branding-bento-img-box,
+              .bento-col-7 .branding-bento-img-box,
+              .bento-col-5 .branding-bento-img-box,
+              .bento-asset17-box, .bento-asset23-box, .bento-asset18-box, .bento-asset24-box {
+                height: 250px !important;
+              }
+            }
+
+            .branding-bento-img-box img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+              border-radius: 18px;
+              box-shadow: none !important;
+              filter: none !important;
+              -webkit-filter: none !important;
+              transition: transform 0.45s ease;
+            }
+
+            .branding-bento-img-box img.asset15-img {
+              transform: scale(1.20) translateX(6%);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset21-img {
+              transform: scale(1.15);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset16-img {
+              object-fit: cover;
+              transform: scale(1.03);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset22-img {
+              transform: scale(1.10) translate(2.5%, 5%);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset17-img {
+              transform: scale(1.28);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset23-img {
+              transform: scale(1.11) translate(2%, 2%);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset18-img {
+              transform: scale(1.22) translate(6%, -5%);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset24-img {
+              object-fit: contain;
+              transform: scale(1.28);
+              object-position: center center;
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img {
+              transform: scale(1.025);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset15-img {
+              transform: scale(1.26) translateX(6%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset21-img {
+              transform: scale(1.22);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset16-img {
+              transform: scale(1.10);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset22-img {
+              transform: scale(1.17) translate(2.5%, 5%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset17-img {
+              transform: scale(1.36);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset23-img {
+              transform: scale(1.18) translate(2%, 2%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset18-img {
+              transform: scale(1.30) translate(6%, -5%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset24-img {
+              transform: scale(1.35);
+            }
+          </style>
+
+          <div class="branding-bento-grid">
+            
+            <!-- Row 1 Left: Asset 15 (Equal 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117270/Asset_15_2x_b6dvcx.png" alt="Wall Branding" class="asset15-img">
+              </div>
+            </div>
+
+            <!-- Row 1 Right: Asset 21 (Equal 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941191/Asset_21_2x_wmvoly.png" alt="Backdrop Branding" class="asset21-img">
+              </div>
+            </div>
+
+            <!-- Row 2 Left: Gemini Image (Standees Branding - 5 Columns) -->
+            <div class="branding-bento-item bento-col-5">
+              <div class="branding-bento-img-box bento-asset18-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787406022/Gemini_Generated_Image_l9i22tl9i22tl9i2_xnj4ru.png" alt="Standees Branding" class="asset18-img">
+              </div>
+            </div>
+
+            <!-- Row 2 Right: Asset 22 (Booth Designing - 7 Columns) -->
+            <div class="branding-bento-item bento-col-7">
+              <div class="branding-bento-img-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786941933/Asset_22_2x_gr4f0z.png" alt="Booth Designing" class="asset22-img">
+              </div>
+            </div>
+
+            <!-- Row 3 Left: Asset 17 (Equal 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box bento-asset17-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" alt="Design Panel Suite" class="asset17-img">
+              </div>
+            </div>
+
+            <!-- Row 3 Right: Brand Signage (Equal 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box bento-asset17-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787313190/Untitled_design_6_ntuwrj.png" alt="Brand Signage & Gate" class="asset16-img">
+              </div>
+            </div>
+
+            <!-- Row 4 Left: Spatial Image (Spatial Branding - 4 Columns, Tall) -->
+            <div class="branding-bento-item bento-col-4">
+              <div class="branding-bento-img-box bento-asset24-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787422707/Untitled_design_7_pmwysc.png" alt="Spatial Branding" class="asset24-img">
+              </div>
+            </div>
+
+            <!-- Row 4 Right: Asset 23 (Exhibition Booth - 8 Columns, Expansive) -->
+            <div class="branding-bento-item bento-col-8">
+              <div class="branding-bento-img-box bento-asset23-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117281/Asset_23_2x_lvksqc.png" alt="Exhibition Booth" class="asset23-img">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3D CIRCULAR REVOLVING RING CAROUSEL (PRINT, LOGO DESIGN) -->
+        <div class="ui-mockup-card circular-showcase-card" data-category="print logo-design" style="grid-column: 1 / -1; width: 100%; position: relative; overflow: hidden; padding: 2.5rem 0 4rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
           
           <style>
             .circular-stage {
@@ -5111,11 +5391,12 @@
 
               <!-- Card 2: Branding (Design Panel Suite) -->
               <div class="circular-card-item c-card-2 3d-card" data-category="branding" style="background: linear-gradient(140deg, #10b981, #059669); color: #fff;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117277/Asset_17_2x_cmv1pr.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45;" alt="Design Panel">
+                <div style="position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center;">
                   <span style="background: rgba(255,255,255,0.25); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 12px; font-size: 0.68rem; font-weight: 800;">#IDENTITY</span>
-                  <span style="font-size: 12px;">🏢</span>
+                  <span style="font-size: 0.72rem; opacity: 0.8;">•••</span>
                 </div>
-                <div style="text-align: left;">
+                <div style="position: relative; z-index: 2; text-align: left;">
                   <h3 style="font-size: 1.65rem; font-weight: 900; line-height: 1.1; margin: 0 0 10px; font-family: var(--font-heading); color: #fff;">
                     Design Panel<br>Suite
                   </h3>
@@ -5871,17 +6152,14 @@
 
       function filterMockups(selectedCat) {
         mockupCards.forEach(card => {
-          const cardCat = card.getAttribute('data-category');
-          if (cardCat === selectedCat) {
+          const cardCat = card.getAttribute('data-category') || '';
+          const cardCats = cardCat.split(' ');
+          if (selectedCat === 'all' || cardCats.includes(selectedCat)) {
             card.style.display = 'flex';
-            setTimeout(() => {
-              card.style.opacity = '1';
-            }, 30);
+            card.style.opacity = '1';
           } else {
+            card.style.display = 'none';
             card.style.opacity = '0';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 300);
           }
         });
 
@@ -5906,11 +6184,10 @@
         });
       });
 
-      // Initialize with default active tab (Social Media)
-      const activeTab = document.querySelector('.cat-tab-heading.active');
-      if (activeTab) {
-        filterMockups(activeTab.getAttribute('data-filter'));
-      }
+      // Initialize with URL query parameter filter or active tab
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialCat = urlParams.get('filter') || window.location.hash.replace('#', '') || 'social-media';
+      filterMockups(initialCat);
     });
   </script>
 
