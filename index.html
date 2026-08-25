@@ -1310,7 +1310,7 @@
 
     /* Founder Section */
     .founder-section {
-      padding: 3rem 0 7rem 0;
+      padding: 2.2rem 0 5rem 0;
       background: transparent;
       position: relative;
     }
@@ -2100,7 +2100,7 @@
     /* Pinterest-Style Categories Cards with 4 Stacked Cards Each + Hashtags */
     .thumbprint-cards-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
       width: 100%;
       margin-top: 2.2rem;
@@ -2191,7 +2191,7 @@
     .tp-title {
       font-size: 1.85rem;
       font-weight: 800;
-      color: #111827;
+      color: var(--purple, #3A2350);
       margin: 0;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -2815,7 +2815,7 @@
     
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
       <div class="section-header text-center" style="margin-bottom: 40px; text-align: center;">
-        <h2 class="section-title" style="font-size: 2.75rem; font-family: var(--font-heading); font-weight: 700; color: #00b0b9; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
+        <h2 class="section-title" style="font-size: 2.75rem; font-family: var(--font-heading); font-weight: 700; color: var(--purple, #3A2350); margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em;">Our Thumbprints</h2>
       </div>
 
       
@@ -2854,7 +2854,7 @@
         </a>
 
         <!-- Card 2: Branding -->
-        <a href="portfolio.html?filter=branding" class="tp-card tp-card-branding" data-filter="branding">
+        <a href="portfolio.html?filter=branding-and-print" class="tp-card tp-card-branding" data-filter="branding">
           <div class="tp-card-header">
             <h3 class="tp-title">Branding</h3>
           </div>
@@ -2873,7 +2873,7 @@
         </a>
 
         <!-- Card 3: Print -->
-        <a href="portfolio.html?filter=print" class="tp-card tp-card-print" data-filter="print">
+        <a href="portfolio.html?filter=branding-and-print" class="tp-card tp-card-print" data-filter="print">
           <div class="tp-card-header">
             <h3 class="tp-title">Print</h3>
           </div>
@@ -2884,25 +2884,6 @@
               <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786117290/Asset_35_2x_uvnvxl.png');"></div>
               <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png');"></div>
               <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png');"></div>
-            </div>
-          </div>
-          <div class="tp-plus-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          </div>
-        </a>
-
-        <!-- Card 4: Logo Design -->
-        <a href="portfolio.html?filter=logo-design" class="tp-card tp-card-logo" data-filter="logo-design">
-          <div class="tp-card-header">
-            <h3 class="tp-title">Logo Design</h3>
-          </div>
-          <div class="tp-card-art art-fanned-container">
-
-            <div class="art-fanned-stack">
-              <div class="fan-img fan-1" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174080/TST-Website_Logo_4_uajdch.png');"></div>
-              <div class="fan-img fan-2" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174085/TST-Website_Logo_3_fsznbz.png');"></div>
-              <div class="fan-img fan-3" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174133/TST-Website_Logo_1_i1g60r.png');"></div>
-              <div class="fan-img fan-4" style="background-image: url('https://res.cloudinary.com/bbgr69ke/image/upload/v1787174129/TST-Website_Logo_2_1_tvimgi.png');"></div>
             </div>
           </div>
           <div class="tp-plus-btn">
@@ -3361,321 +3342,158 @@
 </style>
   <!-- TESTIMONIALS -->
   <section id="testimonials"
-    style="padding: 6rem 0 3rem 0; overflow: hidden; background: var(--teal); border-radius: 60px 60px 0 0; margin-top: -2rem; position: relative; z-index: 2;">
-    <div class="container" style="max-width: 1400px;">
+    style="padding: 5.5rem 0 2rem 0; overflow: hidden; background: var(--teal); border-radius: 60px 60px 0 0; margin-top: -2rem; position: relative; z-index: 2; color: #ffffff;">
+    <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
       <div class="section-head-row reveal-heading"
         style="margin-bottom: 3rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-        <span class="eyebrow" style="margin-bottom: 0.5rem; letter-spacing: 2px; font-size: 0.75rem;">What our
-          customers say about us</span>
-        <h2 class="section-heading" style="margin:0; font-size: 4.5rem;">Testimonials</h2>
+        <span class="eyebrow" style="margin-bottom: 0.5rem; letter-spacing: 2px; font-size: 0.75rem; color: rgba(255,255,255,0.95); text-transform: uppercase;">What our customers say about us</span>
+        <h2 class="section-heading" style="margin:0; font-size: 4.5rem; font-family: var(--font-heading); color: #ffffff; font-weight: 700;">Testimonials</h2>
       </div>
 
-      <div class="testimonials-track-container"
-        style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
-        <button class="testi-arrow testi-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <button class="testi-arrow testi-next" aria-label="Next">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
+      <div class="testimonials-track-container">
+        <div class="testimonials-track">
 
-        <div class="testimonials-track"
-          style="display: flex; gap: 2rem; overflow-x: auto; padding: 4rem calc(50vw - 170px) 6rem;  scrollbar-width: none; -ms-overflow-style: none; align-items: center;">
-
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                S
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Samit Jhaveri</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Samit Jhaveri
-                  Realtors</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Priyanka was on the move to get us the best ideas to build our social media presence online and guided us on the entire journey to build our brand image, which would be easily recognizable to the general audience. She, being super creative, is also full of energy to keep pushing you to do a few things out of your comfort zone, which will build your brand over a period of time!"</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka was
-              on the move to get us the best ideas to build our social media presence online and guided us on the entire
-              journey to build our brand image, which would be easily recognizable to the general audience. She, being
-              super creative, is also full of energy to keep pushing you to do a few things out of your comfort zone,
-              which will build your brand over a period of time!"</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Samit Jhaveri</strong> — Founder of Samit Jhaveri Realtors</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                R
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Rohan Kapashi</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Marketing head at Kira
-                  Diam</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Priyanka and The Social Thumbprint are absolute gems! Their creativity, responsiveness, and timely delivery have been invaluable to Kira's projects. Highly recommended!"</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Priyanka and
-              The Social Thumbprint are absolute gems! Their creativity, responsiveness, and timely delivery have been
-              invaluable to Kira's projects. Highly recommended!"</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Rohan Kapashi</strong> — Marketing head at Kira Diam</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                A
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Ayushi Gupta</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Kokolo</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Working with Priyanka was an absolute pleasure! Her expertise and creativity truly elevated my Instagram reels. We captured engaging content that perfectly reflected my brand. I highly recommend Priyanka for anyone looking to create engaging social media content!"</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
-              Priyanka was an absolute pleasure! Her expertise and creativity truly elevated my Instagram reels. We
-              captured engaging content that perfectly reflected my brand. I highly recommend Priyanka for anyone
-              looking to create engaging social media content!"</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Ayushi Gupta</strong> — Founder of Kokolo</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                N
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Nehaal D Shah</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Heart & Soil
-                </p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Many, Many Congratulations to Social Thumbprint for completing a year! Working with Priyanka & team was a complete pleasure. They were always up for investing time, energy, and effort to understand my thought process and adapt accordingly. Open-mindedness and the ability to evolve with brand requirements are their biggest strengths. I wish the young team loads of success & good luck in the coming time!"</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Many, Many
-              Congratulations to Social Thumbprint for completing a year! Working with Priyanka & team was a complete
-              pleasure. They were always up for investing time, energy, and effort to understand my thought process and
-              adapt accordingly. Open-mindedness and the ability to evolve with brand requirements are their biggest
-              strengths. I wish the young team loads of success & good luck in the coming time!"</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Nehaal D Shah</strong> — Founder of Heart & Soil</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                A
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Aashna Shah</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Arctic Star
-                  Fine Jewellery</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Hi Priyanka, Just wanted to say that I couldn't be more impressed with you and your team for all the work you have put in for Arctic Star. Really appreciate how adaptable and hands-on you have been with each and every request of mine and have managed to implement it even better than my vision. Thank you for your exceptional work for Arctic Star and looking forward to another year of creativity and success together."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Hi Priyanka,
-              Just wanted to say that I couldn't be more impressed with you and your team for all the work you have put
-              in for Arctic Star. Really appreciate how adaptable and hands-on you have been with each and every request
-              of mine and have managed to implement it even better than my vision. Thank you for your exceptional work
-              for Arctic Star and looking forward to another year of creativity and success together."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Aashna Shah</strong> — Founder of Arctic Star Fine Jewellery</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                P
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Pratibha Maniyar</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Made In Stitch
-                </p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"The Social Thumbprint played a crucial role in bringing my crochet brand, Made in Stitch, to life on social media. Their creativity, strategic planning, and flawless execution made the launch process smooth and impactful. They truly understood my vision and transformed it into a strong online presence that resonates with my audience. I'm thrilled to have started this journey with them."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"The Social
-              Thumbprint played a crucial role in bringing my crochet brand, Made in Stitch, to life on social media.
-              Their creativity, strategic planning, and flawless execution made the launch process smooth and impactful.
-              They truly understood my vision and transformed it into a strong online presence that resonates with my
-              audience. I'm thrilled to have started this journey with them."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Pratibha Maniyar</strong> — Founder of Made In Stitch</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                M
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Manisha Sharma</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Sharma
-                  Billiard Accessories</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"I had the pleasure of meeting Priyanka in March 2025 to discuss managing my company's social media profile, and I am convinced that I made the right choice. She brings brilliant ideas and an amazing perspective to the table. Priyanka is also very open to suggestions and handles feedback constructively, which has resulted in delivering outstanding creatives that align perfectly with our vision."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the
-              pleasure of meeting Priyanka in March 2025 to discuss managing my company's social media profile, and I am
-              convinced that I made the right choice. She brings brilliant ideas and an amazing perspective to the
-              table... Priyanka is also very open to suggestions and handles feedback constructively, which has resulted
-              in delivering outstanding creatives that align perfectly with our vision."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Manisha Sharma</strong> — Founder of Sharma Billiard Accessories</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                R
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Rishab Kumar</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Baulkline</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Working with Priyanka and The Social Thumbprint over the past 7 months has been a seamless and enriching experience. Priyanka is hands-on, approachable, and brings an objective yet inclusive approach to every conversation. Her clarity of thought and collaborative spirit have added real value to Baulkline's overall direction."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
-              Priyanka and The Social Thumbprint over the past 7 months has been a seamless and enriching experience.
-              Priyanka is hands-on, approachable, and brings an objective yet inclusive approach to every conversation.
-              Her clarity of thought and collaborative spirit have added real value to Baulkline's overall direction."
-            </p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Rishab Kumar</strong> — Founder of Baulkline</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                J
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Jessica Karani</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Wedding invite design +
-                  wedding collaterals</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"With all our various requests, you've been exceptionally patient and full of understanding and care. Choicest blessings, my love."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"With all our
-              various requests, you've been exceptionally patient and full of understanding and care. Choicest
-              blessings, my love."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Jessica Karani</strong> — Wedding invite design + wedding collaterals</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                S
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Saloni Nahar</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Adorne</p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Absolutely love working with our social media team! They are incredibly creative, prompt with execution, and consistently deliver great work. They truly understand our brand and translate ideas into impactful content effortlessly. They are very receptive to feedback, patient with innumerable changes, and always ensure the final output aligns perfectly with our vision."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Absolutely
-              love working with our social media team! They are incredibly creative, prompt with execution, and
-              consistently deliver great work. They truly understand our brand and translate ideas into impactful
-              content effortlessly. They are very receptive to feedback, patient with innumerable changes, and always
-              ensure the final output aligns perfectly with our vision."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Saloni Nahar</strong> — Founder of Adorne</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                J
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Jashan Munwani</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Touch Of Luna
-                </p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"I had the pleasure of working with Priyanka and The Social Thumbprint as our social media manager, and she truly transformed our brand's online presence. What stood out most was her availability and approachable nature. No matter the time zone or last-minute tweaks, she was always just a quick message away, responding promptly with enthusiasm and patience."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"I had the
-              pleasure of working with Priyanka and The Social Thumbprint as our social media manager, and she truly
-              transformed our brand's online presence... What stood out most was her availability and approachable
-              nature. No matter the time zone or last-minute tweaks, she was always just a quick message away,
-              responding promptly with enthusiasm and patience."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Jashan Munwani</strong> — Founder of Touch Of Luna</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                S
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Shamir Tandon</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Founder of Music Boutique
-                </p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"We've been working with this team for over two years now, and they've truly become an extension of our brand. Their understanding of our vision, consistency in execution, and ability to adapt to trends while maintaining our identity have made a significant difference to our online presence. Reliable, creative, and always proactive — it's been a great partnership."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"We've been
-              working with this team for over two years now, and they've truly become an extension of our brand. Their
-              understanding of our vision, consistency in execution, and ability to adapt to trends while maintaining
-              our identity have made a significant difference to our online presence. Reliable, creative, and always
-              proactive — it's been a great partnership."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Shamir Tandon</strong> — Founder of Music Boutique</div>
+            </div>
           </div>
 
-          <div class="testimonial-card-new"
-            style="flex: 0 0 auto; width: 340px; border-radius: 24px; padding: 2.5rem;  display: flex; flex-direction: column;">
-            <div class="testi-header" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-              <div class="testi-avatar"
-                style="width: 50px; height: 50px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.2rem;">
-                P
-              </div>
-              <div>
-                <h4 class="testi-name"
-                  style="font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; margin: 0 0 0.2rem 0;">
-                  Pranav</h4>
-                <p class="testi-role" style="font-size: 0.85rem; margin: 0; line-height: 1.4;">Meena Bazar, Hyderabad
-                </p>
-              </div>
+          <div class="testimonial-card-new">
+            <div>
+              <div class="testi-quote-mark">”</div>
+              <p class="testi-text">"Working with The Social Thumbprint has been an excellent experience from start to finish. Their work is consistently strong, and what stands out most is the complete transparency they bring to every stage of the process. I'd highly recommend their team to anyone looking for a trustworthy partner in this space."</p>
             </div>
-            <p class="testi-text"
-              style="font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; text-align: left;">"Working with
-              The Social Thumbprint has been an excellent experience from start to finish. Their work is consistently
-              strong, and what stands out most is the complete transparency they bring to every stage of the process...
-              I'd highly recommend their team to anyone looking for a trustworthy partner in this space."</p>
+            <div>
+              <div class="testi-divider"></div>
+              <div class="testi-author-line"><strong>Pranav</strong> — Meena Bazar, Hyderabad</div>
+            </div>
           </div>
 
         </div>
@@ -3683,44 +3501,136 @@
     </div>
   </section>
   <style>
-    .testimonials-track::-webkit-scrollbar {
-      display: none;
+    @keyframes testiMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-33.333333%); }
     }
 
+    .testimonials-track-container {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+      padding: 1rem 0 2rem;
+    }
+
+    .testimonials-track {
+      display: flex;
+      gap: 2rem;
+      width: max-content;
+      animation: testiMarquee 42s linear infinite;
+      align-items: stretch;
+    }
+
+    .testimonials-track:hover,
+    .testimonials-track.is-paused {
+      animation-play-state: paused !important;
+    }
+
+    /* Normal Card (Clean White Background, Light Border, Dark Text, Teal Quote Mark) */
     .testimonial-card-new {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
-      opacity: 0.7;
-      transform: scale(0.85);
-      background: transparent !important;
-      box-shadow: none !important;
-      color: rgba(255, 255, 255, 0.6);
+      flex: 0 0 390px !important;
+      width: 390px !important;
+      min-height: 420px !important;
+      box-sizing: border-box !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04) !important;
+      color: #334155 !important;
+      border-radius: 0px !important;
+      padding: 34px !important;
+      cursor: pointer;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease !important;
+      position: relative;
     }
 
-    .testimonial-card-new .testi-name {
-      color: rgba(255, 255, 255, 0.8);
+    .testi-quote-mark {
+      font-family: Georgia, serif;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: #00b0b9;
+      margin-bottom: 0.8rem;
+      transition: color 0.4s ease;
     }
 
-    .testimonial-card-new .testi-role {
-      color: rgba(255, 255, 255, 0.5);
+    .testimonial-card-new .testi-text {
+      font-family: var(--font-body, serif);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #334155;
+      margin: 0 0 1rem 0;
+      flex: 1;
+      overflow: visible;
+      transition: color 0.4s ease;
     }
 
-    /* The Center/Active Card */
-    .testimonial-card-new.is-active {
-      opacity: 1;
-      transform: scale(1.05);
-      background: #fff !important;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
-      color: #555;
-      /* Dark text for light bg */
+    .testi-divider {
+      border-top: 1px solid #e2e8f0;
+      margin-bottom: 0.8rem;
+      transition: border-color 0.4s ease;
     }
 
-    .testimonial-card-new.is-active .testi-name {
-      color: #111;
-      /* Dark name */
+    .testi-author-line {
+      font-family: var(--font-body, sans-serif);
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.4;
+      transition: color 0.4s ease;
     }
 
-    .testimonial-card-new.is-active .testi-role {
-      color: #888;
+    .testi-author-line strong {
+      color: #0f172a;
+      transition: color 0.4s ease;
+    }
+
+    /* Hovered / Selected Card State: Solid Teal Background + White Text + White Elements (Like Nirmala Edu screenshot!) */
+    .testimonial-card-new:hover,
+    .testimonial-card-new.is-accent,
+    .testimonial-card-new.is-active,
+    .testimonial-card-new.clicked {
+      background: #00b0b9 !important;
+      border-color: #008b94 !important;
+      box-shadow: 0 20px 45px rgba(0, 176, 185, 0.35) !important;
+      color: #ffffff !important;
+      transform: translateY(-4px) !important;
+    }
+
+    .testimonial-card-new:hover .testi-quote-mark,
+    .testimonial-card-new.is-accent .testi-quote-mark,
+    .testimonial-card-new.is-active .testi-quote-mark,
+    .testimonial-card-new.clicked .testi-quote-mark {
+      color: #ffffff !important;
+    }
+
+    .testimonial-card-new:hover .testi-text,
+    .testimonial-card-new.is-accent .testi-text,
+    .testimonial-card-new.is-active .testi-text,
+    .testimonial-card-new.clicked .testi-text {
+      color: #ffffff !important;
+    }
+
+    .testimonial-card-new:hover .testi-divider,
+    .testimonial-card-new.is-accent .testi-divider,
+    .testimonial-card-new.is-active .testi-divider,
+    .testimonial-card-new.clicked .testi-divider {
+      border-top-color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .testimonial-card-new:hover .testi-author-line,
+    .testimonial-card-new.is-accent .testi-author-line,
+    .testimonial-card-new.is-active .testi-author-line,
+    .testimonial-card-new.clicked .testi-author-line,
+    .testimonial-card-new:hover .testi-author-line strong,
+    .testimonial-card-new.is-accent .testi-author-line strong,
+    .testimonial-card-new.is-active .testi-author-line strong,
+    .testimonial-card-new.clicked .testi-author-line strong {
+      color: #ffffff !important;
     }
 
     .testi-arrow {
@@ -3790,171 +3700,22 @@
 </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-                        const track = document.querySelector('.testimonials-track');
-      let originalCards = Array.from(document.querySelectorAll('.testimonial-card-new'));
-      if (!track || originalCards.length === 0) return;
+      const track = document.querySelector('.testimonials-track');
+      if (!track) return;
 
-      // Duplicate testimonials TWICE to make 3 sets for perfect infinite looping
-      originalCards.forEach(card => {
-        track.appendChild(card.cloneNode(true));
-      });
-      originalCards.forEach(card => {
-        track.appendChild(card.cloneNode(true));
-      });
-      
-      let cards = Array.from(document.querySelectorAll('.testimonial-card-new'));
-      const originalCount = originalCards.length;
+      const originalCards = Array.from(track.querySelectorAll('.testimonial-card-new'));
+      if (originalCards.length === 0) return;
 
-      // Cache positions to prevent layout thrashing
-      let cardPositions = [];
-      const cachePositions = () => {
-          cardPositions = cards.map(card => {
-              return card.offsetLeft - track.offsetLeft + card.clientWidth / 2;
-          });
-      };
-      
-      // Call once on load, and on window resize
-      cachePositions();
-      window.addEventListener('resize', cachePositions);
+      // Duplicate cards TWICE to make 3 sets for seamless infinite marquee scrolling
+      originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+      originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
 
-      const updateActive = () => {
-        if (cardPositions.length === 0) return;
-        const centerViewPos = track.scrollLeft + track.clientWidth / 2;
-        
-        let closestIdx = 0;
-        let minDiff = Infinity;
+      const allCards = track.querySelectorAll('.testimonial-card-new');
 
-        for (let i = 0; i < cardPositions.length; i++) {
-          const diff = Math.abs(centerViewPos - cardPositions[i]);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIdx = i;
-          }
-        }
-
-        cards.forEach((card, idx) => {
-          if (idx === closestIdx) {
-            if (!card.classList.contains('is-active')) card.classList.add('is-active');
-          } else {
-            if (card.classList.contains('is-active')) card.classList.remove('is-active');
-          }
-        });
-      };
-
-      let autoScrollInterval;
-      
-      const startAutoScroll = () => {
-        if (autoScrollInterval) clearInterval(autoScrollInterval);
-        autoScrollInterval = setInterval(() => {
-          slideCards(1);
-        }, 2500);
-      };
-
-      const slideCards = (direction) => {
-        let activeIdx = cards.findIndex(card => card.classList.contains('is-active'));
-        if (activeIdx === -1) activeIdx = originalCount;
-        
-        let nextIdx = activeIdx + direction;
-        
-        // Loop logic during slide
-        if (nextIdx >= originalCount * 2) {
-             // Jump back instantly to the 2nd set
-             track.style.scrollBehavior = 'auto';
-             let resetIdx = nextIdx - originalCount;
-             let resetCard = cards[resetIdx];
-             track.scrollLeft = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
-             
-             // Wait a frame then smooth scroll to the target
-             requestAnimationFrame(() => {
-                 requestAnimationFrame(() => {
-                     track.style.scrollBehavior = 'smooth';
-                     let targetCard = cards[resetIdx + direction];
-                     if(targetCard) {
-                         let targetPos = targetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (targetCard.clientWidth / 2);
-                         track.scrollTo({ left: targetPos, behavior: 'smooth' });
-                     }
-                 });
-             });
-             return;
-        } else if (nextIdx < originalCount) {
-             // Jump forward instantly to the 2nd set
-             track.style.scrollBehavior = 'auto';
-             let resetIdx = nextIdx + originalCount;
-             let resetCard = cards[resetIdx];
-             track.scrollLeft = resetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (resetCard.clientWidth / 2);
-             
-             requestAnimationFrame(() => {
-                 requestAnimationFrame(() => {
-                     track.style.scrollBehavior = 'smooth';
-                     let targetCard = cards[resetIdx + direction];
-                     if(targetCard) {
-                         let targetPos = targetCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (targetCard.clientWidth / 2);
-                         track.scrollTo({ left: targetPos, behavior: 'smooth' });
-                     }
-                 });
-             });
-             return;
-        }
-        
-        // Normal slide
-        let nextCard = cards[nextIdx];
-        if (nextCard) {
-          track.style.scrollBehavior = 'smooth';
-          let scrollPos = nextCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (nextCard.clientWidth / 2);
-          track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-        }
-      };
-      
-      // Initialize starting position robustly (wait for layout)
-      const initScroll = () => {
-        if (cards[originalCount].offsetLeft === 0) {
-            // Layout not ready yet, retry
-            setTimeout(initScroll, 50);
-            return;
-        }
-        cachePositions();
-        let startCard = cards[originalCount];
-        if (startCard) {
-            track.style.scrollBehavior = 'auto';
-            track.scrollLeft = startCard.offsetLeft - track.offsetLeft - (track.clientWidth / 2) + (startCard.clientWidth / 2);
-            updateActive();
-        }
-      };
-      
-      initScroll();
-      
-      // Fallback update active when fonts load
-      window.addEventListener('load', () => {
-          initScroll();
-      });
-
-      startAutoScroll();
-
-      track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-      track.addEventListener('mouseleave', startAutoScroll);
-      track.addEventListener('touchstart', () => clearInterval(autoScrollInterval), { passive: true });
-      track.addEventListener('touchend', startAutoScroll, { passive: true });
-
-      track.addEventListener('scroll', () => {
-          updateActive();
-      }, { passive: true });
-
-      const testiPrevBtn = document.querySelector('.testi-prev');
-      const testiNextBtn = document.querySelector('.testi-next');
-
-      if (testiPrevBtn) {
-        testiPrevBtn.addEventListener('click', () => {
-          slideCards(-1);
-          startAutoScroll();
-        });
-      }
-      if (testiNextBtn) {
-        testiNextBtn.addEventListener('click', () => {
-          slideCards(1);
-          startAutoScroll();
-        });
-      }
-});
+      // Mobile Touch Drag & Hover Pause
+      track.addEventListener('touchstart', () => track.classList.add('is-paused'), { passive: true });
+      track.addEventListener('touchend', () => track.classList.remove('is-paused'), { passive: true });
+    });
   </script>
 
   <!-- FOUNDER SECTION -->
