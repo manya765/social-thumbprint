@@ -2190,7 +2190,7 @@
 
     .tp-title {
       font-size: 1.85rem;
-      font-weight: 800;
+      font-weight: 400;
       color: var(--purple, #3A2350);
       margin: 0;
       line-height: 1.15;
@@ -2798,7 +2798,7 @@
     </div>
   </section>
 
-  <section id="work" style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 4rem; margin-top: 2rem; position: relative; overflow: hidden;">
+  <section id="work" style="background-color: #f7f7f9; border-radius: 60px 60px 0 0; padding-top: 6rem; padding-bottom: 8.5rem; margin-top: 2rem; position: relative; overflow: hidden;">
     <!-- Scattered Fingerprints Background (Rich Pattern) -->
     <div class="s-print" style="top: -5%; left: -8%; width: 480px; height: 480px; transform: rotate(15deg); opacity: 0.08; background-color: var(--purple);"></div>
     <div class="s-print" style="top: 5%; right: -5%; width: 550px; height: 550px; transform: rotate(-25deg); opacity: 0.08; background-color: var(--teal);"></div>
@@ -3050,7 +3050,7 @@
 
 
   <!-- BRAND HONEYCOMB GRID -->
-  <section class="hex-section">
+  <section class="hex-section" style="background-color: var(--teal, #00B0B9); border-radius: 60px 60px 0 0; padding-top: 5.5rem; padding-bottom: 0rem; margin-top: -40px; position: relative; z-index: 5; overflow: hidden;">
     <div class="container" style="margin-bottom: 2rem;">
       <div class="section-head-row reveal-heading">
         <div>
@@ -3180,7 +3180,7 @@
   </section>
 
   <!-- SERVICES -->
-  <section id="services">
+  <section id="services" style="padding-top: 0.5rem;">
     <div class="container">
       <div class="section-head-row reveal-heading">
         <div>
@@ -3589,48 +3589,15 @@
       transition: color 0.4s ease;
     }
 
-    /* Hovered / Selected Card State: Solid Teal Background + White Text + White Elements (Like Nirmala Edu screenshot!) */
+    /* Hovered State: Enlarge card size smoothly without color changes */
     .testimonial-card-new:hover,
     .testimonial-card-new.is-accent,
     .testimonial-card-new.is-active,
     .testimonial-card-new.clicked {
-      background: #00b0b9 !important;
-      border-color: #008b94 !important;
-      box-shadow: 0 20px 45px rgba(0, 176, 185, 0.35) !important;
-      color: #ffffff !important;
-      transform: translateY(-4px) !important;
-    }
-
-    .testimonial-card-new:hover .testi-quote-mark,
-    .testimonial-card-new.is-accent .testi-quote-mark,
-    .testimonial-card-new.is-active .testi-quote-mark,
-    .testimonial-card-new.clicked .testi-quote-mark {
-      color: #ffffff !important;
-    }
-
-    .testimonial-card-new:hover .testi-text,
-    .testimonial-card-new.is-accent .testi-text,
-    .testimonial-card-new.is-active .testi-text,
-    .testimonial-card-new.clicked .testi-text {
-      color: #ffffff !important;
-    }
-
-    .testimonial-card-new:hover .testi-divider,
-    .testimonial-card-new.is-accent .testi-divider,
-    .testimonial-card-new.is-active .testi-divider,
-    .testimonial-card-new.clicked .testi-divider {
-      border-top-color: rgba(255, 255, 255, 0.3) !important;
-    }
-
-    .testimonial-card-new:hover .testi-author-line,
-    .testimonial-card-new.is-accent .testi-author-line,
-    .testimonial-card-new.is-active .testi-author-line,
-    .testimonial-card-new.clicked .testi-author-line,
-    .testimonial-card-new:hover .testi-author-line strong,
-    .testimonial-card-new.is-accent .testi-author-line strong,
-    .testimonial-card-new.is-active .testi-author-line strong,
-    .testimonial-card-new.clicked .testi-author-line strong {
-      color: #ffffff !important;
+      transform: scale(1.06) translateY(-6px) !important;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.16) !important;
+      border-color: #cbd5e1 !important;
+      z-index: 10;
     }
 
     .testi-arrow {

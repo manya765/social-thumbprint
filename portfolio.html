@@ -657,7 +657,7 @@
 
     .tp-title {
       font-size: 1.85rem;
-      font-weight: 800;
+      font-weight: 400;
       color: #111827;
       margin: 0;
       line-height: 1.15;
@@ -4484,7 +4484,7 @@
       <!-- Category Tabs Filter -->
       <div class="category-tabs-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2.8rem; margin-bottom: 2rem;">
         <a href="#social-media" class="cat-tab-heading active" data-filter="social-media" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #00b0b9; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid #00b0b9;">SOCIAL MEDIA</a>
-        <a href="#branding-and-print" class="cat-tab-heading" data-filter="branding-and-print" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #524b38; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING AND PRINT</a>
+        <a href="#branding-and-print" class="cat-tab-heading" data-filter="branding-and-print" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #524b38; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING &amp; PRINT</a>
       </div>
 
       <!-- 3D UI MOCKUPS GRID (3 Columns x 3 Rows) -->
@@ -5054,12 +5054,24 @@
               grid-column: span 8;
             }
 
+            .bento-col-9 {
+              grid-column: span 9;
+            }
+
             .bento-col-4 {
               grid-column: span 4;
             }
 
+            .bento-col-3 {
+              grid-column: span 3;
+            }
+
+            .bento-col-12 {
+              grid-column: span 12;
+            }
+
             @media (max-width: 1024px) {
-              .bento-col-7, .bento-col-6, .bento-col-5, .bento-col-8, .bento-col-4 {
+              .bento-col-7, .bento-col-6, .bento-col-5, .bento-col-8, .bento-col-9, .bento-col-4, .bento-col-3, .bento-col-12 {
                 grid-column: span 12;
               }
             }
@@ -5122,6 +5134,18 @@
 
             .bento-asset18-box {
               height: 500px !important;
+            }
+
+            .bento-row5-box {
+              height: 480px !important;
+            }
+
+            .bento-row7-box {
+              height: 480px !important;
+            }
+
+            .bento-row8-box {
+              height: 480px !important;
             }
 
             @media (max-width: 1200px) {
@@ -5206,6 +5230,67 @@
               object-position: center center;
             }
 
+            .branding-bento-img-box img.asset28-img {
+              object-fit: cover;
+              transform: scale(1.22);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset29-img {
+              object-fit: cover;
+              transform: scale(1.15);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.gemini-nppp-img {
+              object-fit: cover;
+              transform: scale(1.18) translateX(-5%);
+              object-position: center center !important;
+            }
+
+            .branding-bento-img-box img.gemini-4ojj-img {
+              object-fit: cover;
+              transform: scale(1.15);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.asset31-img {
+              object-fit: cover;
+              transform: scale(1.15) translateX(7%);
+              object-position: center center;
+            }
+
+            .branding-bento-img-box img.gemini-cchd-img {
+              object-fit: cover;
+              transform: scale(1.04) translateY(6%);
+              object-position: center 30% !important;
+            }
+
+            .branding-bento-img-box img.gemini-33ii-img {
+              object-fit: cover;
+              transform: scale(1.05);
+              object-position: center center !important;
+            }
+
+            .branding-bento-img-box img.asset40-img {
+              object-fit: cover;
+              transform: scale(1.22) translate(1%, 4%);
+              object-position: center center !important;
+            }
+
+            .branding-bento-img-box img.asset34-img {
+              object-fit: cover;
+              transform: scale(1.45);
+              object-position: center center !important;
+            }
+
+            .branding-bento-img-box img.asset33-img,
+            .branding-bento-img-box img.asset35-img {
+              object-fit: cover;
+              transform: scale(1.30);
+              object-position: center center !important;
+            }
+
             .branding-bento-item:hover .branding-bento-img-box img {
               transform: scale(1.025);
             }
@@ -5240,6 +5325,47 @@
 
             .branding-bento-item:hover .branding-bento-img-box img.asset24-img {
               transform: scale(1.35);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset28-img {
+              transform: scale(1.30);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset29-img {
+              transform: scale(1.22);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.gemini-nppp-img {
+              transform: scale(1.26) translateX(-5%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.gemini-4ojj-img {
+              transform: scale(1.22);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset31-img {
+              transform: scale(1.22) translateX(7%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.gemini-cchd-img {
+              transform: scale(1.10) translateY(6%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.gemini-33ii-img {
+              transform: scale(1.11);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset40-img {
+              transform: scale(1.30) translate(1%, 4%);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset34-img {
+              transform: scale(1.55);
+            }
+
+            .branding-bento-item:hover .branding-bento-img-box img.asset33-img,
+            .branding-bento-item:hover .branding-bento-img-box img.asset35-img {
+              transform: scale(1.42);
             }
           </style>
 
@@ -5301,6 +5427,90 @@
               </div>
             </div>
 
+            <!-- Row 5 Left: Asset 28 (Luxury Wedding Suite - 5 Columns) -->
+            <div class="branding-bento-item bento-col-5">
+              <div class="branding-bento-img-box bento-row5-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943013/Asset_28_2x_scuik8.png" alt="Luxury Wedding Suite" class="asset28-img">
+              </div>
+            </div>
+
+            <!-- Row 5 Right: Asset 29 (Visiting Cards Suite - 7 Columns) -->
+            <div class="branding-bento-item bento-col-7">
+              <div class="branding-bento-img-box bento-row5-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943021/Asset_29_2x_nshvqv.png" alt="Visiting Cards Collateral" class="asset29-img">
+              </div>
+            </div>
+
+            <!-- Row 6 Left: Asset 31 (Brand Stationery & Collateral - 4 Columns) -->
+            <div class="branding-bento-item bento-col-4">
+              <div class="branding-bento-img-box bento-asset24-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943008/Asset_31_2x_s5k5ev.png" alt="Brand Stationery Collateral" class="asset31-img">
+              </div>
+            </div>
+
+            <!-- Row 6 Right: Gemini Image (Premium Packaging Collateral - 8 Columns) -->
+            <div class="branding-bento-item bento-col-8">
+              <div class="branding-bento-img-box bento-asset23-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787665204/Gemini_Generated_Image_cchdo3cchdo3cchd_ugseq8.png" alt="Premium Packaging Branding" class="gemini-cchd-img">
+              </div>
+            </div>
+
+            <!-- Row 7 Left: Gemini Image (Print Collateral - 5 Columns, Decreased Width) -->
+            <div class="branding-bento-item bento-col-5">
+              <div class="branding-bento-img-box bento-row7-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787665179/Gemini_Generated_Image_4ojjh4ojjh4ojjh4_gihkdm.png" alt="Print Collateral" class="gemini-4ojj-img">
+              </div>
+            </div>
+
+            <!-- Row 7 Right: Gemini Image (Creative Identity System - 7 Columns, Increased Width) -->
+            <div class="branding-bento-item bento-col-7">
+              <div class="branding-bento-img-box bento-row7-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787665618/Gemini_Generated_Image_npppjfnpppjfnppp_2_kspj4e.png" alt="Creative Identity System" class="gemini-nppp-img">
+              </div>
+            </div>
+
+            <!-- Row 8 Left: Tactile Print Suite (7 Columns, Increased Width) -->
+            <div class="branding-bento-item bento-col-7">
+              <div class="branding-bento-img-box bento-row8-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1787668886/Untitled_design_8_xowg5l.png" alt="Tactile Print Suite" class="gemini-33ii-img">
+              </div>
+            </div>
+
+            <!-- Row 8 Right: Asset 40 (Box Packaging Collateral - 5 Columns) -->
+            <div class="branding-bento-item bento-col-5">
+              <div class="branding-bento-img-box bento-row8-box">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943001/Asset_40_2x_umic2n.png" alt="Box Packaging Collateral" class="asset40-img">
+              </div>
+            </div>
+
+            <!-- Row 9 Left: Asset 34 (Folded Posters Collateral - 4 Columns) -->
+            <div class="branding-bento-item bento-col-4">
+              <div class="branding-bento-img-box" style="height: 480px !important;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786611347/Asset_34_2x_mwjnai.png" alt="Folded Posters Collateral" class="asset34-img">
+              </div>
+            </div>
+
+            <!-- Row 9 Right: Asset 39 (Bespoke Box Packaging Showcase - 8 Columns) -->
+            <div class="branding-bento-item bento-col-8">
+              <div class="branding-bento-img-box" style="height: 480px !important;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786942994/Asset_39_2x_hfboce.png" alt="Bespoke Packaging Showcase" class="asset15-img" style="object-fit: cover; object-position: center;">
+              </div>
+            </div>
+
+            <!-- Row 10 Left: Asset 33 (Tent Cards Showcase - 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box" style="height: 420px !important;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786943074/Asset_33_2x_bwpan2.png" alt="Tent Cards Showcase" class="asset33-img">
+              </div>
+            </div>
+
+            <!-- Row 10 Right: Asset 35 (Look Book Showcase - 6 Columns) -->
+            <div class="branding-bento-item bento-col-6">
+              <div class="branding-bento-img-box" style="height: 420px !important;">
+                <img src="https://res.cloudinary.com/bbgr69ke/image/upload/v1786117290/Asset_35_2x_uvnvxl.png" alt="Look Book Showcase" class="asset35-img">
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -5309,7 +5519,7 @@
         <!-- Category Tabs Filter at Bottom of Section -->
         <div class="category-tabs-bar" style="grid-column: 1 / -1; width: 100%; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2.8rem; margin-top: 3rem; margin-bottom: 1rem; text-align: center;">
           <a href="#social-media" class="cat-tab-heading active" data-filter="social-media" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #00b0b9; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid #00b0b9;">SOCIAL MEDIA</a>
-          <a href="#branding-and-print" class="cat-tab-heading" data-filter="branding-and-print" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #524b38; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING AND PRINT</a>
+          <a href="#branding-and-print" class="cat-tab-heading" data-filter="branding-and-print" style="font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #524b38; text-decoration: none !important; transition: all 0.3s ease; padding-bottom: 8px; border-bottom: 2.5px solid transparent;">BRANDING &amp; PRINT</a>
         </div>
 
       </div>
