@@ -3367,26 +3367,26 @@
       position: absolute;
       top: max(20px, env(safe-area-inset-top));
       right: max(20px, env(safe-area-inset-right));
-      background: none;
-      border: none;
-      color: white;
-      font-size: 3rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
       cursor: pointer;
-      line-height: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       z-index: 100000;
-      padding: 10px;
-    }
-    @media (max-width: 768px) {
-      .video-modal-close {
-        top: max(15px, env(safe-area-inset-top));
-        right: max(15px, env(safe-area-inset-right));
-        font-size: 2.5rem;
-      }
+      backdrop-filter: blur(4px);
+      transition: all 0.25s ease;
     }
     .video-modal-close:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.1);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: #00b0b9;
+      border-color: #00b0b9;
+      transform: scale(1.05);
     }
     .video-modal-content {
       width: 90%;
@@ -5405,8 +5405,154 @@
               transform: scale(1.85);
             }
 
-            .branding-bento-item:hover .branding-bento-img-box img.asset35-img {
-              transform: scale(1.24);
+            /* Asset Hover View Overlay & Modal Viewer */
+            .asset-hover-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.42);
+              backdrop-filter: blur(3px);
+              -webkit-backdrop-filter: blur(3px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+              z-index: 15;
+              border-radius: inherit;
+              cursor: pointer;
+            }
+
+            .branding-bento-img-box:hover .asset-hover-overlay,
+            .branding-bento-item:hover .asset-hover-overlay,
+            .sm-stack-card:hover .asset-hover-overlay,
+            .sm-work-media-box:hover .asset-hover-overlay,
+            .sm-work-card:hover .asset-hover-overlay {
+              opacity: 1;
+              pointer-events: auto;
+            }
+
+            .asset-view-btn {
+              background: #00b0b9;
+              color: #ffffff;
+              border: none;
+              padding: 10px 22px;
+              border-radius: 30px;
+              font-family: 'Inter', -apple-system, sans-serif;
+              font-size: 0.95rem;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              box-shadow: 0 4px 15px rgba(0, 176, 185, 0.4);
+              transform: translateY(8px) scale(0.95);
+              transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .branding-bento-img-box:hover .asset-view-btn,
+            .branding-bento-item:hover .asset-view-btn,
+            .sm-stack-card:hover .asset-view-btn,
+            .sm-work-media-box:hover .asset-view-btn,
+            .sm-work-card:hover .asset-view-btn {
+              transform: translateY(0) scale(1);
+            }
+
+            .asset-view-btn:hover {
+              background: #008f97;
+              transform: scale(1.05) !important;
+              box-shadow: 0 6px 20px rgba(0, 176, 185, 0.6);
+            }
+
+            /* Single Asset View Lightbox Modal */
+            .asset-modal {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background: rgba(10, 10, 15, 0.92);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              z-index: 999999;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              opacity: 0;
+              visibility: hidden;
+              transition: opacity 0.35s ease, visibility 0.35s ease;
+              padding: 20px;
+            }
+
+            .asset-modal.active {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .asset-modal-close {
+              position: absolute;
+              top: 25px;
+              right: 25px;
+              background: rgba(255, 255, 255, 0.15);
+              border: 1px solid rgba(255, 255, 255, 0.25);
+              color: #ffffff;
+              padding: 10px 22px;
+              border-radius: 30px;
+              font-family: 'Inter', -apple-system, sans-serif;
+              font-size: 0.95rem;
+              font-weight: 700;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              transition: all 0.25s ease;
+              z-index: 1000000;
+              backdrop-filter: blur(4px);
+            }
+
+            .asset-modal-close:hover {
+              background: #00b0b9;
+              border-color: #00b0b9;
+              transform: scale(1.05);
+            }
+
+            .asset-modal-content {
+              max-width: 90vw;
+              max-height: 88vh;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+            }
+
+            .asset-modal-content img,
+            .asset-modal-content video {
+              max-width: 100%;
+              max-height: 80vh;
+              object-fit: contain;
+              border-radius: 12px;
+              box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+              transform: scale(0.92);
+              transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .asset-modal.active .asset-modal-content img,
+            .asset-modal.active .asset-modal-content video {
+              transform: scale(1);
+            }
+
+            .asset-modal-caption {
+              margin-top: 15px;
+              font-family: 'Inter', -apple-system, sans-serif;
+              font-size: 1rem;
+              font-weight: 600;
+              color: #e0e0e0;
+              text-align: center;
             }
           </style>
 
@@ -5796,11 +5942,27 @@
   }
 </script>
 
+  <!-- SINGLE ASSET VIEW LIGHTBOX MODAL -->
+  <div class="asset-modal" id="assetViewModal">
+    <button class="asset-modal-close" id="closeAssetModal" aria-label="Exit View">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <span>Exit</span>
+    </button>
+    <div class="asset-modal-content" id="assetModalContent">
+      <img id="assetModalImg" src="" alt="Asset Preview" style="display:none;" />
+      <video id="assetModalVideo" controls autoplay style="display:none;"></video>
+      <div id="assetModalCaption" class="asset-modal-caption"></div>
+    </div>
+  </div>
+
   <!-- VIDEO MODAL -->
   
 
   <div class="video-modal" id="videoModal">
-    <button class="video-modal-close" id="closeModal">&times;</button>
+    <button class="video-modal-close" id="closeModal" aria-label="Exit View">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <span>Exit</span>
+    </button>
     <div class="video-modal-content">
       <div class="video-modal-header">
         <h2 id="modalBrandTitle">Brand</h2>
@@ -6215,10 +6377,99 @@
           if (e.target === videoModal) closeVideoModal();
         });
       }
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoModal && videoModal.style.display === 'flex') {
-          closeVideoModal();
+      // Single Asset View Modal Logic
+      const assetModal = document.getElementById('assetViewModal');
+      const closeAssetModalBtn = document.getElementById('closeAssetModal');
+      const assetModalImg = document.getElementById('assetModalImg');
+      const assetModalVideo = document.getElementById('assetModalVideo');
+      const assetModalCaption = document.getElementById('assetModalCaption');
+
+      function openSingleAssetModal(src, isVideo, caption) {
+        if (!assetModal) return;
+        if (isVideo) {
+          if (assetModalImg) assetModalImg.style.display = 'none';
+          if (assetModalVideo) {
+            assetModalVideo.style.display = 'block';
+            assetModalVideo.src = src;
+            assetModalVideo.play().catch(() => {});
+          }
+        } else {
+          if (assetModalVideo) {
+            assetModalVideo.pause();
+            assetModalVideo.style.display = 'none';
+          }
+          if (assetModalImg) {
+            assetModalImg.style.display = 'block';
+            assetModalImg.src = src;
+          }
         }
+        if (assetModalCaption) {
+          assetModalCaption.textContent = caption || '';
+        }
+        assetModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSingleAssetModal() {
+        if (!assetModal) return;
+        assetModal.classList.remove('active');
+        if (assetModalVideo) {
+          assetModalVideo.pause();
+          assetModalVideo.src = '';
+        }
+        document.body.style.overflow = '';
+      }
+
+      if (closeAssetModalBtn) {
+        closeAssetModalBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeSingleAssetModal();
+        });
+      }
+
+      if (assetModal) {
+        assetModal.addEventListener('click', (e) => {
+          if (e.target === assetModal || e.target.id === 'assetModalContent') {
+            closeSingleAssetModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && assetModal && assetModal.classList.contains('active')) {
+          closeSingleAssetModal();
+        }
+      });
+
+      // Inject Hover View Overlay to all gallery assets (images and videos)
+      const galleryContainers = document.querySelectorAll('.branding-bento-img-box, .sm-stack-card, .sm-work-media-box');
+      galleryContainers.forEach(container => {
+        if (!container.querySelector('.asset-hover-overlay')) {
+          const overlay = document.createElement('div');
+          overlay.className = 'asset-hover-overlay';
+          overlay.innerHTML = `
+            <button class="asset-view-btn" aria-label="View Asset">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>View</span>
+            </button>
+          `;
+          container.appendChild(overlay);
+        }
+
+        container.addEventListener('click', (e) => {
+          const img = container.querySelector('img');
+          const video = container.querySelector('video');
+          if (img && img.src) {
+            const caption = img.getAttribute('alt') || '';
+            openSingleAssetModal(img.src, false, caption);
+          } else if (video && video.src) {
+            const caption = video.getAttribute('alt') || container.getAttribute('aria-label') || '';
+            openSingleAssetModal(video.src, true, caption);
+          }
+        });
       });
     });
   </script>
