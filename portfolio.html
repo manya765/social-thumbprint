@@ -591,12 +591,13 @@
       left: 0;
       width: 200px;
       height: 280px;
-      pointer-events: none;
-      z-index: 99999;
+      pointer-events: none !important;
+      z-index: 999999999 !important;
       transform: translate(-50%, -50%);
       transition: transform 0.15s ease, opacity 0.15s ease;
       opacity: 0.8;
-      display: block;
+      display: block !important;
+      visibility: visible !important;
     }
     .cursor-fingerprint img {
       width: 100%;
@@ -606,6 +607,14 @@
     .cursor-fingerprint.stamping {
       transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
       opacity: 1;
+    }
+
+    body.modal-open .cursor-fingerprint,
+    .modal-open .cursor-fingerprint {
+      display: block !important;
+      z-index: 999999999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
 
 
@@ -6477,7 +6486,7 @@
 
   
   <!-- CUSTOM CURSOR IDENTICAL TO INDEX.HTML -->
-  <div class="cursor-fingerprint" id="customCursor" style="display: block; z-index: 99999;">
+  <div class="cursor-fingerprint" id="customCursor" style="display: block !important; z-index: 999999999 !important; pointer-events: none !important;">
     <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); transform: rotate(-15deg);" />
   </div>
 
@@ -6511,7 +6520,7 @@
       }
     });
 
-    document.querySelectorAll('a, button, input, textarea, label, img, .webee-card, .cat-link, .ui-mockup-card, .cat-tab-heading').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, label, img, video, .webee-card, .cat-link, .ui-mockup-card, .cat-tab-heading, .asset-view-btn, .asset-modal-close, .video-modal-close, .asset-hover-overlay').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('stamping'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('stamping'));
     });
