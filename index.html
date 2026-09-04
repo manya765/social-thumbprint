@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>The Social Thumbprint — Social Media & Growth Agency</title>
   <meta name="description"
     content="Good brands deserve good stories. We’re here to tell yours.">
@@ -45,11 +45,19 @@
       box-sizing: border-box;
     }
 
-    /* Custom Cursor hiding default */
+    /* Mobile & Touch Optimizations */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+      position: relative;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     html {
       scroll-behavior: smooth;
       cursor: none;
-      overflow-x: hidden;
     }
 
     a,
@@ -72,8 +80,32 @@
       color: var(--white);
       font-family: var(--font-body);
       line-height: 1.6;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile Touch & Pointer Override for Glitch-Free Mobile Browsing */
+    @media (pointer: coarse), (hover: none), (max-width: 991px) {
+      html, body, a, button, input, textarea, select, label, div, span, img, svg {
+        cursor: auto !important;
+      }
+      a, button, [role="button"], .btn, .service-card, .tp-card, .brand-card, .showcase-tab, .slider-arrow, .video-modal-close, .close-menu-btn, .hamburger-btn {
+        cursor: pointer !important;
+      }
+      .cursor-fingerprint, #customCursor {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="number"],
+      input[type="password"],
+      textarea,
+      select {
+        font-size: 16px !important;
+      }
     }
 
     /* Custom Fingerprint Cursor */
@@ -2720,7 +2752,7 @@
   <!-- LOADING SCREEN REMOVED FOR INSTANT NAVIGATION -->
 
   <!-- CUSTOM CURSOR -->
-  <div class="cursor-fingerprint" id="customCursor" style="display: block !important; z-index: 999999999 !important; pointer-events: none !important;">
+  <div class="cursor-fingerprint" id="customCursor" style="z-index: 999999999 !important; pointer-events: none !important;">
     <img src="cursor-thumb-teal.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); transform: rotate(-15deg);" />
   </div>
 
@@ -3953,6 +3985,7 @@
     // Custom Cursor
     const cursor = document.getElementById('customCursor');
     window.addEventListener('mousemove', (e) => {
+      if (!cursor || window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 991 || 'ontouchstart' in window) return;
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
       
@@ -4170,13 +4203,16 @@
     if (hamburgerBtn && closeMenuBtn && mobileMenu) {
       hamburgerBtn.addEventListener('click', () => {
         mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
       closeMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
       });
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
         });
       });
     }
@@ -4375,7 +4411,7 @@
         <h2 id="modalBrandTitle">Brand</h2>
       </div>
       <div class="video-player-container">
-        <video id="modalVideoPlayer" controls autoplay>
+        <video id="modalVideoPlayer" controls autoplay playsinline webkit-playsinline>
           <source src="" type="video/mp4">
         </video>
       </div>
