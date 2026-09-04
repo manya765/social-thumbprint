@@ -6521,11 +6521,7 @@
         }
 
         if (assetModalCaption) {
-          let cap = item.caption || '';
-          if (currentGalleryItems.length > 1) {
-            cap += ` <span style="opacity: 0.65; font-size: 0.85em; font-weight: 400; margin-left: 8px;">(${currentAssetIndex + 1} / ${currentGalleryItems.length})</span>`;
-          }
-          assetModalCaption.innerHTML = cap;
+          assetModalCaption.textContent = item.caption || '';
         }
 
         if (prevAssetModalBtn && nextAssetModalBtn) {
